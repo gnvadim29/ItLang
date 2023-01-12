@@ -14,7 +14,7 @@
 	<name>ItLang</name>
 	<description>Graduate work</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>19.0.1</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
