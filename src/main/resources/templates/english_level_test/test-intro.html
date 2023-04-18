@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
+    <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
+    <link th:href="@{/css/fragments/header.css}" rel="stylesheet" >
+    <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" >
+    <link th:href="@{/css/english-level-test/test-intro.css}" href="../../static/css/english-level-test/test-intro.css" rel="stylesheet" >
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <title>ItLang</title>
+</head>
+<body>
+    <div id="page-preloader" class="preloader">
+    <div class="loader"></div>
+</div>
+    <div class="wrapper">
+        <div class="header" th:insert="~{fragments/header.html :: header}"></div>
+
+        <section class="content">
+            <div class="container">
+                <div class="content-intro">
+                    <div class="content_text">
+                        <div class="blog_title title">
+                            <div class="blog_title-text title_text">
+                                English Level Test
+                            </div>
+                            <hr class="">
+                        </div>
+                        <div class="test_subtitle">
+                            Даний тест призначений для самостійної оцінки рівня володіння англійською мовою, його результати є орієнтовними та можуть відрізнятись від результатів сертифікаційних іспитів. Дані онлайн тесту не можна використовувати як формальний доказ рівня володіння англійської мови.
+                        </div>
+                        <div class="text_alarm">
+                            Для збереження результатів тестування необхідно авторизуватись
+                        </div>
+                        <a th:href="@{/english-level-test/test}" class="action_btn">Пройти тестування</a>
+
+                    </div>
+                    <div class="content_image">
+                        <img src="../../static/media/general/leveltest.svg" th:src="@{/media/general/leveltest.svg}" alt="leveltest" class="content-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div th:insert="~{fragments/footer :: footer}"></div>
+    </div>
+
+    <script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
+</body>
+</html>

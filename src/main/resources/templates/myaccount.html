@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link media="all" th:href="@{/css/fragments/header.css}" rel="stylesheet">
+    <link media="all" th:href="@{/css/fragments/footer.css}" rel="stylesheet">
+    <link media="all" th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet">
+    <link media="all" th:href="@{/css/loader.css}" rel="stylesheet">
+    <link media="all" th:href="@{/css/myaccount.css}" href="../static/css/myaccount.css" rel="stylesheet">
+</head>
+<body>
+    <div id="page-preloader" class="preloader">
+    <div class="loader"></div>
+</div>
+
+
+
+    <div class="wrapper">
+
+        <div th:insert="~{fragments/header.html :: header}"></div>
+        <section class="user_info">
+            <div class="container account_container">
+                <div class="my_account">
+                    <div class="_info">
+                        <div class="info_title title">
+                            <div class="info_title-text title_text">
+                                Особиста інформація
+                            </div>
+                            <hr class="title_line">
+                        </div>
+                        <div class="info_content">
+                            <div class="user_image">
+
+                            </div>
+                            <div class="user_inputs">
+                                <div class="_fields">
+                                    <div class="label_block">
+                                        <label class="label"  for="name">Name:</label>
+                                        <input class="input" th:value="${user.getName()}" type="text" id="name">
+                                    </div>
+                                    <div class="label_block">
+                                        <label class="label"  for="surname">Surname:</label>
+                                        <input class="input" th:value="${user.getSurname()}" type="text" id="surname">
+                                    </div>
+
+                                    <div class="label_block">
+                                        <label class="label"  for="email">Email:</label>
+                                        <input class="input" th:value="${user.getEmail()}" type="email" id="email">
+                                    </div>
+
+                                    <div class="label_block">
+                                        <label class="label" for="group">Group:</label>
+                                        <input class="input" th:value="${user.getGroup()}" type="text" id="group">
+                                    </div>
+
+                                </div>
+                                <div class="_buttons">
+                                    <div class="save_btn">
+                                        <a class="save_button" href="#">Зберегти</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="_level">
+                        <div class=" title">
+                            <div class=" title_text">
+                                Рівень англійської
+                            </div>
+                            <hr class="title_line">
+                        </div>
+                        <div class="subtext">
+                            Пройди тест на визначення свого рівня, та порівняй результати після проходження курсів. Результат з’явиться на шкалі після завершення тесту.
+                        </div>
+                        <div class="line">
+                            <hr class="grad_line">
+                            <div class="dots">
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'A1'} ? active : line_dots" class="A1 line_dots">.</p>
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'A2'} ? active : line_dots" class="A2 line_dots">.</p>
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'B1'} ? active : line_dots" class="B1 line_dots">.</p>
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'B2'} ? active : line_dots" class="B2 line_dots">.</p>
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'C'} ? active : line_dots" class="C line_dots">.</p>
+                            </div>
+                            <div class="dots levels">
+                                <p class=" level">A1</p>
+                                <p class=" level">A2</p>
+                                <p class=" level">B1</p>
+                                <p class=" level">B2</p>
+                                <p class=" level">C+</p>
+                            </div>
+                        </div>
+                        <div class="test_button">
+                            <a class="test_btn" th:href="@{/english-level-test/test}">Пройти тестування</a>
+                        </div>
+                    </div>
+
+                    <div class="_courses">
+                        <div class=" title">
+                            <div class=" title_text">
+                                Курси
+                            </div>
+                            <hr class="title_line">
+                        </div>
+                        <div class="subtext">
+                            Після проходження курсів ти зможеш отримати сертифікат  та обміняти його на хорошу оцінку в свого викладача :)                        </div>
+                    </div>
+
+                    <div class="courses_row">
+                        <div class="courses_column ">
+                            <div class="courses_item">
+                                <div class="courses_item_column">
+                                    <p class="course_title">It English</p>
+                                    <hr class="course_line">
+
+                                    <div class="progress">
+                                        <div class="circle">
+                                            <div class="circle2"></div>
+                                            <div class="numb">0%</div>
+
+                                        </div>
+                                        <svg class="progress-ring" width="230" height="230">
+                                            <circle class="progress-ring__circle" cx="115" cy="115" r="110"></circle>
+                                        </svg>
+
+                                        <input class="percente" type="range" min="0" max="100" value="0">
+
+                                    </div>
+                                    <div class="course-btn"><a href="#" class="course_button">
+                                        Розпочати курс
+                                    </a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="courses_column ">
+                            <div class="courses_item">
+                                <div class="courses_item_column">
+                                    <p class="course_title">ZNO English</p>
+                                    <hr class="course_line">
+
+                                    <div class="progress">
+                                        <div class="circle">
+                                            <div class="circle2"></div>
+                                            <div class="numb">0%</div>
+
+                                        </div>
+                                        <svg class="progress-ring" width="230" height="230">
+                                            <circle class="progress-ring__circle" cx="115" cy="115" r="110"></circle>
+                                        </svg>
+
+                                        <input class="percente" type="range" min="0" max="100" value="0">
+
+                                    </div>
+                                    <div class="course-btn"><a href="#" class="course_button">
+                                        Розпочати курс
+                                    </a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <div th:insert="~{fragments/footer :: footer}"></div>
+
+    </div>
+
+    <script>
+        const circle = document.querySelector('.progress-ring__circle');
+        const r = circle.r.baseVal.value;
+        const circumference = 2 * Math.PI * r;
+        const input = document.querySelector('.percente');
+
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference;
+
+        function setProgress(percent) {
+            const offset = circumference - percent / 100 * circumference;
+            circle.style.strokeDashoffset = offset;
+        }
+
+        setProgress(20);
+
+        input.addEventListener('input', function () {
+            setProgress(input.value);
+        });
+    </script>
+    <script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
+</body>
+</html>

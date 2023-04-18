@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ItLang</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link media="all" th:href="@{/css/fragments/header.css}" rel="stylesheet" >
+    <link media="all" th:href="@{/css/fragments/footer.css}" rel="stylesheet" >
+    <link media="all" th:href="@{/css/nullstyle.css}" href="../../static/css/nullstyle.css" rel="stylesheet">
+    <link media="all" th:href="@{/css/loader.css}" rel="stylesheet">
+    <link media="all" th:href="@{/css/blog/blog.css}" href="../../static/css/blog/blog.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div id="page-preloader" class="preloader">
+    <div class="loader"></div>
+</div>
+
+<div class="wrapper">
+    <img src="../../static/media/general/main-vector.png" th:src="@{/media/general/main-vector.png}" class="main_vector vector">
+    <img th:src="@{/media/general/vector2.png}" class="second_vector vector">
+
+    <div th:insert="~{fragments/header.html :: header}"></div>
+
+    <section class="content">
+        <div class="container content_container">
+            <img class="blog_image" th:src="@{/media/blog/Blog.png}" alt="BLOG">
+            <div class="navigation">
+                <img th:src="@{/media/general/home.svg}" alt="home">
+                <a class="navigation_link" th:href="@{/static}" href="#"><span class="unactive_link">Головна</span></a>
+                <img class="navigation_next" th:src="@{/media/general/next.svg}" alt="next">
+                <a class="navigation_link" th:href="@{/templates/blog}">Блог</a>
+            </div>
+            <div class="blog_title title">
+                <div class="blog_title-text title_text">
+                    Блог
+                </div>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <a class="add_btn" th:href="@{/blog/post/add}">+</a>
+                </div>
+                <hr class="title_line">
+            </div>
+
+            <div class="blog_row">
+                <div th:each="post : ${blog_post}" class="blog_column">
+                    <a th:href="@{/blog/post/{id}(id = ${post.getId()})}" class="blog_item">
+                        <div class="item_image">
+                            <img th:src="@{/image/{id}(id = ${post.getPreviewImageId()})}" class="item_image-img" src="../../static/media/blog/Image.png" alt="">
+                        </div>
+                        <div class="item_body">
+                            <div class="item_body_text">
+                                <div th:text="${post.getBlogPostTitle()}" class="item_body-title">Хто такий QAOps і чим він займається</div>
+                                <div th:text="${post.getPreviewText() + '...'} " class="item_body-text">QAOps (quality assurance + software operations) — не нова спеціалізація. У різних компаніях вже досить давно використовують різні зв'язки термінів ...</div>
+                            </div>
+                            <hr class="item_body_line">
+                            <div class="item_body_info">
+                                <div class="info_date">
+                                    <img class="date-image" th:src="@{/media/blog/calendar.svg}" alt="calendar">
+                                    <div th:text="${post.getDateOfCreation()}" class="date-text">5.05.2022</div>
+                                </div>
+                                <div class="info_views">
+                                    <img th:src="@{/media/blog/eye.svg}" alt="eye" class="views-image">
+                                    <div th:text="${post.getViewsCount()}" class="views-number">48</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:insert="~{fragments/footer :: footer}"></div>
+</div>
+
+<script th:src="@{/js/preloader.js}" src="../../static/js/preloader.js"></script>
+</body>
+</html>

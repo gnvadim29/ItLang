@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link media="all" th:href="@{/css/blog/blog-edit.css}" href="../../static/css/blog/blog-edit.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+    <form class="form" th:action="@{/blog/post/add}" method="post" enctype="multipart/form-data">
+    <hr style="visibility: hidden">
+        <h2 class="title">Основна інформація</h2>
+        <div class="text">Головне зображення</div>
+        <input type="file" id="previewImage" name="previewImage" required="required">
+        <br><br>
+        <textarea style="width: 98%" class="textarea" th:field="*{post.blogPostTitle}" required="required" minlength="20" maxlength="255" name="blogPostTitle" id="blogPostTitle" cols="100" rows="1" placeholder="Тема публікації"></textarea><br>
+        <textarea style="width: 98%" class="textarea" th:field="*{post.blogPostText}" required="required" minlength="20" name="blogPostText" id="blogPostText" cols="100" rows="10" placeholder="Текст публікації"></textarea>
+        <hr class="line">
+        <h2 class="title" >Підтема</h2>
+        <textarea style="width: 98%" class="textarea" th:field="*{subtheme.blogPostSubthemeTitle}" name="blogPostSubthemeTitle" id="subthemeTitle1" cols="100" rows="1" placeholder="Назва підтеми"></textarea>
+        <br>
+        <textarea style="width: 98%" class="textarea" th:field="*{subtheme.blogPostSubthemeText}" name="blogPostSubthemeText" id="subthemeText1" cols="100" rows="10" placeholder="Текст підтеми"></textarea>
+        <hr class="line">
+        <h2 class="title">Інша інформація</h2>
+
+        <div>Інші зображення:</div>
+        <input type="file" name="files" placeholder="Image" multiple><br><br>
+        <textarea class="textarea" style="width: 98%" th:field="*{video.blogPostVideoLink}" name="blogPostVideoLink" id="videoLink1" cols="100" rows="1" placeholder="Посилання на відео"></textarea>
+        <br><br>
+        <button class="btn save_btn" type="submit">Додати публікацію</button>
+    </form>
+    </div>
+</body>
+</html>

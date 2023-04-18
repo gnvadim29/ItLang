@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
+    <link th:href="@{/css/index.css}" href="../static/css/index.css" rel="stylesheet" >
+    <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
+    <link th:href="@{/css/fragments/header.css}" rel="stylesheet" >
+    <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="page-preloader" class="preloader">
+        <div class="loader"></div>
+    </div>
+
+
+<div class="wrapper">
+        <img th:src="@{/media/general/main-vector.png}" src="../static/media/index/main-vector.png" alt="" class="main_vector vector">
+        <img src="../static/media/index/vector2.png" th:src="@{/media/general/vector2.png}" alt="" class="second_vector vector">
+        <img src="../static/media/index/vector3.png" th:src="@{/media/index/vector3.png}" alt="" class="vector third_vector">
+        <img src="../static/media/index/vector4.png" th:src="@{/media/index/vector4.png}" alt="" class="vector forth_vector">
+
+        <div class="header" th:insert="~{fragments/header.html :: header}"></div>
+
+        <section class="main">
+            <div class="container main_container">
+                <div class="main_content">
+                    <div class="left_text">
+                        <div class="left-text-title">
+                            <span class="orange_color">ItLang</span> — платформа для вивчення англійської мови
+                        </div>
+                    </div>
+                    <div class="right-content">
+                        <div class="right_content-image">
+                            <img class="right-image-img" src="../static/media/index/education2.svg" th:src="@{/media/index/education2.svg}" alt="education">
+                        </div>
+
+                    </div>
+                    <div class="left-action">
+                        <div class="action_text">Визначи свій рівень англійської прямо зараз!</div>
+                        <a th:href="@{/english-level-test/intro}" class="action_btn">Пройти тестування</a>
+                        <div class="action_swipe">
+                            <div class="action_swipe_mouse">
+                                <img src="../static/media/index/mouse.svg" th:src="@{/media/index/mouse.svg}" alt="mouse" class="swipe-mouse">
+                                <div class="swipe-text">Гортай вниз</div>
+                            </div>
+                            <hr class="swipe-line">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="advantages">
+            <div class="container advantages_container">
+
+                <div class="advantages_title title">
+                    <div class="advantages_title-text title_text">
+                        Переваги англійської в IT
+                    </div>
+                    <hr class="title_line">
+                </div>
+
+
+                <div class="advantages_row">
+                    <div class="advantages_column">
+                        <div class="advantages_item">
+                            <div class="item_column">
+                                <div class="item_image"><img class="item_image__img" src="../static/media/index/advantages1.png" th:src="@{/media/index/advantages1.png}" alt=""></div>
+                                <div class="item_body">
+                                    <div class="item_title">Влаштування в будь-яку IT-компанію</div>
+                                    <div class="item_line"></div>
+                                    <div class="item_text">
+                                        Абсолютно кожна IT-компанія вимагає знання іноземної мови для працевлаштування.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="advantages_column">
+                        <div class="advantages_item">
+                            <div class="item_column">
+                                <div class="item_image"><img class="item_image__img" src="../static/media/index/advantages2.png" th:src="@{/media/index/advantages2.png}" alt=""></div>
+                                <div class="item_body">
+                                    <div class="item_title">Співробітництво з іноземними колегами</div>
+                                    <div class="item_line"></div>
+                                    <div class="item_text">
+                                        Замовники нерідко бувають іноземцями, тож листування, мітапи тощо будуть йти виключно англійською мовою.                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="advantages_column">
+                        <div class="advantages_item">
+                            <div class="item_column">
+                                <div class="item_image"><img class="item_image__img" src="../static/media/index/advantages3.png" th:src="@{/media/index/advantages3.png}" alt=""></div>
+                                <div class="item_body">
+                                    <div class="item_title">Спілкування у міжнародному ком’юніті</div>
+                                    <div class="item_line"></div>
+                                    <div class="item_text">
+                                        Reddit, GitHub, Stackoverflow - що об’єднує всі ці ресурси? Англійська мова спілкування учасників.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="advantages_column">
+                        <div class="advantages_item">
+                            <div class="item_column">
+                                <div class="item_image"><img class="item_image__img" src="../static/media/index/advantages4.png" th:src="@{/media/index/advantages4.png}" alt=""></div>
+                                <div class="item_body">
+                                    <div class="item_title">Більші кар’єрні можливості</div>
+                                    <div class="item_line"></div>
+                                    <div class="item_text">
+                                        Чим кращі ваші знання з іноземної мови, тим вище шанси отримати круту роботу у великій компанії.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="courses">
+            <div class="container courses_container">
+                <div class="courses_title title">
+                    <div class="courses_title-text title_text">
+                        Наші курси
+                    </div>
+                    <hr class="title_line">
+                </div>
+
+
+                <div class="courses_row">
+                    <div class="courses_column ">
+                        <div class="courses_item">
+                            <div class="courses_item_column courses_column-first">
+                                <div class="courses_item-back">
+                                    <img class="course_IT_img" src="../static/media/index/IT.png" th:src="@{/media/index/IT.png}" alt="">
+                                </div>
+                                <div class="courses_item-image">
+                                    <img src="../static/media/index/course1.svg" th:src="@{/media/index/course1.svg}" alt="course" class="courses_item-image-img">
+                                </div>
+                                <div class="courses_item-title">
+                                    Англійська мова за професійним спрямуванням
+                                </div>
+                                <div class="courses_item-text">
+                                    Разом ми прокачаємо твою англійську. Допоможемо розвинути та покращити  англійську для ІТ, саме ту, що потрібна для роботи та спілкування.
+                                </div>
+                                <label class="label" for="first">Детальніше</label>
+                                <input class="input" id="first" type="checkbox">
+
+                                <div class="courses_item-more courses_item-more_first">
+                                    <hr class="more_line">
+
+                                    <div class="item_more-title">
+                                        Ви навчитесь:
+                                    </div>
+                                    <ul class="info_list">
+                                        <li class="list-info">Lorem Ipsum</li>
+                                        <li class="list-info">Lorem Ipsum</li>
+                                        <li class="list-info">Lorem Ipsum</li>
+                                        <li class="list-info">Lorem Ipsum</li>
+                                        <li class="list-info">Lorem Ipsum</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="courses_column ">
+                        <div class="courses_item">
+                            <div class="courses_item_column courses_column-second">
+                                <div class="courses_item-back courses_item-back-second">
+                                    <img class="course_ZNO_img" src="../static/media/index/ZNO.png" th:src="@{/media/index/ZNO.png}" alt="">
+                                </div>
+                                <div class="courses_item-image">
+                                    <img src="../static/media/index/course2.svg" th:src="@{/media/index/course2.svg}" alt="course" class="courses_item-image-img">
+                                </div>
+                                <div class="courses_item-title">
+                                    Підготовка до ЗНО
+                                </div>
+                                <div class="courses_item-text">
+                                    Пройди теми, які 100% будуть на ЗНО, полегши граматичний Use of English, не завали граматику в листі та позбудься простих граматичних помилок як на ЗНО, так і подальшому житті!
+                                </div>
+                                <label class="label" for="second">Детальніше</label>
+                                    <input class="input" id="second" type="checkbox">
+
+                                <div class="courses_item-more courses_item-more_second">
+                                    <hr class="more_line">
+                                    <div class="item_more-title">
+                                        Ви навчитесь:
+                                    </div>
+                                    <ul class="info_list">
+                                        <li class="list-info">Lorem Ipsum</li>
+                                        <li class="list-info">Lorem Ipsum</li>
+                                        <li class="list-info">Lorem Ipsum</li>
+                                        <li class="list-info">Lorem Ipsum</li>
+                                        <li class="list-info">Lorem Ipsum</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="answers">
+            <div class="answers_container container">
+                <div class="answers_title title">
+                    <div class="answers_title-text title_text">
+                        Відповіді на запитання
+                    </div>
+                    <hr class="title_line">
+                </div>
+                <div class="answers_column">
+                    <div class="answers_row">
+                        <div class="answers-item">
+                            <p class="question_title">Для кого підійде цей курс?</p>
+                            <input class="answers_input" id="question_show-first" type="checkbox">
+                            <label class="answers_label answers_label-first" for="question_show-first">+</label>
+                            <div class="answer_block answer_block-first">
+                                <div class="answer_text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, neque sit amet aliquam cursus, ante urna porta mauris, eget venenatis risus turpis ac nisl. Aenean blandit, nulla tincidunt efficitur placerat, ante nisl auctor ipsum, in auctor mauris lacus sed nibh. Quisque id imperdiet metus, non semper dui. Phasellus pellentesque vitae leo in dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse id aliquam nunc. Sed dignissim, nibh quis dapibus dapibus, ex sapien ultricies leo, sit amet placerat arcu sem id sem.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answers_row">
+                        <div class="answers-item">
+                            <p class="question_title">Як отримати п’ятірку?</p>
+                            <input class="answers_input" id="question_show-second" type="checkbox">
+                            <label class="answers_label answers_label-second" for="question_show-second">+</label>
+                            <div class="answer_block answer_block-second">
+                                <div class="answer_text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, neque sit amet aliquam cursus, ante urna porta mauris, eget venenatis risus turpis ac nisl. Aenean blandit, nulla tincidunt efficitur placerat, ante nisl auctor ipsum, in auctor mauris lacus sed nibh. Quisque id imperdiet metus, non semper dui. Phasellus pellentesque vitae leo in dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse id aliquam nunc. Sed dignissim, nibh quis dapibus dapibus, ex sapien ultricies leo, sit amet placerat arcu sem id sem.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answers_row">
+                        <div class="answers-item">
+                            <p class="question_title">What is Lorem ipsum?</p>
+                            <input class="answers_input" id="question_show-third" type="checkbox">
+                            <label class="answers_label answers_label-third" for="question_show-third">+</label>
+                            <div class="answer_block answer_block-third">
+                                <div class="answer_text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, neque sit amet aliquam cursus, ante urna porta mauris, eget venenatis risus turpis ac nisl. Aenean blandit, nulla tincidunt efficitur placerat, ante nisl auctor ipsum, in auctor mauris lacus sed nibh. Quisque id imperdiet metus, non semper dui. Phasellus pellentesque vitae leo in dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse id aliquam nunc. Sed dignissim, nibh quis dapibus dapibus, ex sapien ultricies leo, sit amet placerat arcu sem id sem.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answers_row">
+                        <div class="answers-item">
+                            <p class="question_title">What is Lorem ipsum?</p>
+                            <input class="answers_input" id="question_show-forth" type="checkbox">
+                            <label class="answers_label answers_label-forth" for="question_show-forth">+</label>
+                            <div class="answer_block answer_block-forth">
+                                <div class="answer_text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, neque sit amet aliquam cursus, ante urna porta mauris, eget venenatis risus turpis ac nisl. Aenean blandit, nulla tincidunt efficitur placerat, ante nisl auctor ipsum, in auctor mauris lacus sed nibh. Quisque id imperdiet metus, non semper dui. Phasellus pellentesque vitae leo in dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse id aliquam nunc. Sed dignissim, nibh quis dapibus dapibus, ex sapien ultricies leo, sit amet placerat arcu sem id sem.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+    </div>
+
+<script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+body{
+    position: relative;
+    font-family: 'Bitter', serif;
+    color: #23262D;
+}
+.wrapper{
+    min-height: 100%;
+    /*overflow: hidden;*/
+    position: relative;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    margin: 15px 0 0 0;
+}
+/*CONTAINER******************************************* */
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+@media (max-width: 1024px) {
+    .container{
+        max-width: 700px;
+    }
+}
+@media (max-width: 575px) {
+    .container{
+        max-width: 320px;
+    }
+}
+/**************************************************/
+.title_text{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    padding-left: 10px;
+
+}
+.title_line{
+    width: 110px;
+    height: 16px;
+    opacity: 0.5;
+    border-radius: 4px;
+    background: #E36F59;
+    position: absolute;
+    z-index: -1;
+    bottom: 2px;
+}
+.title{
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+.user_info{
+    margin-top: 50px;
+}
+.account_container{
+}
+.my_account{
+    box-shadow: 0px 0px 10px #000000;
+    border-radius: 8px;
+    background: white;
+    padding: 10px 80px 70px 80px;
+}
+.title_text{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    padding-left: 10px;
+    position: relative;
+    z-index: 20;
+
+}
+.title_line{
+    width: 110px;
+    height: 16px;
+    opacity: 0.5;
+    border-radius: 4px;
+    background: #E36F59;
+    position: absolute;
+    z-index: 0;
+    bottom: 2px;
+}
+
+@media (max-width: 1024px){
+    .title_text{
+        font-size: 32px;
+    }
+    .title_line{
+        width: 75px;
+        height: 10px;
+    }
+}
+@media (max-width: 575px){
+    .title_text{
+        font-size: 30px;
+    }
+    .title_line{
+        width: 60px;
+        height: 8px;
+    }
+}
+.info_content{
+    margin-top: 30px;
+    display: flex;
+}
+.user_image{
+    width: 250px;
+    height: 250px;
+    background: grey;
+    border-radius: 200px;
+    margin-right: 75px;
+}
+.user_inputs{
+    padding: 20px 0;
+}
+._fields{
+    display: flex;
+    max-width: 710px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.input{
+    height: 47px;
+    width: 100%;
+    padding: 20px 10px 0 10px;
+    color: #403A4B;
+    font-size: 16px;
+    background: rgba(227, 111, 89, 0.3);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    font-weight: 600;
+}
+.label_block{
+    position: relative;
+    min-width: 300px;
+    margin-bottom: 30px;
+}
+
+.label{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-family: Bitter, serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 13px;
+    color: rgba(64, 58, 75, 0.6);
+}
+._buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.email_btn{
+    margin-right: 59px;
+}
+.save_button{
+    padding: 15px 30px;
+    background: #E36F59;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    border-radius: 8px;
+    display: block;
+}
+.email_checkbox{
+    margin-right: 9px;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+.email_checkbox {
+    display: none;
+}
+.email_label{
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+
+}
+.email_label:before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    vertical-align: middle;
+    margin-left: 30px;
+    margin-right: 10px;
+    transition: 0.2s;
+    border: 3px solid #E36F59;
+    border-radius: 4px;
+}
+.email_checkbox:checked + .email_label::before{
+    background-color: #E36F59;
+    content: "✓";
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+}
+._level{
+    margin-top: 150px;
+}
+.subtext{
+    margin-top: 5px;
+    max-width: 680px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 141%;
+    letter-spacing: 0.01em;
+}
+.grad_line{
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #FFF849 0%, #FF5F49 100%);
+    border-radius: 5px;
+}
+.line{
+    margin-top: 50px;
+    height: 90px;
+}
+.line_dots{
+    font-size: 80px;
+    width: 7px;
+}
+.dots{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -65.5px;
+    left: -4px;
+}
+.level{
+    width: 9px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 31px;
+}
+.test_btn{
+    padding: 15px 20px;
+    color: white;
+    background: #E36F59;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 8px;
+}
+._courses{
+    margin-top: 150px;
+}
+
+.courses_row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px -60px 0px -60px;
+}
+.courses_column{
+    flex: 0 1 50%;
+    padding: 0 60px;
+
+}
+.courses_item_column{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 10px rgba(180, 180, 180, 0.25);
+    border-radius: 25px;
+    align-items: center;
+    padding: 20px 0 50px 0;
+}
+.progress-ring__circle {
+    stroke-width: 10.5;
+    stroke: #E36F59;
+    fill: none;
+    transform-origin: center;
+    transform: rotate(-90deg);
+}
+.percente{
+    position: absolute;
+    visibility: hidden;
+}
+.circle{
+    width: 230px;
+    height: 230px;
+    background: #C4C4C4;
+    border-radius: 255px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.progress{
+    position: relative;
+    margin-top: 45px;
+}
+.numb{
+    font-weight: 700;
+    font-size: 50px;
+    font-family: "Segoe UI", serif;
+    color: #E36F59;
+    position: absolute;
+}
+.circle2{
+    height: 210px;
+    width: 210px;
+    background: white;
+    border-radius: 255px;
+}
+.progress-ring{
+    position: absolute;
+    top: 0;
+}
+.course_title{
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.course_line{
+    height: 2px;
+    width: 100%;
+    background: #E36F59;
+}
+.course_button{
+    padding: 15px 65px;
+    background: #F7D4CD;
+    border-radius: 25px;
+    color: #23262D;
+    font-weight: 500;
+    font-size: 18px;
+    transition: ease-in-out 0.2s;
+}
+.course_button:hover{
+    background: #E36F59;
+}
+.course-btn{
+    text-align: center;
+    padding: 5px 70px;
+    margin-top: 80px;
+}
+.active{
+    font-size: 80px;
+    width: 7px;
+    font-weight: 800;
+    margin-top: 4px;
+}

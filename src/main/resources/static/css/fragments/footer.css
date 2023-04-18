@@ -1,0 +1,44 @@
+.footer{
+    margin-top: 70px;
+    background: #2D3034;
+    color: white;
+}
+.footer_content{
+    padding: 35px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.footer_text {
+    font-family: 'Segoe UI', serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+.footer_link{
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: ease-in-out 0.1s;
+}
+.footer_link:not(:first-child){
+
+    margin-left: 40px;
+}
+.footer_link:hover{
+    color: #E36F59;
+}
+@media (max-width: 626px) {
+    .footer_content{
+        flex-direction: column;
+
+    }
+    .footer_text{
+        text-align: center;
+    }
+    .footer_links{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}

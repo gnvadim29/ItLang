@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link media="all" th:href="@{/css/blog/blog-form.css}" href="../../static/css/blog/blog-form.css" rel="stylesheet">
+    <link media="all" th:href="@{/css/nullstyle.css}" href="../../static/css/nullstyle.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            <form class="form" th:action="@{add-video}" method="post">
+                <textarea class="textarea" th:field="*{video.blogPostVideoLink}" name="blogPostSubthemeTitle" id="title" cols="100" placeholder="Посилання на відео" rows="2"></textarea>
+                <button class="add_btn" type="submit">Додати</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
