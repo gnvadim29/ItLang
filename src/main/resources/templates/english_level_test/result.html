@@ -7,13 +7,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-
     <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
     <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
     <link th:href="@{/css/fragments/header.css}" rel="stylesheet" >
     <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" >
     <link th:href="@{/css/english-level-test/test.css}" href="../../static/css/english-level-test/test.css" rel="stylesheet" >
-
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,27 +27,23 @@
 <div class="wrapper">
     <div class="header" th:insert="~{fragments/header.html :: header}"></div>
 
-    <section class="content_result">
-        <div class="container content_container">
-            <div class="content_item">
-
+    <section class="result">
+        <div class="container">
+            <div class="result_content">
                 <div class="test_header">
                     <div class="image">
                         <img th:src="@{/media/level-test/bg.svg}" src="../../static/media/level-test/bg.svg" class="header_bg" alt="">
-
                     </div>
                     <div class="test_title">
                         English Level Test
                     </div>
                 </div>
                 <hr class="header_line">
-                    <div class="result">
-                        <p class="result_text" th:text="${result}">Here your result</p>
-                    </div>
-
+                <div th:text="${result}" class="result_text">
+                    here your result
+                </div>
 
             </div>
-
         </div>
     </section>
 
