@@ -1,5 +1,6 @@
 body{
-    font-family: Bitter, sans-serif;
+    position: relative;
+    font-family: 'Bitter', serif;
     color: #23262D;
 }
 .wrapper{
@@ -10,29 +11,56 @@ body{
     display: flex;
     flex-direction: column;
 }
+.header{
+    margin: 15px 0 0 0;
+}
+/*CONTAINER******************************************* */
 .container{
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+}
+@media (max-width: 1024px) {
+    .container{
+        max-width: 700px;
+    }
+}
+@media (max-width: 575px) {
+    .container{
+        max-width: 320px;
+    }
+}
+/***********************************/
+.content_items{
+    height: 100%;
+    margin-top: 30px;
+    display: flex;
 }
 
-.content{
-    flex: 1 1 auto;
-}
-
-header{
-    margin: 15px 0 0 0;
-
-}
-/*********************************/
-.content_item{
-    width: 890px;
-    background: white;
-    box-shadow: 0px 0px 20px #E36F59;
-    border-radius: 8px;
-    margin-top:30px;
+.left_item{
     flex-grow: 1;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px #E36F59;
+    max-width: 890px;
 }
+.left_item_error{
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px #E36F59;
+    width: 100%;
+}
+.right_item{
+    max-width: 320px;
+    min-width: 280px;
+    max-height: 400px;
+    position: sticky;
+    top: 30px;
+    flex-grow: 1;
+    margin-left: 30px;
+}
+/*LEFT ITEM **************************/
 .test_header{
     width: 100%;
     display: flex;
@@ -53,29 +81,6 @@ header{
     z-index: 2;
     padding: 20px 0 15px 0;
 }
-
-
-.timer_value{
-    font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 125%;
-    text-align: center;
-    letter-spacing: 0.01em;
-    color: #23262D;
-}
-.right_item{
-    flex-grow: 1;
-
-}
-.time_value{
-    background: #F1B7AC;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 70px;
-}
 .header_line{
     height: 3px;
     background: #E36F59;
@@ -90,14 +95,14 @@ header{
     line-height: 26px;
     margin-top: 35px;
 }
+.header_bg{
+    width: 100%;
+    object-fit: fill;
+    height: 78px;
+}
 .question, .btn{
     width: 80%;
     margin: 0 auto;
-}
-.items{
-    display: flex;
-    position: relative;
-
 }
 .answer{
     margin-top: 20px;
@@ -163,52 +168,68 @@ header{
 .submit-btn:hover{
     background: #E75B41;
 }
-.right_item{
-    /*margin-top: 30px;*/
-    /*margin-left: 40px;*/
+.error_block{
     display: flex;
-    flex-direction: column;
-    top: 0;
-    position: sticky;
+    justify-content: center;
+    width: 100%;
+}
+/*RIGHT ITEM****************************************/
+.timer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    background: #F1B7AC;
+    border-radius: 8px;
+}
+.timer_value{
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 0.01em;
+ }
+.right_text{
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #E36F59;
 }
 .right_item-img{
     width: 100%;
 }
-.right_text{
-    width: 340px;
-    font-weight: 600;
-    font-size: 18px;
-    text-align: center;
-    letter-spacing: 0.035em;
-    color: #E36F59;
-    margin-top: 10px;
-}
-/***************************************/
-@media (max-width: 965px) {
-    .clock-img{
-        visibility: hidden;
+@media (max-width: 1024px) {
+    .content_items{
+        flex-direction: column-reverse;
     }
-}
-@media (max-width: 800px){
-    .test_title{
-        font-size: 36px;
+    .right_image, .right_text{
+        display: none;
     }
-    .time{
-        height: 40px;
+    .right_item{
+        position: relative;
+        margin: 0 0 50px 0;
+        max-width: 100%;
     }
-    .time-text{
-        visibility: hidden;
+    .timer{
+        width: 100%;
     }
-}
-/****************************************************/
-.result_text{
-    text-align: center;
-    margin-top: 50px;
-    font-weight: 400;
-    font-size: 24px;
-    color: #2D3034;
-}
 
+}
+@media (max-width: 575px) {
+    .container{
+        padding: 0 5px;
+    }
+    .test_title{
+        font-size: 34px;
+    }
+    .header_bg{
+        display: none;
+    }
+    .submit-btn{
+        width: 100%;
+    }
+}
 /*////////////////////////////////*/
 #q0a1:checked ~ .label::before{
     background: #FF9A6C;
@@ -535,15 +556,3 @@ header{
 #q24a4:checked ~ .label::before{
     background: #FF9A6C;
 }
-
-
-
-
-
-
-
-
-
-
-
-
