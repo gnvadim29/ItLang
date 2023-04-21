@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,9 +42,19 @@ public class AuthController {
             return "/authorisation";
         }
 
-        registrationService.register(person, getSiteURL(request));
+        Thread registrationThread = new Thread(() -> {
+            try {
+                registrationService.register(person, getSiteURL(request));
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        registrationThread.start(); // запускаємо новий потік
         model.addAttribute("verify", true);
         return "/authorisation";
+
     }
     private String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURL().toString();

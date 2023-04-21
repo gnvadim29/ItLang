@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,6 @@ public class RegistrationService {
     private final UserProgressRepository progressRepository;
     private final JavaMailSender mailSender;
 
-    @Transactional
     public void register(Person person, String siteUrl) throws MessagingException, UnsupportedEncodingException {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         person.setRole("ROLE_USER");
@@ -36,15 +36,15 @@ public class RegistrationService {
         String randomCode = RandomString.make(64);
         person.setVerificationCode(randomCode);
         person.setEnabled(false);
-        sendVerificationEmail(person, siteUrl);
         peopleRepository.save(person);
 
         UserProgress progress = new UserProgress();
         progress.setPerson(person);
         progressRepository.save(progress);
-
+        sendVerificationEmail(person, siteUrl);
     }
-    private void sendVerificationEmail(Person person, String siteURL)
+
+    void sendVerificationEmail(Person person, String siteURL)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = person.getEmail();
         String fromAddress = "itLangNEMK@gmail.com";

@@ -1,205 +1,32 @@
-body{
-    font-family: Bitter, sans-serif;
-    color: #23262D;
-}
-.wrapper{
-    min-height: 100%;
-    overflow: hidden;
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     position: relative;
-    z-index: 40;
-    display: flex;
-    flex-direction: column;
+    animation: rotate 1s linear infinite
 }
-.container{
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.content{
-    flex: 1 1 auto;
-}
-
-header{
-    margin: 15px 0 0 0;
-}
-/*********************************/
-.content_item{
-    width: 890px;
-    background: white;
-    box-shadow: 0px 0px 20px #E36F59;
-    border-radius: 8px;
-    margin-top:30px;
-    flex-grow: 1;
-}
-
-
-
-.timer_value{
-    font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 125%;
-    text-align: center;
-    letter-spacing: 0.01em;
-    color: #23262D;
-}
-.right_item{
-    flex-grow: 1;
-
-}
-.time_value{
-    background: #F1B7AC;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 70px;
-}
-.header_line{
-    height: 3px;
-    background: #E36F59;
-    width: 90%;
-    margin: 0 auto;
-    border-radius: 10px;
-    opacity: 75%;
-}
-.title{
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 26px;
-    margin-top: 35px;
-}
-.question, .btn{
-    width: 80%;
-    margin: 0 auto;
-}
-.items{
-    display: flex;
-    position: relative;
-}
-.answer{
-    margin-top: 20px;
-}
-.answer input{
-    visibility: hidden;
-}
-.form{
-    position: relative;
-}
-.label{
-    margin-left: 35px;
-    display: flex;
-    align-items: center;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 26px;
-}
-.label::before{
+.loader::before , .loader::after {
+    content: "";
+    box-sizing: border-box;
     position: absolute;
-    left: 0;
-    height: 35px;
-    width: 35px;
-    background: #A0A0A0;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 26px;
-    text-transform: uppercase;
-    transition: all 0.2s;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #FFF;
+    animation: prixClipFix 2s linear infinite ;
 }
-.label_first:before{
-    content: 'a';
-}
-.label_second:before{
-    content: 'b';
-}
-.label_third:before{
-    content: 'c';
-}
-.label_fourth:before{
-    content: 'd';
+.loader::after{
+    inset: 8px;
+    transform: rotate3d(90, 90, 0, 180deg );
+    border-color: #FF3D00;
 }
 
-.answer{
-    position: relative;
-}
-.submit-btn{
-    padding: 15px 35px;
-    margin: 35px 0 30px 0;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.015em;
-    background: #E36F59;
-    border-radius: 10px;
-    color: white;
-    transition: all 0.2s;
-}
-.submit-btn:hover{
-    background: #E75B41;
-}
-.right_item{
-    margin-top: 30px;
-    margin-left: 40px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    max-width: 280px;
-    position: sticky;
-    right: 0;
-}
-.right_item-img{
-    width: 100%;
-}
-.right_text{
-    width: 340px;
-    font-weight: 600;
-    font-size: 18px;
-    text-align: center;
-    letter-spacing: 0.035em;
-    color: #E36F59;
-    margin-top: 10px;
-}
-/***************************************/
-@media (max-width: 965px) {
-    .clock-img{
-        visibility: hidden;
-    }
-}
-@media (max-width: 800px){
-    .test_title{
-        font-size: 36px;
-    }
-    .time{
-        height: 40px;
-    }
-    .time-text{
-        visibility: hidden;
-    }
-}
-/****************************************************/
-.result_text{
-    text-align: center;
-    margin-top: 50px;
-    font-weight: 400;
-    font-size: 24px;
-    color: #2D3034;
+@keyframes rotate {
+    0%   {transform: rotate(0deg)}
+    100%   {transform: rotate(360deg)}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+}

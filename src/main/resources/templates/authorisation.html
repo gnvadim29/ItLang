@@ -32,13 +32,13 @@
         <div class="content">
 
             <div class="content_item">
+
                 <div class="image_block">
                     <img class="image_block-img" th:src="@{/media/general/auth.png}" src="../static/media/general/auth.png" alt="auth">
                 </div>
 
                 <div class="form_block">
                     <input class="hidden" type="checkbox" th:checked="${verify}" id="verify">
-
                     <input checked class="hidden" id="signIn"  name="radio" type="radio">
                     <input th:checked="${hasErrors}" class="hidden" id="signUp" name="radio" type="radio">
 
@@ -47,6 +47,8 @@
 
                     <hr class="sign_in-line sign_line">
                     <hr class="sign_up-line sign_line">
+
+
 
                     <div class="authorisation_block block">
                         <form action="/process_login" method="post">
@@ -104,7 +106,7 @@
 
                             <hr class="line">
 
-                            <input class="btn" type="submit" value="Sign up!">
+                            <input class="btn" id="button1" type="submit" value="Sign up!">
 
                         </form>
                     </div>
