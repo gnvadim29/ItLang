@@ -16,6 +16,7 @@
     <link media="all" th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet">
     <link media="all" th:href="@{/css/loader.css}" rel="stylesheet">
     <link media="all" th:href="@{/css/myaccount.css}" href="../static/css/myaccount.css" rel="stylesheet">
+
 </head>
 <body>
 <div id="page-preloader" class="preloader">
@@ -38,9 +39,12 @@
                             <hr class="title_line">
                         </div>
                         <div class="info_content">
-                            <div class="user_image">
-
-                            </div>
+                            <a href="/myaccount/changeIcon" id="my-link" class="user_image">
+                                <img class="user_image-img" th:src="@{/image/{id}(id = ${user.getUserIconId()})}">
+                                <div class="overlay">
+                                    <p>Change icon</p>
+                                </div>
+                            </a>
                             <div class="user_inputs">
                                 <div class="_fields">
                                     <div class="label_block">
@@ -183,6 +187,8 @@
             </div>
         </section>
 
+
+
         <div th:insert="~{fragments/footer :: footer}"></div>
 
     </div>
@@ -207,6 +213,7 @@
             setProgress(input.value);
         });
     </script>
+
     <script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
 </body>
 </html>

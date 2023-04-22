@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +27,7 @@ public class AuthController {
 
     @GetMapping("/auth/login")
     public String loginPage(@ModelAttribute ("person") Person person){
-        return "authorisation";
+        return "auth/authorisation";
     }
 
     @PostMapping("/auth/registration")
@@ -39,7 +38,7 @@ public class AuthController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("hasErrors", true);
-            return "/authorisation";
+            return "auth/authorisation";
         }
 
         Thread registrationThread = new Thread(() -> {
@@ -53,7 +52,7 @@ public class AuthController {
         });
         registrationThread.start(); // запускаємо новий потік
         model.addAttribute("verify", true);
-        return "/authorisation";
+        return "auth/authorisation";
 
     }
     private String getSiteURL(HttpServletRequest request) {
@@ -64,9 +63,9 @@ public class AuthController {
     public String verifyUser(@Param("code") String code) {
         System.out.println("++++++++++++++++++++++++++++++++++");
         if (registrationService.verify(code)) {
-            return "verify_success";
+            return "redirect:/auth/login";
         } else {
-            return "verify_fail";
+            return "auth/verify_fail";
         }
     }
 

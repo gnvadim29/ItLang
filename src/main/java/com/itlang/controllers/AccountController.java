@@ -12,6 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /*
  * @author Vadym Hnatiuk
@@ -33,5 +38,15 @@ public class AccountController {
 //        UserProgress userProgress = progressRepository.findUserProgressByUserId(accountService.getUserId(email));
 //        model.addAttribute("progress", userProgress);
         return "myaccount";
+    }
+    @GetMapping("/myaccount/changeIcon")
+    public String changeIcon(){
+        return "account_change";
+    }
+
+    @PostMapping("/myaccount/changeIcon")
+    public String changeIcon(@RequestParam(name = "userIcon") MultipartFile userIcon) throws IOException {
+        accountService.changeIcon(userIcon);
+        return "redirect:/myaccount";
     }
 }

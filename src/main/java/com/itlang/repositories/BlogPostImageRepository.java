@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface BlogPostImageRepository extends JpaRepository<Image, Long> {
     public void deleteImageById(Long id);
+    public Image findImageById(Long id);
 
 }

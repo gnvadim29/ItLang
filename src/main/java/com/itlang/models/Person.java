@@ -51,4 +51,5 @@ public class Person {
 
     @OneToOne(mappedBy = "person")
     private UserProgress userProgress;
+    private Long userIconId;
 }

@@ -42,10 +42,12 @@
 
             <div sec:authorize="hasAnyRole('ADMIN', 'USER')">
                 <a class="add_btn" th:href="@{/myaccount}">
-                    <img src="../../static/media/general/account.svg" th:src="@{/media/general/account.svg}" alt="">
+                    <img class="avatar" src="../../static/media/general/account.svg" th:src="@{/media/general/account.svg}" alt="">
+<!--                    <img class="avatar" th:src="@{/image/{id}(id = ${user.getUserIconId()})}" src="../../static/media/general/account.svg" th:src="@{/media/general/account.svg}" alt="">-->
                 </a>
             </div>
 
         </nav>
     </div>
 </header>
+
