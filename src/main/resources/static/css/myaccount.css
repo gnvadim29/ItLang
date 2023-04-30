@@ -21,16 +21,8 @@ body{
     padding: 0 20px;
     position: relative;
 }
-@media (max-width: 1024px) {
-    .container{
-        max-width: 700px;
-    }
-}
-@media (max-width: 575px) {
-    .container{
-        max-width: 320px;
-    }
-}
+
+
 /**************************************************/
 .title_text{
     font-weight: 700;
@@ -38,6 +30,7 @@ body{
     line-height: 100%;
     letter-spacing: 0.01em;
     padding-left: 10px;
+    z-index: 1;
 
 }
 .title_line{
@@ -57,8 +50,6 @@ body{
 .user_info{
     margin-top: 50px;
 }
-.account_container{
-}
 .my_account{
     box-shadow: 0px 0px 10px #000000;
     border-radius: 8px;
@@ -72,7 +63,7 @@ body{
     letter-spacing: 0.01em;
     padding-left: 10px;
     position: relative;
-    z-index: 20;
+    z-index: 1;
 
 }
 .title_line{
@@ -98,29 +89,32 @@ body{
 @media (max-width: 575px){
     .title_text{
         font-size: 30px;
+        text-align: justify;
     }
     .title_line{
         width: 60px;
-        height: 8px;
+        height: 10px;
     }
 }
 .info_content{
     margin-top: 30px;
-    display: flex;
 }
 .user_image{
+    position: relative;
+    background: 0;
     width: 250px;
     height: 250px;
-    background: grey;
-    border-radius: 200px;
-    margin-right: 75px;
-    position: relative;
+    display: block;
 }
 .user_image-img{
-    width: 100%;
-    height: 100%;
-    border-radius: 200px;
+    width: 250px;
+    height: 250px;
+    background: url("/media/general/user_icon.jpg") center;
+    border-radius: 50%;
     object-fit: cover;
+}
+.user_image:hover .overlay {
+    opacity: 1;
 }
 .overlay {
     width: 100%;
@@ -137,17 +131,48 @@ body{
     align-items: center;
     justify-content: center;
 }
-.user_image:hover .overlay {
-    opacity: 1;
+.save_button{
+    padding: 15px 30px;
+    background: #E36F59;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 5px;
 }
 .user_inputs{
-    padding: 20px 0;
+    margin-top: 15px;
+    margin-left: 75px;
 }
 ._fields{
     display: flex;
-    max-width: 710px;
     flex-wrap: wrap;
-    justify-content: space-between;
+}
+.label_block{
+    flex: 1 0 40%;
+    padding: 0 20px;
+}
+.info_content{
+    display: flex;
+}
+.label{
+    position: absolute;
+    top: 5px;
+    left: 30px;
+    font-family: Bitter, serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 13px;
+    color: rgba(64, 58, 75, 0.6);
+
+}
+.label_block{
+    position: relative;
+    min-width: 200px;
+    margin-bottom: 30px;
 }
 .input{
     height: 47px;
@@ -160,76 +185,68 @@ body{
     border-radius: 8px;
     font-weight: 600;
 }
-.label_block{
-    position: relative;
-    min-width: 300px;
-    margin-bottom: 30px;
+
+@media (max-width: 1024px) {
+    .user_image{
+        width: 200px;
+        height: 200px;
+    }
+    .user_image-img{
+        width: 200px;
+        height: 200px;
+    }
+    .user_inputs{
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+    .label_block{
+        position: relative;
+        min-width: 300px;
+        margin-bottom: 20px;
+    }
+    .my_account{
+        padding: 10px 40px 70px 40px ;
+    }
+}
+@media (max-width: 575px){
+    .info_content{
+        flex-direction: column;
+    }
+    .label_block{
+        min-width: 100px;
+        flex: 0 1 100%;
+        padding: 0;
+    }
+    .my_account{
+        padding: 10px 15px 70px 15px ;
+    }
+    .user_image{
+        margin: 0 auto;
+    }
+    .user_inputs{
+        margin-left: 0;
+    }
+    .save_button{
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .label{
+        left: 10px;
+    }
 }
 
-.label{
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    font-family: Bitter, serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 13px;
-    color: rgba(64, 58, 75, 0.6);
-}
-._buttons{
-    display: flex;
-    justify-content: space-between;
-}
-.email_btn{
-    margin-right: 59px;
-}
-.save_button{
-    padding: 15px 30px;
-    background: #E36F59;
-    color: white;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    border-radius: 8px;
-    display: block;
-}
-.email_checkbox{
-    margin-right: 9px;
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-}
-.email_checkbox {
-    display: none;
-}
-.email_label{
-    font-weight: 400;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
 
-}
-.email_label:before{
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    vertical-align: middle;
-    margin-left: 30px;
-    margin-right: 10px;
-    transition: 0.2s;
-    border: 3px solid #E36F59;
-    border-radius: 4px;
-}
-.email_checkbox:checked + .email_label::before{
-    background-color: #E36F59;
-    content: "✓";
-    text-align: center;
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
-}
+
+
+
+
+
+
+
+
+
 ._level{
     margin-top: 150px;
 }
@@ -276,102 +293,167 @@ body{
     font-size: 20px;
     border-radius: 8px;
 }
+
+/*courses*/
 ._courses{
     margin-top: 150px;
 }
-
 .courses_row{
+    margin-top: 40px;
     display: flex;
-    flex-wrap: wrap;
-    margin: 40px -60px 0px -60px;
 }
-.courses_column{
-    flex: 0 1 50%;
-    padding: 0 60px;
-
+.course_column{
+    width: 50%;
 }
-.courses_item_column{
-    display: flex;
-    flex-direction: column;
-    position: relative;
+.course_item{
     background: #FFFFFF;
     box-shadow: 0px 0px 10px 10px rgba(180, 180, 180, 0.25);
     border-radius: 25px;
-    align-items: center;
-    padding: 20px 0 50px 0;
-}
-.progress-ring__circle {
-    stroke-width: 10.5;
-    stroke: #E36F59;
-    fill: none;
-    transform-origin: center;
-    transform: rotate(-90deg);
-}
-.percente{
-    position: absolute;
-    visibility: hidden;
-}
-.circle{
-    width: 230px;
-    height: 230px;
-    background: #C4C4C4;
-    border-radius: 255px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.progress{
-    position: relative;
-    margin-top: 45px;
-}
-.numb{
-    font-weight: 700;
-    font-size: 50px;
-    font-family: "Segoe UI", serif;
-    color: #E36F59;
-    position: absolute;
-}
-.circle2{
-    height: 210px;
-    width: 210px;
-    background: white;
-    border-radius: 255px;
-}
-.progress-ring{
-    position: absolute;
-    top: 0;
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px 0;
 }
 .course_title{
     font-weight: 700;
     font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    color: #000000;
     margin-bottom: 10px;
 }
-
 .course_line{
-    height: 2px;
     width: 100%;
-    background: #E36F59;
+    height: 2px;
+    background: #FF5F49;
 }
 .course_button{
-    padding: 15px 65px;
+    padding: 0 20px;
+}
+.course_btn{
+    display: block;
+    color: black;
     background: #F7D4CD;
-    border-radius: 25px;
-    color: #23262D;
-    font-weight: 500;
-    font-size: 18px;
-    transition: ease-in-out 0.2s;
-}
-.course_button:hover{
-    background: #E36F59;
-}
-.course-btn{
     text-align: center;
-    padding: 5px 70px;
-    margin-top: 80px;
+    max-width: 230px;
+    margin: 0 auto 40px auto;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 18px;
+    padding: 10px 0;
+    border-radius: 25px;
+
 }
-.active{
-    font-size: 80px;
-    width: 7px;
-    font-weight: 800;
-    margin-top: 4px;
+
+/*progress ring*/
+:root {
+    --progress-bar-width: 250px;
+    --progress-bar-height: 250px;
+}
+
+.circular-progress {
+    width: var(--progress-bar-width);
+    height: var(--progress-bar-height);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+}
+.inner-circle {
+    position: absolute;
+    width: calc(var(--progress-bar-width) - 30px);
+    height: calc(var(--progress-bar-height) - 30px);
+    border-radius: 50%;
+    background-color: lightgrey;
+}
+
+.percentage {
+    position: relative;
+    font-family: 'Segoe UI', serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #E36F59;
+}
+
+@media screen and (max-width: 800px) {
+    :root {
+        --progress-bar-width: 180px;
+        --progress-bar-height: 180px;
+        --font-size: 1.3rem;
+    }
+    .course_btn{
+        font-size: 18px;
+    }
+
+}
+
+@media screen and (max-width: 575px) {
+    .course_column{
+        width: 100%;
+    }
+    .course_item{
+        width: 100%;
+    }
+    .courses_row{
+        flex-direction: column;
+    }
+    .course_column:not(:last-child){
+        margin-bottom: 30px;
+    }
+    .circular-progress{
+        margin: 30px auto;
+    }
+}
+
+/*modal*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 320px;
+    border-radius: 10px;
+    margin: 200px auto;
+    position: relative;
+
+}
+
+/* Стилі для закриваючої кнопки */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.close{
+    position: absolute;
+    right: 20px;
+}
+.icon_submit{
+    background: #FF5F49;
+    color: white;
+    padding: 7px 12px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 8px;
+
 }

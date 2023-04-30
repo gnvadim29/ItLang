@@ -39,40 +39,40 @@
                             <hr class="title_line">
                         </div>
                         <div class="info_content">
-                            <a href="/myaccount/changeIcon" id="my-link" class="user_image">
+                            <button id="myBtn" class="user_image">
                                 <img class="user_image-img" th:src="@{/image/{id}(id = ${user.getUserIconId()})}">
                                 <div class="overlay">
                                     <p>Change icon</p>
                                 </div>
-                            </a>
-                            <div class="user_inputs">
+                            </button>
+                            <form class="user_inputs" method="post" th:action="@{/myaccount/changeInfo}">
                                 <div class="_fields">
                                     <div class="label_block">
                                         <label class="label"  for="name">Name:</label>
-                                        <input class="input" th:value="${user.getName()}" type="text" id="name">
+                                        <input class="input" name="name" th:value="${user.getName()}" type="text" id="name">
                                     </div>
                                     <div class="label_block">
                                         <label class="label"  for="surname">Surname:</label>
-                                        <input class="input" th:value="${user.getSurname()}" type="text" id="surname">
+                                        <input class="input" name="surname" th:value="${user.getSurname()}" type="text" id="surname">
                                     </div>
 
                                     <div class="label_block">
                                         <label class="label"  for="email">Email:</label>
-                                        <input class="input" th:value="${user.getEmail()}" type="email" id="email">
+                                        <input class="input" name="email" th:value="${user.getEmail()}" type="email" id="email" readonly>
                                     </div>
 
                                     <div class="label_block">
                                         <label class="label" for="group">Group:</label>
-                                        <input class="input" th:value="${user.getGroup()}" type="text" id="group">
+                                        <input class="input" name="group" th:value="${user.getGroup()}" type="text" id="group">
                                     </div>
 
                                 </div>
                                 <div class="_buttons">
                                     <div class="save_btn">
-                                        <a class="save_button" href="#">Зберегти</a>
+                                        <button class="save_button" type="submit">Зберегти</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
@@ -116,75 +116,58 @@
                             <hr class="title_line">
                         </div>
                         <div class="subtext">
-                            Після проходження курсів ти зможеш отримати сертифікат  та обміняти його на хорошу оцінку в свого викладача :)                        </div>
+                            Після проходження курсів ти зможеш отримати сертифікат та обміняти його на хорошу оцінку в свого викладача :)                        </div>
                     </div>
 
+                    </th:block>
                     <div class="courses_row">
-                        <div class="courses_column ">
-                            <div class="courses_item">
-                                <div class="courses_item_column">
-                                    <p class="course_title">It English</p>
-                                    <hr class="course_line">
-
-                                    <div class="progress">
-                                        <div class="circle">
-                                            <div class="circle2"></div>
-                                            <div class="numb">0%</div>
-
-                                        </div>
-                                        <svg class="progress-ring" width="230" height="230">
-                                            <circle class="progress-ring__circle" cx="115" cy="115" r="110"></circle>
-                                        </svg>
-
-                                        <input class="percente" type="range" min="0" max="100" value="0">
-
-                                    </div>
-                                    <div class="course-btn"><a href="#" class="course_button">
-                                        Розпочати курс
+                        <div class="course_column">
+                            <div class="course_item">
+                                <div class="course_title">IT English</div>
+                                <hr class="course_line">
+                                <div class="circular-progress" data-inner-circle-color="white" th:attr="data-percentage=${user.getUserProgress().getItEnglish()}" data-percentage="80" data-progress-color="#E36F59" data-bg-color="#C4C4C4">
+                                    <div class="inner-circle"></div>
+                                    <p class="percentage">10%</p>
+                                </div>
+                                <div class="course_button">
+                                    <a href="#" class="course_btn">
+                                        Розпочати <br> курс
                                     </a>
-                                    </div>
-
-
                                 </div>
                             </div>
                         </div>
-                        <div class="courses_column ">
-                            <div class="courses_item">
-                                <div class="courses_item_column">
-                                    <p class="course_title">ZNO English</p>
-                                    <hr class="course_line">
-
-                                    <div class="progress">
-                                        <div class="circle">
-                                            <div class="circle2"></div>
-                                            <div class="numb">0%</div>
-
-                                        </div>
-                                        <svg class="progress-ring" width="230" height="230">
-                                            <circle class="progress-ring__circle" cx="115" cy="115" r="110"></circle>
-                                        </svg>
-
-                                        <input class="percente" type="range" min="0" max="100" value="0">
-
-                                    </div>
-                                    <div class="course-btn"><a href="#" class="course_button">
-                                        Розпочати курс
+                        <div class="course_column">
+                            <div class="course_item">
+                                <div class="course_title">ZNO English</div>
+                                <hr class="course_line">
+                                <div class="circular-progress" data-inner-circle-color="white" th:attr="data-percentage=${user.getUserProgress().getZnoEnglish()}" data-percentage="100"  data-progress-color="#E36F59" data-bg-color="#C4C4C4">
+                                    <div class="inner-circle"></div>
+                                    <p class="percentage">10%</p>
+                                </div>
+                                <div class="course_button">
+                                    <a href="#" class="course_btn">
+                                        Розпочати <br> курс
                                     </a>
-                                    </div>
-
-
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
 
 
                 </div>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form th:action="@{/myaccount/changeIcon}" method="post" enctype="multipart/form-data">
+                            <input class="icon_file" size="2000000" type="file" id="myFileInput" name="userIcon"><br><br>
+                            <button class="icon_submit" type="submit">Зберегти</button>
+                        </form>
+                    </div>
+                </div>
             </div>
+
+
+
         </section>
 
 
@@ -192,28 +175,78 @@
         <div th:insert="~{fragments/footer :: footer}"></div>
 
     </div>
+<script>
+    var input = document.getElementById("myFileInput");
 
-    <script>
-        const circle = document.querySelector('.progress-ring__circle');
-        const r = circle.r.baseVal.value;
-        const circumference = 2 * Math.PI * r;
-        const input = document.querySelector('.percente');
+    input.addEventListener("change", function() {
+        var file = input.files[0]; // Отримуємо перший файл зі списку
+        var allowedSize = 1 * 1024 * 1024; // Максимальний розмір файлу в байтах (10 Мб)
 
-        circle.style.strokeDasharray = `${circumference} ${circumference}`;
-        circle.style.strokeDashoffset = circumference;
-
-        function setProgress(percent) {
-            const offset = circumference - percent / 100 * circumference;
-            circle.style.strokeDashoffset = offset;
+        if (file.size > allowedSize) {
+            alert("Розмір файлу перевищує допустиме значення - 1Mb");
+            input.value = null; // Очищаємо значення input file
         }
+    });
 
-        setProgress(20);
+</script>
+<script>
+    var btn = document.getElementById("myBtn");
 
-        input.addEventListener('input', function () {
-            setProgress(input.value);
-        });
-    </script>
+    // Отримуємо модальне вікно
+    var modal = document.getElementById("myModal");
+
+    // Отримуємо кнопку закриття
+    var span = document.getElementsByClassName("close")[0];
+    // Відкриваємо модальне вікно
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // При натисканні на кнопку закриття модального вікна
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // При кліку на будь-яку частину екрану, окрім модального вікна, закриваємо його
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
     <script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
+
+    <script>
+        const circularProgress = document.querySelectorAll(".circular-progress");
+
+        Array.from(circularProgress).forEach((progressBar) => {
+            const progressValue = progressBar.querySelector(".percentage");
+            const innerCircle = progressBar.querySelector(".inner-circle");
+            let startValue = -1,
+                endValue = Number(progressBar.getAttribute("data-percentage")),
+                speed = 10,
+                progressColor = progressBar.getAttribute("data-progress-color");
+
+            const progress = setInterval(() => {
+                startValue++;
+                progressValue.textContent = `${startValue}%`;
+                progressValue.style.color = `${progressColor}`;
+
+                innerCircle.style.backgroundColor = `${progressBar.getAttribute(
+                    "data-inner-circle-color"
+                )}`;
+
+                progressBar.style.background = `conic-gradient(${progressColor} ${
+                    startValue * 3.6
+                }deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
+                if (startValue === endValue) {
+                    clearInterval(progress);
+                }
+            }, speed);
+        });
+
+    </script>
+
 </body>
 </html>

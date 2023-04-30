@@ -20,4 +20,6 @@ public class UserProgress {
     private Person person;
 
     private String englishLevel;
+    private int itEnglish;
+    private int znoEnglish;
 }
