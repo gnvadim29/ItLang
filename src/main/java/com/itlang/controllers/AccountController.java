@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,14 +40,16 @@ public class AccountController {
 //        model.addAttribute("progress", userProgress);
         return "myaccount";
     }
-    @GetMapping("/myaccount/changeIcon")
-    public String changeIcon(){
-        return "account_change";
-    }
 
     @PostMapping("/myaccount/changeIcon")
     public String changeIcon(@RequestParam(name = "userIcon") MultipartFile userIcon) throws IOException {
         accountService.changeIcon(userIcon);
+        return "redirect:/myaccount";
+    }
+    @PostMapping("/myaccount/changeInfo")
+    public String changeInfo(@ModelAttribute(name = "user") Person person){
+        accountService.changeInfo(person);
+        System.out.println(person.getName() + " " + person.getSurname() + " " + person.getGroup() + " " + person.getEmail());
         return "redirect:/myaccount";
     }
 }

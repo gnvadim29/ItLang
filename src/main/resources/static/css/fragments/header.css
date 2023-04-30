@@ -114,7 +114,7 @@
     .menu__btn {
         display: flex;
         align-items: center;
-        position: absolute;
+        position: relative;
         top: -5px;
 
         width: 26px;

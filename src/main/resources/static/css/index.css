@@ -214,9 +214,6 @@ body{
     }
 }
 @media (max-width: 575px){
-    .container{
-        max-width: 320px;
-    }
     .right-content{
         position: relative;
     }

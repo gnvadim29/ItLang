@@ -79,4 +79,13 @@ public class AccountService {
 
         return image;
     }
+
+    public void changeInfo(Person person) {
+        Person person1 = peopleRepository.findPersonByEmail(person.getEmail());
+        person1.setName(person.getName());
+        person1.setGroup(person.getGroup());
+        person1.setSurname(person.getSurname());
+
+        peopleRepository.save(person1);
+    }
 }

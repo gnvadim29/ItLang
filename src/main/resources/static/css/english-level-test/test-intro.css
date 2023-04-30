@@ -20,11 +20,7 @@ body{
         max-width: 700px;
     }
 }
-@media (max-width: 575px) {
-    .container{
-        max-width: 320px;
-    }
-}
+
 .content{
     flex: 1 1 auto;
 }
@@ -163,9 +159,6 @@ body{
 
 }
 @media (max-width: 575px){
-    .container{
-        padding: 0 5px;
-    }
     .content_image{
         display: none;
     }
