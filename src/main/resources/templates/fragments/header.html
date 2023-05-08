@@ -33,6 +33,11 @@
                 <li class="menu_item">
                     <a href="/about" class="menu_link">Про нас</a>
                 </li>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <li class="menu_item">
+                        <a href="/admin" style="color: #E36F59" class="menu_link">Панель адміністратора</a>
+                    </li>
+                </div>
             </ul>
             <div sec:authorize="isAnonymous()">
                 <a class="menu_btn" href="/auth/login">

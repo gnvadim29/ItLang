@@ -35,14 +35,12 @@ public class AccountController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Person person = peopleRepository.findPersonByEmail(authentication.getName());
         model.addAttribute("user", person);
-//        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-//        UserProgress userProgress = progressRepository.findUserProgressByUserId(accountService.getUserId(email));
-//        model.addAttribute("progress", userProgress);
         return "myaccount";
     }
 
     @PostMapping("/myaccount/changeIcon")
     public String changeIcon(@RequestParam(name = "userIcon") MultipartFile userIcon) throws IOException {
+        System.out.println(userIcon.getName());
         accountService.changeIcon(userIcon);
         return "redirect:/myaccount";
     }

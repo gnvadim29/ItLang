@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>ItLang</title>
@@ -13,19 +12,22 @@
     <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
     <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
 
+
 </head>
 <body>
-    <div class="wrapper">
-        <div class="content">
-            <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
-
-            <div class="main_content">
-                <div class="">
-
-                </div>
-            </div>
+<div class="content">
+    <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
+    <div class="main_content">
+        <div class="edit-container">
+            <form class="form" th:action="@{edit-video}" method="post">
+                <textarea class="textarea" th:text="${video.getBlogPostVideoLink()}" th:field="*{video.blogPostVideoLink}" name="blogPostVideoLink" id="title" cols="100" placeholder="Назва підтеми" rows="2"></textarea>
+                <button class="save_btn btn" type="submit">Зберегти</button>
+            </form>
         </div>
-
     </div>
+</div>
+
+
+
 </body>
 </html>

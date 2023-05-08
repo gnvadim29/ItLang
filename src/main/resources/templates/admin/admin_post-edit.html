@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
+    <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
+    <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
+
+
+</head>
+<body>
+<div class="content_blog">
+<div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
+<div class="main_content">
+    <div class="edit-container">
+        <img class="header_image" th:src="@{/image/{id}(id = ${post.getPreviewImageId()})}" src="../../static/media/index/advantages1.png" alt="previewImage">
+        <form class="form" th:action="@{/admin/blog/post/{id}/edit(id = ${post.getId()})}" method="post" enctype="multipart/form-data">
+
+            <h2 class="modal_title">Основна інформація</h2>
+
+            <div class="text">Нове головне зображення</div>
+            <input type="file" id="previewImage" name="previewImage"><br><br>
+            <textarea class="textarea" th:text="${post.getBlogPostTitle()}" th:field="*{post.blogPostTitle}" required="required" minlength="20" maxlength="255" name="blogPostTitle" id="blogPostTitle" cols="100" rows="1" placeholder="Тема публікації"></textarea><br>
+            <textarea class="textarea" th:text="${post.getBlogPostText()}" th:field="*{post.blogPostText}" required="required" minlength="20" name="blogPostText" id="blogPostText" cols="100" rows="10" placeholder="Текст публікації"></textarea>
+
+            <hr class="line">
+
+            <div class="subthemes">
+                <h2 class="modal_title">Підтеми</h2>
+                <div class="subtheme" th:each="sub : ${subtheme}">
+                    <p class="text">Назва: </p>
+                    <p class="subtext" th:text="${sub.getBlogPostSubthemeTitle()}">123322456</p>
+                    <p class="text">Текст: </p>
+                    <p class="subtext" th:text="${sub.getBlogPostSubthemeText()}">1232154565</p>
+                    <a class="edit_btn btn" th:href="@{/admin/blog/post/{id}/edit/subtheme/{sid}/edit(id = ${post.getId()}, sid = ${sub.getId()})}">Редагувати</a>
+                    <a class="delete_btn btn" th:href="@{/admin/blog/post/{id}/edit/subtheme/{sid}/delete(id = ${post.getId()}, sid = ${sub.getId()})}">Видалити</a>
+                </div>
+                <a id="add_subtheme" type="" class="add_btn">+</a>
+            </div>
+
+            <hr class="line">
+
+            <h2 class="modal_title">Зображення</h2>
+
+            <div class="images" >
+                <div class="image" th:each="img : ${images}">
+                    <img class="img" th:src="@{/image/{id}(id = ${img.getId()})}" alt="" src="">
+                    <a class="delete_btn btn" th:href="@{/admin/blog/post/{id}/edit/image/{sid}/delete(id = ${post.getId()}, sid = ${img.getId()})}">Видалити</a>
+                </div>
+            </div>
+            <p class="text">Нові зображення:</p>
+            <input type="file" name="files" placeholder="Image" multiple><br><br>
+            <hr class="line">
+
+            <div class="subthemes">
+                <h2 class="modal_title">Відео</h2>
+                <div class="images">
+                    <div class="image" th:each="video : ${videos}">
+                        <iframe src="https://www.youtube.com/embed/IkFjTHxSHZA" th:src="@{${video.getBlogPostVideoLink()}}" class="video_player-frame" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <a class="delete_btn btn" th:href="@{/admin/blog/post/{id}/edit/video/{sid}/delete(id = ${post.getId()}, sid = ${video.getId()})}">Видалити</a>
+                        <a class="edit_btn btn" th:href="@{/admin/blog/post/{id}/edit/video/{sid}/edit(id = ${post.getId()}, sid = ${video.getId()})}">Редагувати</a>
+                    </div>
+
+                </div>
+                <a id="add_video" class="add_btn">+</a>
+            </div>
+
+
+
+            <hr class="line">
+
+            <div class="btns">
+                <button class="save_btn btn" type="submit">Зберегти публікацію</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<div class="add_video-modal">
+
+</div>
+<div class="add_subtheme-modal" id="add_subtheme-modal">
+    <div class="add_post-modal__content">
+        <div class="modal_title">
+            Додати абзац
+        </div>
+        <form class="form" th:action="@{edit/add-subtheme}" method="post">
+            <textarea class="textarea" th:field="*{subtheme1.blogPostSubthemeTitle}" name="blogPostSubthemeTitle" id="title1" cols="100" placeholder="Назва підтеми" rows="2"></textarea>
+            <textarea class="textarea" th:field="*{subtheme1.blogPostSubthemeText}" name="blogPostSubthemeText" id="text" cols="100" placeholder="Текст підтеми" rows="10"></textarea>
+            <button class="save_btn btn" type="submit">Додати</button>
+        </form>
+        <a class="close" id="close_add_subtheme-modal"></a>
+    </div>
+</div>
+
+<div class="add_video-modal" id="add_video-modal">
+    <div class="add_post-modal__content">
+        <div class="modal_title">
+            Додати відео
+        </div>
+        <form class="form" th:action="@{edit/add-video}" method="post">
+            <textarea class="textarea" th:field="*{video1.blogPostVideoLink}" name="blogPostSubthemeTitle" id="title" cols="100" placeholder="Посилання на відео" rows="2"></textarea>
+            <button class="btn save_btn" type="submit">Додати</button>
+        </form>
+        <a class="close" id="close_add_video-modal"></a>
+
+    </div>
+</div>
+</body>
+<script>
+    var btn1 = document.getElementById("add_video");
+    var modal1 = document.getElementById("add_video-modal");
+    var close1 = document.getElementById("close_add_video-modal")
+
+    btn1.onclick = function () {
+        modal1.style.display = "block";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
+    close1.onclick = function () {
+        modal1.style.display = "none";
+    }
+
+    var btn = document.getElementById("add_subtheme");
+    var modal = document.getElementById("add_subtheme-modal");
+    var close = document.getElementById("close_add_subtheme-modal")
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+    close.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>
+</html>

@@ -48,9 +48,7 @@
                     <div class="blog_post_header">
                         <img class="header_image" th:src="@{/image/{id}(id = ${blog_post.getPreviewImageId()})}" src="../../static/media/index/advantages1.png" alt="HEADER_IMAGE">
                     </div>
-                    <div class="admin_panel" sec:authorize="hasRole('ADMIN')">
-                        <a class="edit_btn btn" th:href="@{/blog/post/{id}/edit(id = ${blog_post.getId()})}">Редагувати пост</a>
-                    </div>
+
                     <div class="blog_post_content">
                         <div class="blog_post_theme">
                             <div th:text="${blog_post.getBlogPostTitle()}" class="theme_title">Хто такий QAOps і чим він займається?</div>

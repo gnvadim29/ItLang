@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>ItLang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+  <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
+  <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
+  <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
+
+
+</head>
+<body>
+<div class="wrapper">
+  <div class="content admin_content">
+
+    <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
+
+    <div class="main_content">
+      <div class="blog">
+        <div class="blog_title title">
+          <div class="blog_title-text title_text">
+            Блог
+          </div>
+          <hr class="title_line">
+        </div>
+        <div class="blog_content">
+          <button id="add_post" class="add_button">
+            Додати пост
+          </button>
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">title</th>
+              <th scope="col">date</th>
+              <th scope="col">action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tab : ${blog_post}">
+              <td th:text="${tab.getBlogPostTitle()}">title</td>
+              <td th:text="${tab.getDateOfCreation()}">date</td>
+              <td class="action_col" style="width: 90px">
+                <a th:class="edit" th:href="@{/admin/blog/post/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                <a th:class="del" id="del" onclick="return confirm('Ви впевнені, що хочете видалити публікацію?')" th:href="@{/admin/blog/post/{id}/delete(id = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="add_post-modal" class="add_post-modal">
+  <div class="add_post-modal__content">
+    <form class="form" th:action="@{/admin/blog/post/add}" method="post" enctype="multipart/form-data">
+      <hr style="visibility: hidden">
+      <h2 class="modal_title">Основна інформація</h2>
+      <div class="text">Головне зображення</div>
+      <input type="file" id="previewImage" name="previewImage" required="required">
+      <br><br>
+      <textarea style="width: 98%" class="textarea" th:field="*{post.blogPostTitle}" required="required" minlength="20" maxlength="255" name="blogPostTitle" id="blogPostTitle" cols="100" rows="1" placeholder="Тема публікації"></textarea><br>
+      <textarea style="width: 98%" class="textarea" th:field="*{post.blogPostText}" required="required" minlength="20" name="blogPostText" id="blogPostText" cols="100" rows="10" placeholder="Текст публікації"></textarea>
+      <hr class="line">
+      <div class="subtheme">
+        <h2 class="modal_title">Абзац</h2>
+        <span class="red">*Ви зможете додати більше <br> абзаців в режимі редагування</span>
+      </div>
+      <textarea style="width: 98%" class="textarea" th:field="*{subtheme.blogPostSubthemeTitle}" name="blogPostSubthemeTitle" id="subthemeTitle1" cols="100" rows="1" placeholder="Назва підтеми"></textarea>
+      <br>
+      <textarea style="width: 98%" class="textarea" th:field="*{subtheme.blogPostSubthemeText}" name="blogPostSubthemeText" id="subthemeText1" cols="100" rows="10" placeholder="Текст підтеми"></textarea>
+      <hr class="line">
+      <h2 class="modal_title">Інша інформація</h2>
+
+      <div>Інші зображення:</div>
+      <input type="file" name="files" placeholder="Image" multiple><br><br>
+      <textarea class="textarea" style="width: 98%" th:field="*{video.blogPostVideoLink}" name="blogPostVideoLink" id="videoLink1" cols="100" rows="1" placeholder="Посилання на відео"></textarea>
+      <br><br>
+      <button class="btn add_button" type="submit">Додати публікацію</button>
+    </form>
+
+  </div>
+</div>
+<script>
+  var btn = document.getElementById("add_post");
+  var modal = document.getElementById("add_post-modal");
+
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+</body>
+</html>

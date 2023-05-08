@@ -32,18 +32,15 @@ public class AccountService {
 
         if (userIcon.getSize()!=0){
             if(person.getUserIconId()!= null){
-                Image oldimage = imageRepository.findImageById(person.getId());
+                Image oldimage = imageRepository.findImageById(person.getUserIconId());
                 Image image;
                 image = toImageEntity(userIcon);
-
-                oldimage.setName(image.getName());
                 oldimage.setSize(image.getSize());
                 oldimage.setOriginalFileName(image.getOriginalFileName());
                 oldimage.setContentType(image.getContentType());
                 oldimage.setBytes(image.getBytes());
 
                 imageRepository.save(oldimage);
-                System.out.println("old image");
             }
             else {
                 Image image = new Image();
@@ -51,7 +48,6 @@ public class AccountService {
                 imageRepository.save(image);
                 person.setUserIconId(image.getId());
                 peopleRepository.save(person);
-                System.out.println("new image");
             }
         }
 //

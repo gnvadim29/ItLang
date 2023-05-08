@@ -140,6 +140,7 @@ public class BlogPostService {
         if (multipartFiles[0].getSize()!=0){
             for (MultipartFile multipartFile : multipartFiles) {
                 image = toImageEntity(multipartFile);
+                System.out.println(image.getName() + " +++ ");
                 blogPostToBeUpdated.addImageToPost(image);
             }
         }

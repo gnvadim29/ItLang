@@ -221,7 +221,6 @@ body{
     }
 }
 .add_btn{
-    position: absolute;
     display: flex;
     height: 40px;
     justify-content: center;
@@ -234,6 +233,5 @@ body{
     text-decoration: none;
     left: 150px;
     top: 10px;
-    background: green;
     width: 40px
 }

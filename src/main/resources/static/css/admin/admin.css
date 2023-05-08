@@ -1,0 +1,308 @@
+body, html{height:100%}
+body{
+    font-family: Bitter, sans-serif;
+    color: #23262D;
+    margin: 0;
+    padding: 0;
+
+}
+.content{
+    display: flex;
+    height: 100%;
+}
+.content_blog{
+    display: flex;
+}
+.admin_content{
+    height: 100%;
+}
+.wrapper{
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+.left_bar{
+    height: 100%;
+    width: 300px;
+    background: #302C2E;
+    padding: 20px;
+}
+
+.main_content{
+    width: 100%;
+}
+.links_list{
+    list-style: none;
+    padding: 0;
+}
+.link_item{
+    margin-bottom: 20px;
+}
+.link{
+    text-decoration: none;
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+}
+.admin_line{
+    height: 1px;
+    width: 100%;
+    background: white;
+    margin: 20px 0;
+}
+
+/*BLOG//////////////////////////////*/
+.title_text{
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    padding-left: 10px;
+
+}
+.title_line{
+    width: 110px;
+    height: 16px;
+    opacity: 0.5;
+    border-radius: 4px;
+    background: #E36F59;
+    position: absolute;
+    z-index: -1;
+    bottom: 2px;
+}
+.main_content{
+    margin: 0 20px;
+}
+.title{
+    margin: 30px 0 0 0;
+    position: relative;
+}
+
+.add_button{
+    margin-top: 10px;
+    background: #2D3034;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: .1s ease-in-out;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Bitter;
+}
+
+.table{
+    width: 100%;
+    margin-top: 10px;
+}
+.table th{
+    background: #2D3034;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px;
+}
+.table td{
+    background: #eaac9f;
+    padding: 5px 10px;
+    font-weight: 200;
+    font-size: 20px;
+}
+.edit{
+    margin: 0 5px 0 5px
+}
+.add_post-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Темний колір фону */
+    background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
+}
+.add_subtheme-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Темний колір фону */
+    background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
+}
+.add_video-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Темний колір фону */
+    background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
+}
+.add_post-modal__content{
+    width: 900px;
+    background: white;
+    margin: 30px auto 30px auto;
+    padding: 20px 20px 20px 20px;
+    border-radius: 8px;
+    position: relative;
+}
+.modal_title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+
+}
+.line{
+    width: 100%;
+    height: 2px;
+    background: #E36F59;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+.textarea{
+    border-radius: 5px;
+    background: lightgray;
+    width: 98%;
+    margin-bottom: 5px;
+    font-size: 16px;
+    padding: 10px;
+    border: 0;
+}
+.subtheme{
+    position: relative;
+}
+.red{
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+    color: red;
+}
+.edit-container{
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+.subthemes{
+    position: relative;
+}
+.add_btn{
+    position: absolute;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 500;
+    font-size: 40px;
+    border-radius: 10px;
+    user-select: none;
+    text-decoration: none;
+    right: 0;
+    top: 0;
+    background: green;
+}
+.subtext{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.subtheme{
+    margin-bottom: 10px;
+}
+.subtheme .text{
+    font-size: 20px;
+}
+.btn{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.edit_btn{
+    background: #00a096;
+    color: white;
+    margin-right: 5px;
+}
+.delete_btn{
+    background: indianred;
+    color: white;
+
+}
+.images{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.image{
+    flex: 0 1 31%;
+    margin: 0 10px;
+    margin-bottom: 15px;
+}
+.img{
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.content{
+    position: relative;
+}
+.image iframe{
+    height: 200px;
+    margin-bottom: 5px;
+}
+.save_btn{
+    background: green;
+    color: white;
+    display: inline-block;
+    padding: 15px 30px;
+}
+.del_btn{
+    padding: 17px 30px;
+}
+
+/**********************************************************/
+.header_image{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 20px;
+}
+.close {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+}
+.close:hover {
+    opacity: 1;
+}
+.close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+}
+.close:before {
+    transform: rotate(45deg);
+}
+.close:after {
+    transform: rotate(-45deg);
+}
