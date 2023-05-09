@@ -46,7 +46,7 @@
               <td th:text="${tab.isActive()}">is_active</td>
 
               <td class="action_col" style="width: 90px">
-                <a th:class="edit" th:href="@{/}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                <a th:class="edit" th:href="@{/admin/courses/{id}/edit(id= ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
                 <a th:class="del" id="del" onclick="return confirm('Ви впевнені, що хочете видалити курс?')" th:href="@{/admin/courses/{id}/delete(id = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
               </td>
             </tr>

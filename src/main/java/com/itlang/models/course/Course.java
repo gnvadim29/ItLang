@@ -1,13 +1,15 @@
 package com.itlang.models.course;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.itlang.models.BlogPostSubtheme;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +25,14 @@ public class Course {
 
     private int numberOfQuestions;
 
+    @Column(columnDefinition = "boolean default false")
     private boolean active;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "course")
+    private List<Level> levels = new ArrayList<>();
+
+    public void addLevel(Level level){
+        level.setCourse(this);
+        levels.add(level);
+    }
 }

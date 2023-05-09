@@ -41,8 +41,8 @@ body{
 .link{
     text-decoration: none;
     color: white;
-    font-size: 26px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 500;
 }
 .admin_line{
     height: 1px;
@@ -147,6 +147,7 @@ body{
     background-color: rgb(0,0,0); /* Темний колір фону */
     background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
 }
+
 .add_post-modal__content{
     width: 900px;
     background: white;
@@ -305,4 +306,32 @@ body{
 }
 .close:after {
     transform: rotate(-45deg);
+}
+.task_form{
+    display: flex;
+    justify-content: space-between;
+}
+.task_form input{
+    display: none;
+}
+.task_form input:checked ~ .task_image{
+    box-shadow: 0px 0px 20px red;
+}
+.task_image{
+    max-width: 442px;
+    transition: .2s all;
+    border-radius: 10px;
+}
+.task_image:hover{
+    box-shadow: 0px 0px 20px #E36F59;
+}
+.form_block{
+    display: flex;
+    flex-direction: column;
+}
+.first_label{
+    margin-bottom: 10px;
+}
+.correct{
+    color: red;
 }

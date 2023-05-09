@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
+    <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
+    <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
+
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
+
+        <div class="main_content">
+            <div class="couses">
+                <div class="blog_title title">
+                    <div th:text="${course.getTitle()}" class="blog_title-text title_text">
+                        Назва курсу
+                    </div>
+                    <hr class="title_line">
+                </div>
+
+                <div class="course_edit">
+                    <button id="add_level" class="add_button">
+                        Додати рівень
+                    </button>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">title</th>
+                            <th scope="col">action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tab : ${levels}">
+                            <td th:text="${tab.getTitle()}">title</td>
+                            <td class="action_col" style="width: 90px">
+                                <a th:class="edit" th:href="@{/admin/level/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                                <a th:class="del" id="del" onclick="return confirm('Ви впевнені, що хочете видалити рівень?')" th:href="@{edit/delete_level/{sid}(sid = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="add_video-modal" id="add_level-modal">
+        <div class="add_post-modal__content">
+            <div class="modal_title">
+                Додати рівень
+            </div>
+            <form class="form" th:action="@{edit/add_level}" method="post">
+                <textarea class="textarea" th:field="*{level.title}" name="title" id="title" cols="100" placeholder="Назва курсу" rows="2"></textarea>
+                <button class="btn save_btn" type="submit">Додати</button>
+            </form>
+            <a class="close" id="close_add_level-modal"></a>
+
+        </div>
+    </div>
+
+</div>
+</body>
+<script>
+    var btn1 = document.getElementById("add_level");
+    var modal1 = document.getElementById("add_level-modal");
+    var close1 = document.getElementById("close_add_level-modal")
+
+    btn1.onclick = function () {
+        modal1.style.display = "block";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
+    close1.onclick = function () {
+        modal1.style.display = "none";
+    }
+</script>
+</html>

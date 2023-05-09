@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>ItLang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+  <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
+  <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
+  <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
+
+</head>
+<body>
+<div class="wrapper">
+  <div class="content">
+    <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
+
+    <div class="main_content">
+      <div class="edit_task">
+
+        <div class="">
+          <h1 th:text="${task.getTitle()}">title</h1>
+          <textarea name="mediaUrl" class="textarea" placeholder="Посилання на аудіозапис (відео)" cols="30" rows="1"></textarea>
+          <button class="add_button" id="add_question">Додати запитання</button>
+          <div style="border: 1px solid black" th:each="que : ${questions}">
+            <p th:text="${que.getTitle()}"></p>
+            <div th:each="answ, index : ${que.getAnswers()}">
+              <p th:class="${answ.isCorrect() ? 'correct' : ''}" th:text="${answ.getTitle()}"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="add_video-modal" id="add_level-modal">
+    <div class="add_post-modal__content">
+      <div class="modal_title">
+        Додати запитання
+      </div>
+      <form class="form" th:action="@{edit/add_question}" method="post">
+        <textarea class="textarea" th:field="*{question.title}" name="title" id="title" cols="100" placeholder="Текст запитання" rows="1"></textarea>
+        <textarea class="textarea" th:field="*{question.answer1}" name="answer1" id="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
+        <textarea class="textarea" th:field="*{question.answer2}" name="answer2" id="answer2" cols="100" placeholder="Відповідь 2" rows="1"></textarea>
+        <textarea class="textarea" th:field="*{question.answer3}" name="answer3" id="answer3" cols="100" placeholder="Відповідь 3" rows="1"></textarea>
+        <select name="correctAnswer">
+          <option th:selected="${question.getCorrectAnswer() == 0}" value="0">1</option>
+          <option th:selected="${question.getCorrectAnswer() == 1}" value="1">2</option>
+          <option th:selected="${question.getCorrectAnswer() == 2}" value="2">3</option>
+        </select>
+        <button class="btn save_btn" type="submit">Додати</button>
+      </form>
+      <a class="close" id="close_add_level-modal"></a>
+
+    </div>
+  </div>
+
+</div>
+</body>
+<script>
+  var btn1 = document.getElementById("add_question");
+  var modal1 = document.getElementById("add_level-modal");
+  var close1 = document.getElementById("close_add_level-modal")
+
+  btn1.onclick = function () {
+    modal1.style.display = "block";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal1) {
+      modal1.style.display = "none";
+    }
+  }
+  close1.onclick = function () {
+    modal1.style.display = "none";
+  }
+</script>
+</html>
