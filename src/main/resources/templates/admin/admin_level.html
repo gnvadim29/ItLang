@@ -16,7 +16,43 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="content">
+  <div class="add_video-modal" id="add_task-modal">
+    <div class="add_task-modal__content">
+      <div class="modal_title">
+        Оберіть шаблон завдання
+      </div>
+      <form class="form" th:action="@{/admin/level/{id}/add_task(id = ${level.getId()})}" method="post">
+        <input class="textarea" placeholder="Текст завдання" type="text" name="title" required>
+          <div class="task_form">
+            <div class="form_block">
+              <label class="first_label">
+                <input type="radio" name="task" value="listening_text_more_answer">
+                <img class="task_image" th:src="@{/media/tasks/listening_text_more_answer.jpg}" src="../../static/media/tasks/listening_text_more_answer.jpg" alt="">
+              </label>
+              <label>
+                <input type="radio" name="task" value="listening_text_answer">
+                <img class="task_image" th:src="@{/media/tasks/listening_text_answer.jpg}" src="../../static/media/tasks/listening_text_answer.jpg" alt="">
+              </label>
+            </div>
+            <div class="form_block">
+              <label class="first_label">
+                <input type="radio" name="task" value="listening_true_false">
+                <img class="task_image" th:src="@{/media/tasks/listening_true_false.jpg}" src="../../static/media/tasks/listening_true_false.jpg" alt="">
+              </label>
+              <label>
+                <input type="radio" name="task" value="listening_image_answer">
+                <img class="task_image" th:src="@{/media/tasks/listening_image_answer.jpg}" src="../../static/media/tasks/listening_image_answer.jpg" alt="">
+              </label>
+            </div>
+          </div>
+      <button class="add_button btn task_button" type="submit">Далі</button>
+      </form>
+      <a class="close" id="close_add_task-modal"></a>
+
+    </div>
+  </div>
+
+  <div class="content ">
     <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
 
     <div class="main_content">
@@ -53,42 +89,6 @@
 
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="add_video-modal" id="add_task-modal">
-    <div class="add_post-modal__content">
-      <div class="modal_title">
-        Оберіть шаблон завдання
-      </div>
-      <form class="form" th:action="@{/admin/level/{id}/add_task(id = ${level.getId()})}" method="post">
-        <input class="textarea" placeholder="Назва завдання" type="text" name="title" required>
-          <div class="task_form">
-            <div class="form_block">
-              <label class="first_label">
-                <input type="radio" name="task" value="listening_text_more_answer">
-                <img class="task_image" th:src="@{/media/tasks/listening_text_more_answer.jpg}" src="../../static/media/tasks/listening_text_more_answer.jpg" alt="">
-              </label>
-              <label>
-                <input type="radio" name="task" value="listening_text_answer">
-                <img class="task_image" th:src="@{/media/tasks/listening_text_answer.jpg}" src="../../static/media/tasks/listening_text_answer.jpg" alt="">
-              </label>
-            </div>
-            <div class="form_block">
-              <label class="first_label">
-                <input type="radio" name="task" value="listening_true_false">
-                <img class="task_image" th:src="@{/media/tasks/listening_true_false.jpg}" src="../../static/media/tasks/listening_true_false.jpg" alt="">
-              </label>
-              <label>
-                <input type="radio" name="task" value="listening_image_answer">
-                <img class="task_image" th:src="@{/media/tasks/listening_image_answer.jpg}" src="../../static/media/tasks/listening_image_answer.jpg" alt="">
-              </label>
-            </div>
-          </div>
-      <button class="add_button btn task_button" type="submit">Далі</button>
-      </form>
-      <a class="close" id="close_add_task-modal"></a>
-
     </div>
   </div>
 
