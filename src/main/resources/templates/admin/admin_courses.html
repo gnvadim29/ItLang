@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="content">
+  <div class="content_blog">
     <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
 
     <div class="main_content">
@@ -65,7 +65,7 @@
         Додати курс
       </div>
       <form class="form" th:action="@{courses/add_course}" method="post">
-        <textarea class="textarea" th:field="*{course.title}" name="title" id="title" cols="100" placeholder="Назва курсу" rows="2"></textarea>
+        <textarea required class="textarea" th:field="*{course.title}" name="title" id="title" cols="100" placeholder="Назва курсу" rows="2"></textarea>
         <button class="btn save_btn" type="submit">Додати</button>
       </form>
       <a class="close" id="close_add_video-modal"></a>

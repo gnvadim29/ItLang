@@ -3,15 +3,18 @@ package com.itlang.controllers.admin;
 import com.itlang.models.course.Course;
 import com.itlang.models.course.Level;
 import com.itlang.models.course.QuestionBody;
+import com.itlang.models.course.Task;
 import com.itlang.services.course.CourseService;
 import com.itlang.services.course.LevelService;
 import com.itlang.services.course.QuestionService;
 import com.itlang.services.course.TaskService;
-import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
@@ -69,8 +72,9 @@ public class AdminCourseController {
     @GetMapping("/admin/level/{id}/edit")
     private String editLevel(@PathVariable (name = "id") Long id, Model model){
         model.addAttribute("level", levelService.getLevel(id));
-        model.addAttribute("tasks", taskService.getListeningTasks());
-        return "admin/admin_level_listening";
+        model.addAttribute("listening_tasks", taskService.getListeningTasks(id));
+        model.addAttribute("reading_tasks", taskService.getReadingTasks(id));
+        return "admin/admin_level";
     }
     //add task
     @PostMapping("/admin/level/{id}/add_task")
@@ -90,19 +94,33 @@ public class AdminCourseController {
     }
     @PostMapping("/admin/task/{id}/edit/add_question")
     private String addQuestion(@PathVariable (name = "id") Long id,
-                               @ModelAttribute (name = "question") QuestionBody questionBody){
+                               @ModelAttribute (name = "question") QuestionBody questionBody,
+                               @RequestParam (name = "type") String type,
+                               @RequestParam(name = "image1", required = false) MultipartFile image1,
+                               @RequestParam(name = "image2", required = false) MultipartFile image2,
+                               @RequestParam(name = "image3", required = false) MultipartFile image3) throws IOException {
 
-        System.out.println("--------------------------------------------------");
-        System.out.println(questionBody.getTitle());
-        System.out.println(questionBody.getAnswer1());
-        System.out.println(questionBody.getAnswer2());
-        System.out.println(questionBody.getAnswer3());
-        System.out.println(questionBody.getCorrectAnswer());
-        System.out.println("--------------------------------------------------");
-
-        questionService.addQuestion(id, questionBody);
-
+                questionService.addQuestion(id, questionBody, type, image1, image2, image3);
+        System.out.println(type + "+++++");
         return "redirect:/admin/task/{id}/edit";
+    }
+    @GetMapping("/admin/level/{id}/edit/delete_task/{sid}")
+    public String deleteTask(@PathVariable (name = "id") Long id, @PathVariable(name = "sid") Long sid){
+        taskService.deleteTask(sid);
+        return "redirect:/admin/level/{id}/edit";
 
+    }
+    @PostMapping("/admin/task/{id}/save")
+    public String saveTask(@PathVariable (name = "id") Long id,
+                           @ModelAttribute (name = "task") Task task){
+
+
+        String sid = String.valueOf(taskService.saveTask(id, task));
+        return "redirect:/admin/level/" + sid + "/edit";
+    }
+    @GetMapping("/admin/task/{id}/edit/question/{sid}/delete")
+    public String deleteQuestion(@PathVariable (name = "sid") Long sid){
+        questionService.deleteQuestion(sid);
+        return "redirect:/admin/task/{id}/edit";
     }
 }

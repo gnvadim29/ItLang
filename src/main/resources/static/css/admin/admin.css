@@ -54,7 +54,7 @@ body{
 /*BLOG//////////////////////////////*/
 .title_text{
     font-weight: 700;
-    font-size: 50px;
+    font-size: 40px;
     line-height: 100%;
     letter-spacing: 0.01em;
     padding-left: 10px;
@@ -135,6 +135,20 @@ body{
     background-color: rgb(0,0,0); /* Темний колір фону */
     background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
 }
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Темний колір фону */
+    background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
+}
+.add_listening_true_false-modal, .add_listening_text_more_answer-modal{
+    display: none;
+}
 .add_video-modal{
     display: none;
     position: fixed;
@@ -150,6 +164,14 @@ body{
 
 .add_post-modal__content{
     width: 900px;
+    background: white;
+    margin: 30px auto 30px auto;
+    padding: 20px 20px 20px 20px;
+    border-radius: 8px;
+    position: relative;
+}
+.add_task-modal__content{
+    width: 935px;
     background: white;
     margin: 30px auto 30px auto;
     padding: 20px 20px 20px 20px;
@@ -173,7 +195,7 @@ body{
 .textarea{
     border-radius: 5px;
     background: lightgray;
-    width: 98%;
+    width: 100%;
     margin-bottom: 5px;
     font-size: 16px;
     padding: 10px;
@@ -334,4 +356,165 @@ body{
 }
 .correct{
     color: red;
+}
+.text_p{
+    font-size: 18px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+.select{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background: lightgray;
+    font-family: Bitter, serif;
+    font-size: 16px;
+    color: dimgray;
+    border: none;
+    margin-bottom: 10px;
+}
+.question{
+    padding: 20px;
+    background: lightgray;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+.question *{
+    font-size: 16px;
+}
+
+/****************************************answers********************************/
+.answers{
+    margin: 50px 0 0 0;
+}
+.answers_column{
+    display: flex;
+    flex-direction: column;
+}
+.answers_row{
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    position: relative;
+    transition: all .5s;
+    border-radius: 8px;
+    min-height: 70px;
+}
+.answers_row:not(:first-child){
+    margin-top: 20px;
+}
+.answers_row:hover{
+    box-shadow: 0 0 15px 1px #E36F59;
+}
+
+.question_title{
+    margin: 18px 0 0 25px;
+    font-family: 'Bitter', serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+
+}
+.answers_label{
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    cursor: pointer;
+    font-weight: 400;
+    font-family: Rubik, serif;
+    font-size: 35px;
+    user-select: none;
+    transition: all .5s;
+}
+.answers_input{
+    position: absolute;
+    visibility: hidden;
+}
+.answer_block{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    margin: 10px 0 10px 0;
+    transition: opacity .5s;
+    padding: 0 25px;
+    font-family: 'Bitter', serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 162%;
+    color: #383838;
+}
+#question_show-first:checked ~ .answer_block-first{
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+#question_show-second:checked ~ .answer_block-second{
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+#question_show-third:checked ~ .answer_block-third{
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+#question_show-forth:checked ~ .answer_block-forth{
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+#question_show-first:checked ~ .answers_label-first{
+    transform: rotate(-45deg);
+}
+#question_show-second:checked ~ .answers_label-second{
+    transform: rotate(-45deg);
+}
+#question_show-third:checked ~ .answers_label-third{
+    transform: rotate(-45deg);
+}
+#question_show-forth:checked ~ .answers_label-forth{
+    transform: rotate(-45deg);
+}
+
+.title-text{
+    text-align: center;
+    margin: 10px 0 20px 0;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    padding-left: 10px;
+}
+.del_btn{
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+.del_img{
+    height: 30px;
+    width: 30px;
+}
+.image_answ{
+    width: 230px;
+    height: 230px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.images_answ{
+    display: flex;
+    justify-content: space-around;
+}
+.correct_image{
+    box-shadow: 0 0 15px 1px #E36F59;
+    width: 230px;
+    height: 230px;
+    object-fit: contain;
+    border-radius: 10px;
+
 }

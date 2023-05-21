@@ -21,6 +21,10 @@ public class Task {
     private String type;
     private String description;
     private int check_num;
+    private String mediaUrl;
+
+    @Column(columnDefinition = "longtext")
+    private String text;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Level level;

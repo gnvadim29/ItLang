@@ -1,48 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Хост: 127.0.0.1:3306
--- Час створення: Лют 26 2023 р., 00:12
--- Версія сервера: 10.1.48-MariaDB
--- Версія PHP: 7.2.34
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- База даних: `ItLang`
---
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `english_level_test_question`
---
-
-CREATE TABLE `english_level_test_question` (
-  `id` bigint(20) NOT NULL,
-  `question_answer1` varchar(255) DEFAULT NULL,
-  `question_answer2` varchar(255) DEFAULT NULL,
-  `question_answer3` varchar(255) DEFAULT NULL,
-  `question_answer4` varchar(255) DEFAULT NULL,
-  `question_correct_answer` int(11) NOT NULL,
-  `question_level` varchar(255) DEFAULT NULL,
-  `question_title` text,
-  `user_answer` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
-
---
--- Дамп даних таблиці `english_level_test_question`
---
-
 INSERT INTO `english_level_test_question` (`id`, `question_answer1`, `question_answer2`, `question_answer3`, `question_answer4`, `question_correct_answer`, `question_level`, `question_title`, `user_answer`) VALUES
 (1, 'My name is John.', 'I\'m fine, thanks.', 'I am 20 years old.', '', 1, 'A1', 'What is your name?', -1),
 (2, 'I am from Spain.', ' I am 25 years old.', 'I am fine, thank you.', '', 3, 'A1', 'How are you?', -1),
@@ -79,18 +34,3 @@ INSERT INTO `english_level_test_question` (`id`, `question_answer1`, `question_a
 (33, 'greatly', 'highly', 'strongly', 'readily', 2, 'C', 'This new printer is recommended as being ...... reliable.', -1),
 (34, 'retrace', 'regress', 'resume', 'return', 1, 'C', 'When I realised I had dropped my gloves, I decided to ...... my steps.', -1),
 (35, 'region', 'quarter', 'vicinity', 'district', 3, 'C', 'Anne\'s house is somewhere in the ...... of the railway station.', -1);
-
---
--- Індекси збережених таблиць
---
-
---
--- Індекси таблиці `english_level_test_question`
---
-ALTER TABLE `english_level_test_question`
-  ADD PRIMARY KEY (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

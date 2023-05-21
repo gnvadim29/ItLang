@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 public class BlogPostSubtheme {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String blogPostSubthemeTitle;
     @Column(columnDefinition = "text")

@@ -16,43 +16,8 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="add_video-modal" id="add_task-modal">
-    <div class="add_task-modal__content">
-      <div class="modal_title">
-        Оберіть шаблон завдання
-      </div>
-      <form class="form" th:action="@{/admin/level/{id}/add_task(id = ${level.getId()})}" method="post">
-        <input class="textarea" placeholder="Текст завдання" type="text" name="title" required>
-          <div class="task_form">
-            <div class="form_block">
-              <label class="first_label">
-                <input type="radio" name="task" value="listening_text_more_answer">
-                <img class="task_image" th:src="@{/media/tasks/listening_text_more_answer.jpg}" src="../../static/media/tasks/listening_text_more_answer.jpg" alt="">
-              </label>
-              <label>
-                <input type="radio" name="task" value="listening_text_answer">
-                <img class="task_image" th:src="@{/media/tasks/listening_text_answer.jpg}" src="../../static/media/tasks/listening_text_answer.jpg" alt="">
-              </label>
-            </div>
-            <div class="form_block">
-              <label class="first_label">
-                <input type="radio" name="task" value="listening_true_false">
-                <img class="task_image" th:src="@{/media/tasks/listening_true_false.jpg}" src="../../static/media/tasks/listening_true_false.jpg" alt="">
-              </label>
-              <label>
-                <input type="radio" name="task" value="listening_image_answer">
-                <img class="task_image" th:src="@{/media/tasks/listening_image_answer.jpg}" src="../../static/media/tasks/listening_image_answer.jpg" alt="">
-              </label>
-            </div>
-          </div>
-      <button class="add_button btn task_button" type="submit">Далі</button>
-      </form>
-      <a class="close" id="close_add_task-modal"></a>
 
-    </div>
-  </div>
-
-  <div class="content ">
+  <div class="content_blog ">
     <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
 
     <div class="main_content">
@@ -63,34 +28,189 @@
           </div>
           <hr class="title_line">
         </div>
+        <section class="answers">
+          <div class="answers_container container">
 
-        <div class="course_edit">
-          <button id="add_task" class="add_button">
-            Додати завдання
-          </button>
-          <table class="table">
-            <thead>
-            <tr>
-              <th scope="col">title</th>
-              <th scope="col">action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="tab : ${tasks}">
-              <td th:text="${tab.getTitle()}">title</td>
-              <td class="action_col" style="width: 90px">
-                <a th:class="edit" th:href="@{/admin/task/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
-                <a th:class="del" id="del" onclick="return confirm('Ви впевнені, що хочете видалити рівень?')" th:href="@{edit/delete_level/{sid}(sid = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
-              </td>
-            </tr>
 
-            </tbody>
-          </table>
+<!--            LISTENING              -->
+            <div class="answers_column">
+              <div class="answers_row">
+                <div class="answers-item">
+                  <p class="question_title">Listening</p>
+                  <input class="answers_input" id="question_show-first" checked type="checkbox">
+                  <label class="answers_label answers_label-first" for="question_show-first">+</label>
+                  <div class="answer_block answer_block-first">
+                    <div class="answer_text">
+                      <div class="listening_edit">
+                        <button id="add_task" class="add_button">
+                          Додати завдання
+                        </button>
+                        <table th:if="${!listening_tasks.isEmpty()}" class="table">
+                          <thead>
+                          <tr>
+                            <th scope="col">title</th>
+                            <th scope="col">action</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr th:each="tab : ${listening_tasks}">
+                            <td th:text="${tab.getTitle()}">title</td>
+                            <td class="action_col" style="width: 90px">
+                              <a th:class="edit" th:href="@{/admin/task/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                              <a th:class="del" id="del" onclick="return confirm('Ви впевнені, що хочете видалити завдання?')" th:href="@{edit/delete_task/{sid}(sid = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
+                            </td>
+                          </tr>
 
-        </div>
+                          </tbody>
+                        </table>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<!--            READING              -->
+
+              <div class="answers_row">
+                <div class="answers-item">
+                  <p class="question_title">Reading</p>
+                  <input class="answers_input" id="question_show-second" checked type="checkbox">
+                  <label class="answers_label answers_label-second" for="question_show-second">+</label>
+                  <div class="answer_block answer_block-second">
+                    <div class="answer_text">
+                      <div class="reading_edit">
+                        <button id="add_task_reading" class="add_button">
+                          Додати завдання
+                        </button>
+                        <table th:if="${!reading_tasks.isEmpty()}" class="table">
+                          <thead>
+                          <tr>
+                            <th scope="col">title</th>
+                            <th scope="col">action</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr th:each="tab : ${reading_tasks}">
+                            <td th:text="${tab.getTitle()}">title</td>
+                            <td class="action_col" style="width: 90px">
+                              <a th:class="edit" th:href="@{/admin/task/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                              <a th:class="del" id="del1" onclick="return confirm('Ви впевнені, що хочете видалити завдання?')" th:href="@{edit/delete_task/{sid}(sid = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
+                            </td>
+                          </tr>
+
+                          </tbody>
+                        </table>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="answers_row">
+                <div class="answers-item">
+                  <p class="question_title">Use of English</p>
+                  <input class="answers_input" id="question_show-third" checked  type="checkbox">
+                  <label class="answers_label answers_label-third" for="question_show-third">+</label>
+                  <div class="answer_block answer_block-third">
+                    <div class="answer_text">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, neque sit amet aliquam cursus, ante urna porta mauris, eget venenatis risus turpis ac nisl. Aenean blandit, nulla tincidunt efficitur placerat, ante nisl auctor ipsum, in auctor mauris lacus sed nibh. Quisque id imperdiet metus, non semper dui. Phasellus pellentesque vitae leo in dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse id aliquam nunc. Sed dignissim, nibh quis dapibus dapibus, ex sapien ultricies leo, sit amet placerat arcu sem id sem.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="answers_row">
+                <div class="answers-item">
+                  <p class="question_title">Writing</p>
+                  <input class="answers_input" id="question_show-forth" checked type="checkbox">
+                  <label class="answers_label answers_label-forth" for="question_show-forth">+</label>
+                  <div class="answer_block answer_block-forth">
+                    <div class="answer_text">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, neque sit amet aliquam cursus, ante urna porta mauris, eget venenatis risus turpis ac nisl. Aenean blandit, nulla tincidunt efficitur placerat, ante nisl auctor ipsum, in auctor mauris lacus sed nibh. Quisque id imperdiet metus, non semper dui. Phasellus pellentesque vitae leo in dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse id aliquam nunc. Sed dignissim, nibh quis dapibus dapibus, ex sapien ultricies leo, sit amet placerat arcu sem id sem.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
       </div>
     </div>
   </div>
+<!--      MODALS-->
+<!--  LISTENING-->
+  <div class="add_video-modal" id="add_task-modal">
+    <div class="add_task-modal__content">
+      <div class="modal_title">
+        Оберіть шаблон завдання
+      </div>
+      <form class="form" th:action="@{/admin/level/{id}/add_task(id = ${level.getId()})}" method="post">
+        <input class="textarea" placeholder="Текст завдання" type="text" name="title" required>
+        <div class="task_form">
+          <div class="form_block">
+            <label class="first_label">
+              <input required type="radio" name="task" value="listening_text_more_answer">
+              <img class="task_image" th:src="@{/media/tasks/listening_text_more_answer.jpg}" src="../../static/media/tasks/listening_text_more_answer.jpg" alt="">
+            </label>
+            <label>
+              <input required type="radio" name="task" value="listening_text_answer">
+              <img class="task_image" th:src="@{/media/tasks/listening_text_answer.jpg}" src="../../static/media/tasks/listening_text_answer.jpg" alt="">
+            </label>
+          </div>
+          <div class="form_block">
+            <label class="first_label">
+              <input required type="radio" name="task" value="listening_true_false">
+              <img class="task_image" th:src="@{/media/tasks/listening_true_false.jpg}" src="../../static/media/tasks/listening_true_false.jpg" alt="">
+            </label>
+            <label>
+              <input required type="radio" name="task" value="listening_image_answer">
+              <img class="task_image" th:src="@{/media/tasks/listening_image_answer.jpg}" src="../../static/media/tasks/listening_image_answer.jpg" alt="">
+            </label>
+          </div>
+        </div>
+        <button class="add_button btn task_button" type="submit">Далі</button>
+      </form>
+      <a class="close" id="close_add_task-modal"></a>
+
+    </div>
+  </div>
+
+<!--  READING-->
+  <div class="add_video-modal" id="add_reading-modal">
+    <div class="add_task-modal__content">
+      <div class="modal_title">
+        Оберіть шаблон завдання
+      </div>
+      <form class="form" th:action="@{/admin/level/{id}/add_task(id = ${level.getId()})}" method="post">
+        <input class="textarea" placeholder="Текст завдання" type="text" name="title" required>
+        <div class="task_form">
+          <div class="form_block">
+            <label class="first_label">
+              <input required type="radio" name="task" value="reading_texts_answer">
+              <img class="task_image" th:src="@{/media/tasks/reading_texts_answer.jpg}" src="../../static/media/tasks/listening_text_more_answer.jpg" alt="">
+            </label>
+          </div>
+          <div class="form_block">
+            <label class="first_label">
+              <input required type="radio" name="task" value="reading_text_answers">
+              <img class="task_image" th:src="@{/media/tasks/reading_text_answers.jpg}" src="../../static/media/tasks/listening_true_false.jpg" alt="">
+            </label>
+          </div>
+        </div>
+        <button class="add_button btn task_button" type="submit">Далі</button>
+      </form>
+      <a class="close" id="close_add_reading-modal"></a>
+
+    </div>
+  </div>
+
+
 
 </div>
 </body>
@@ -109,6 +229,22 @@
   }
   close1.onclick = function () {
     modal1.style.display = "none";
+  }
+
+  var btn2 = document.getElementById("add_task_reading");
+  var modal2 = document.getElementById("add_reading-modal");
+  var close2 = document.getElementById("close_add_reading-modal")
+
+  btn2.onclick = function () {
+    modal2.style.display = "block";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal2) {
+      modal2.style.display = "none";
+    }
+  }
+  close2.onclick = function () {
+    modal2.style.display = "none";
   }
 </script>
 </html>

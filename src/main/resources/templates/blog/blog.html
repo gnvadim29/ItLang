@@ -47,7 +47,6 @@
                 </div>
                 <hr class="title_line">
             </div>
-
             <div class="blog_row">
                 <div th:each="post : ${blog_post}" class="blog_column">
                     <a th:href="@{/blog/post/{id}(id = ${post.getId()})}" class="blog_item">

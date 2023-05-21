@@ -52,7 +52,6 @@ public class EnglishLevelTestController {
     @GetMapping("/test")
     public String startTest(Model model){
         EnglishLevelTestForm qForm = englishLevelTestService.getQuestions();
-        System.out.println(qForm.getQuestionList().size() + " ++++ ");
         if(qForm.getQuestionList().size() < 25){
             model.addAttribute("isRight", false);
         } else if(qForm.getQuestionList().size() == 25){

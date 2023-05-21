@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>ItLang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+  <link media="all" th:href="@{/css/fragments/header.css}" rel="stylesheet">
+  <link media="all" th:href="@{/css/fragments/footer.css}" rel="stylesheet">
+  <link media="all" th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet">
+  <link media="all" th:href="@{/css/loader.css}" rel="stylesheet">
+  <link media="all" th:href="@{/css/course/listening.css}" rel="stylesheet">
+
+</head>
+<body>
+<div id="page-preloader" class="preloader">
+  <div class="loader"></div>
+</div>
+
+
+
+<div class="wrapper">
+  <div th:insert="~{fragments/header.html :: header}"></div>
+
+  <div class="container">
+    <div class="left_menu"></div>
+    <div class="content">
+      <div class="" th:each="task : ${tasks}">
+
+<!--        listening_image_answer-->
+        <div th:if="${task.getDescription() == 'listening_image_answer'}" class="listening_image_answer task">
+            <div class="listening_image_answer-task">
+              <iframe class="video" width="488" height="300" th:src="${task.getMediaUrl()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="listening_image_answer-image">
+                    <img class="listening_image_answer-img" th:src="@{/media/tasks/listening_image_answer-img.svg}" alt="">
+                    <p class="task_title" th:text="${task.getTitle()}"></p>
+                </div>
+            </div>
+            <div class="listening_image_answer-question">
+                <div th:each=" que : ${task.getQuestions()}">
+                    <p class="question_title" th:text="${que.getTitle()}"></p>
+                    <div class="listening_image_answer-answers">
+                        <div class="answer" th:each="answ : ${que.getAnswers()}">
+                            <label class="answer_label">
+                                <img class="answer_image" th:src="@{/image/{id}(id = ${answ.getImage().getId()})}" alt="">
+                                <input id="input" class="input" type="radio" th:name="${'question' + que.getId()}">
+                                    <span th:if="${answStat.count == 1}" class="radio_input" th:text="A"></span>
+                                    <span th:if="${answStat.count == 2}" class="radio_input" th:text="B"></span>
+                                    <span th:if="${answStat.count == 3}" class="radio_input" th:text="C"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="check_button" href="#">Перевірити</a>
+            
+        </div>
+
+<!--        listening_text_answer-->
+          <div th:if="${task.getDescription() == 'listening_text_answer'}" class="listening_text_answer task">
+              <div class="listening_text_answer-content">
+                  <iframe class="video" width="488" height="300" th:src="${task.getMediaUrl()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  <div class="question" th:each="que : ${task.getQuestions()}">
+                      <p class="task_title1" th:text="${task.getTitle()}">title</p>
+                      <p class="question_title title1" th:text="${que.getTitle()}">title</p>
+                      <div class="answers" th:each="answ : ${que.getAnswers()}">
+                          <label class="answer_label1">
+                              <input id="input1" class="input" type="radio" th:name="${'question' + que.getId()}">
+                              <div th:if="${answStat.count == 1}" class="answer_">
+                                  <span  class="radio_input" th:text="A"></span>
+                                  <p class="answer_text" th:text="${answ.getTitle()}"></p>
+                              </div>
+                              <div th:if="${answStat.count == 2}" class="answer_">
+                                  <span class="radio_input" th:text="B"></span>
+                                  <p class="answer_text" th:text="${answ.getTitle()}"></p>
+                              </div>
+                              <div  th:if="${answStat.count == 3}" class="answer_">
+                                  <span class="radio_input" th:text="C"></span>
+                                  <p class="answer_text" th:text="${answ.getTitle()}"></p>
+                              </div>
+                          </label>
+                      </div>
+                  </div>
+              </div>
+              <a class="check_button" href="#">Перевірити</a>
+
+          </div>
+
+<!--        listening_true_false-->
+          <div th:if="${task.getDescription() == 'listening_true_false'}" class="listening_true_false task">
+              <div class="listening_true_false-content">
+                  <div class="listening_true_false-video">
+                      <div class="listening_image_answer-image">
+                          <img class="listening_image_answer-img" th:src="@{/media/tasks/Audiobook-bro.svg}" alt="">
+                          <p class="task_title" th:text="${task.getTitle()}"></p>
+                      </div>
+                      <iframe class="video" width="488" height="300" th:src="${task.getMediaUrl()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div th:each="que : ${task.getQuestions()}" class="questions_">
+                      <p class="question_title" th:text="${que.getTitle()}"></p>
+                      <div class="answers">
+                          <label>
+                              <input id="true" type="radio" th:name="${'que' + que.getId()}">
+                              <span class="true true_false">TRUE</span>
+                          </label>
+                          <label>
+                              <input id="false" type="radio" th:name="${'que' + que.getId()}">
+                              <span class="false true_false">FALSE</span>
+                          </label>
+                      </div>
+                  </div>
+              </div>
+              <a class="check_button" href="#">Перевірити</a>
+
+          </div>
+
+<!--        listening_text_more_answer-->
+          <div th:if="${task.getDescription() == 'listening_text_more_answer'}" class="listening_text_more_answer">
+                <div class="listening_text_more_answer-content">
+                    <div class="listening_true_false-video">
+                        <iframe class="video" width="488" height="300" th:src="${task.getMediaUrl()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <div class="listening_image_answer-image">
+                            <img class="listening_image_answer-img" th:src="@{/media/tasks/Voice.svg}" alt="">
+                            <p class="task_title" th:text="${task.getTitle()}"></p>
+                        </div>
+                    </div>
+                    <div class="question__" th:each="que : ${task.getQuestions()}">
+                        <p class="question_title title2" th:text="${que.getTitle()}">title</p>
+                        <div class="answers" th:each="answ : ${que.getAnswers()}">
+                            <label class="answer_label1">
+                                <input id="input2" class="input" type="radio" th:name="${'question' + que.getId()}">
+                                <div th:if="${answStat.count == 1}" class="answer_">
+                                    <span  class="radio_input" th:text="A"></span>
+                                    <p class="answer_text" th:text="${answ.getTitle()}"></p>
+                                </div>
+                                <div th:if="${answStat.count == 2}" class="answer_">
+                                    <span class="radio_input" th:text="B"></span>
+                                    <p class="answer_text" th:text="${answ.getTitle()}"></p>
+                                </div>
+                                <div  th:if="${answStat.count == 3}" class="answer_">
+                                    <span class="radio_input" th:text="C"></span>
+                                    <p class="answer_text" th:text="${answ.getTitle()}"></p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+              <a class="check_button" href="#">Перевірити</a>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div th:insert="~{fragments/footer :: footer}"></div>
+</div>
+<script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
+
+</body>
+</html>

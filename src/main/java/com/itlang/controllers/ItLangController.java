@@ -11,6 +11,7 @@ public class ItLangController {
 
     @GetMapping("/")
     public String index(){
+        System.out.println("+++");
         return "index";
     }
 

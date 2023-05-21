@@ -1,5 +1,6 @@
 package com.itlang.models.course;
 
+import com.itlang.models.Image;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +20,12 @@ public class Answer {
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Question question;
+
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "answer")
+    private Image image;
+
+    public void addImageToAnswer(Image image){
+        image.setAnswer(this);
+        this.setImage(image);
+    }
 }

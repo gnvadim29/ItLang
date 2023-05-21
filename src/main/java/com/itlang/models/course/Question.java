@@ -18,7 +18,9 @@ public class Question {
     private Long id;
 
     private String title;
-    private String mediaUrl;
+
+    @Column(columnDefinition = "text")
+    private String text;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Task task;
