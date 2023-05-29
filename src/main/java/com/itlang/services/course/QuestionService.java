@@ -161,10 +161,52 @@ public class QuestionService {
             task.addQuestion(question);
         }
 
+//        USE OF ENGLISH
+        if(type.equals("use_text_answers")){
+            Answer answer1 = new Answer();
+            Answer answer2 = new Answer();
+            Answer answer3 = new Answer();
+            Answer answer4 = new Answer();
 
 
+            answer1.setTitle(questionBody.getAnswer1());
+            if(questionBody.getCorrectAnswer().equals("0")){
+                answer1.setCorrect(true);
+            }
+            question.addAnswer(answer1);
+
+            answer2.setTitle(questionBody.getAnswer2());
+            if(questionBody.getCorrectAnswer().equals("1")){
+                answer2.setCorrect(true);
+            }
+            question.addAnswer(answer2);
+
+            answer3.setTitle(questionBody.getAnswer3());
+            if(questionBody.getCorrectAnswer().equals("2")){
+                answer3.setCorrect(true);
+            }
+            question.addAnswer(answer3);
 
 
+            answer4.setTitle(questionBody.getAnswer4());
+            System.out.println(answer4.getTitle());
+            if(questionBody.getCorrectAnswer().equals("3")){
+                answer4.setCorrect(true);
+            }
+            question.addAnswer(answer4);
+            task.addQuestion(question);
+        }
+        if(type.equals("use_text_paste")){
+            Answer answer = new Answer();
+            answer.setTitle(questionBody.getAnswer1());
+            question.addAnswer(answer);
+            task.addQuestion(question);
+        }
+
+//        WRITING
+        if(type.equals("writing")){
+            task.addQuestion(question);
+        }
         taskRepository.save(task);
 
     }
@@ -176,10 +218,12 @@ public class QuestionService {
     @Transactional
     public void deleteQuestion(Long id) {
         List<Answer> answers = questionRepository.findQuestionById(id).getAnswers();
-        if(answers.get(0).getImage()!=null){
-            for (Answer answer : answers) {
-                imageRepository.deleteImageById(answer.getImage().getId());
-                answerRepository.deleteById(answer.getId());
+        if (answers.size() != 0){
+            if(answers.get(0).getImage()!=null){
+                for (Answer answer : answers) {
+                    imageRepository.deleteImageById(answer.getImage().getId());
+                    answerRepository.deleteById(answer.getId());
+                }
             }
         }
         questionRepository.deleteById(id);

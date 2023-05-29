@@ -21,6 +21,9 @@ public class CourseService {
     }
 
     public void createCourse(Course course) {
+        String courseUrl = course.getTitle();
+        courseUrl = courseUrl.toLowerCase().replaceAll("\\s", "");
+        course.setCourseUrl(courseUrl);
         courseRepository.save(course);
     }
 
@@ -41,5 +44,8 @@ public class CourseService {
 
     public void dropLevel(Long sid) {
         levelRepository.deleteById(sid);
+    }
+    public Course getCourseByUrl(String courseUrl){
+        return courseRepository.findCourseByCourseUrl(courseUrl);
     }
 }

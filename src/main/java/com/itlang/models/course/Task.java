@@ -20,6 +20,7 @@ public class Task {
     private String title;
     private String type;
     private String description;
+    private String textDescription;
     private int check_num;
     private String mediaUrl;
 

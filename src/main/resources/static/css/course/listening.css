@@ -6,11 +6,12 @@ body{
     margin: 0 auto;
     display: flex;
 }
-.content{
+.right_content{
     max-width: 895px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    margin-left: 20px;
 }
 .listening_image_answer-img{
     margin-left: 40px;
@@ -94,12 +95,6 @@ body{
 .check_button:hover{
     background: #FF5F49;
 }
-
-
-
-
-
-
 
 .listening_text_answer-content{
     display: flex;
@@ -194,4 +189,16 @@ body{
 }
 .title2 {
     margin: 50px 0 15px 0;
+}
+
+
+.title{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 125%;
+    letter-spacing: 0.01em;
+    color: #23262D;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }

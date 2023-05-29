@@ -23,6 +23,8 @@ public class Course {
     @Size(min = 1, max = 30, message = "Title should be between 1 and 30 characters")
     private String title;
 
+    private String courseUrl;
+
     private int numberOfQuestions;
 
     @Column(columnDefinition = "boolean default false")

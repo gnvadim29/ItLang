@@ -74,6 +74,8 @@ public class AdminCourseController {
         model.addAttribute("level", levelService.getLevel(id));
         model.addAttribute("listening_tasks", taskService.getListeningTasks(id));
         model.addAttribute("reading_tasks", taskService.getReadingTasks(id));
+        model.addAttribute("useOfEnglish_tasks", taskService.getUseOfEnglish(id));
+        model.addAttribute("writing_tasks", taskService.getWritingTasks(id));
         return "admin/admin_level";
     }
     //add task
@@ -113,8 +115,6 @@ public class AdminCourseController {
     @PostMapping("/admin/task/{id}/save")
     public String saveTask(@PathVariable (name = "id") Long id,
                            @ModelAttribute (name = "task") Task task){
-
-
         String sid = String.valueOf(taskService.saveTask(id, task));
         return "redirect:/admin/level/" + sid + "/edit";
     }

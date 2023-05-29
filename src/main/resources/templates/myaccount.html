@@ -130,8 +130,14 @@
                                     <p class="percentage">10%</p>
                                 </div>
                                 <div class="course_button">
-                                    <a href="#" class="course_btn">
+                                    <a th:if="${user.getUserProgress().getItEnglish() == 0}" href="/course/itenglish" class="course_btn">
                                         Розпочати <br> курс
+                                    </a>
+                                    <a th:if="${user.getUserProgress().getItEnglish() != 0}" href="/course/itenglish" class="course_btn">
+                                        Продовжити <br> курс
+                                    </a>
+                                    <a th:if="${user.getUserProgress().getItEnglish() == 100}" href="/course/itenglish" class="course_btn">
+                                        Отримати <br> сертифікат
                                     </a>
                                 </div>
                             </div>
@@ -145,8 +151,14 @@
                                     <p class="percentage">10%</p>
                                 </div>
                                 <div class="course_button">
-                                    <a href="#" class="course_btn">
+                                    <a th:if="${user.getUserProgress().getZnoEnglish() == 0}" href="/course/znoenglish" class="course_btn">
                                         Розпочати <br> курс
+                                    </a>
+                                    <a th:if="${user.getUserProgress().getZnoEnglish() != 0}" href="/course/znoenglish" class="course_btn">
+                                        Продовжити <br> курс
+                                    </a>
+                                    <a th:if="${user.getUserProgress().getZnoEnglish() == 100}" href="/course/znoenglish" class="course_btn">
+                                        Отримати <br> сертифікат
                                     </a>
                                 </div>
                             </div>

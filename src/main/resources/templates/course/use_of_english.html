@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>ItLang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/segoe-ui-4" rel="stylesheet">
+
+  <link media="all" th:href="@{/css/fragments/header.css}" rel="stylesheet">
+  <link media="all" th:href="@{/css/fragments/footer.css}" rel="stylesheet">
+  <link media="all" th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet">
+  <link media="all" th:href="@{/css/loader.css}" rel="stylesheet">
+  <link media="all" th:href="@{/css/course/course.css}" rel="stylesheet">
+  <link media="all" th:href="@{/css/course/use_of_english.css}" rel="stylesheet">
+
+
+</head>
+<body>
+<div id="page-preloader" class="preloader">
+  <div class="loader"></div>
+</div>
+
+
+
+<div class="wrapper">
+  <div th:insert="~{fragments/header.html :: header}"></div>
+
+  <div class="content">
+    <div class="container">
+      <div class="left_menu">
+        <div class="navigation">
+          <img src="/media/general/home.svg" alt="home">
+          <a   class="navigation_link" href="/"><span class="unactive_link">Головна</span></a>
+          <img class="navigation_next" src="/media/general/next.svg" alt="next">
+          <a class="navigation_link" href="/myaccount"><span class="unactive_link">Курси</span></a>
+          <img class="navigation_next" src="/media/general/next.svg" alt="next">
+          <a class="navigation_link" href="/" th:text="${course.getTitle()}"></a>
+        </div>
+
+        <div class="left_menu-item">
+          <div class="levels" th:each="lev : ${course.getLevels()}">
+            <label>
+              <input th:checked="${level} == ${lev.getTitle()}" id="level_" type="radio" name="radio" class="radio">
+              <div class="level_title">
+                <p th:text="${levStat.index + 1 + '. '}"></p>
+                <p class="level_title-text" th:text="${lev.getTitle()}">level</p>
+              </div>
+              <span class="submenu">
+              <span class="submenu_item">
+                <img class="submenu_icon" th:src="@{/media/course/headphones-icon.svg}" alt="">
+                <a th:href="@{/course/{name}/level/{id}/listening(id = ${lev.getId()}, name = ${course.getCourseUrl()})}" class="submenu_item-text">Listening</a>
+              </span>
+              <span class="submenu_item">
+                <img class="submenu_icon" th:src="@{/media/course/find-book-icon.svg}" alt="">
+                <a th:href="@{/course/{name}/level/{id}/reading(id = ${lev.getId()}, name = ${course.getCourseUrl()})}" class="submenu_item-text">Reading</a>
+              </span>
+              <span class="submenu_item">
+                <img class="submenu_icon" th:src="@{/media/course/right-files-icon.svg}" alt="">
+                <a th:href="@{/course/{name}/level/{id}/use_of_English(id = ${lev.getId()}, name = ${course.getCourseUrl()})}" class="submenu_item-text">Use of English</a>
+              </span>
+              <span class="submenu_item">
+                <img class="submenu_icon" th:src="@{/media/course/writing-icon.svg}" alt="">
+                <a th:href="@{/course/{name}/level/{id}/writing(id = ${lev.getId()}, name = ${course.getCourseUrl()})}" class="submenu_item-text">Writing</a>
+              </span>
+            </span>
+              <hr class="menu_line">
+            </label>
+          </div>
+          <div class="progress">
+            <div class="circular-progress" data-inner-circle-color="white" th:attr="data-percentage=${user.getUserProgress().getZnoEnglish()}" data-percentage="100"  data-progress-color="#E36F59" data-bg-color="#C4C4C4">
+              <div class="inner-circle"></div>
+              <p class="percentage">10%</p>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+      <div class="right_content">
+        <h2 class="title" th:text="${level} + ' - Use of English'">Use of English</h2>
+        <div class="" th:each="task : ${tasks}">
+
+          <div class="task" th:if="${task.getDescription() == 'use_text_answers'}">
+            <div class="task_title" th:text="${task.getTitle()}">title</div>
+            <div class="task_text" th:utext="${task.getText()}"></div>
+
+          <div class="question" th:each="que : ${task.getQuestions()}">
+            <div class="number" th:if="${queStat.index == 0}">1</div>
+            <div class="number" th:if="${queStat.index == 1}">2</div>
+            <div class="number" th:if="${queStat.index == 2}">3</div>
+            <div class="number" th:if="${queStat.index == 3}">4</div>
+            <div class="number" th:if="${queStat.index == 4}">5</div>
+            <div class="number" th:if="${queStat.index == 5}">6</div>
+
+            <div class="answers">
+              <div class="answer" th:each="answ : ${que.getAnswers()}">
+                <label class="label">
+                  <input id="input" class="input_hidden" type="radio" th:name="${'answer' + queStat.index}" th:value="${answ.getTitle()}">
+                  <div class="answ" th:text="${answ.getTitle()}"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+            <a class="check_button" href="#">Перевірити</a>
+
+          </div>
+
+          <div th:if="${task.getDescription() == 'use_text_paste'}" class="task">
+            <div class="task_title" th:text="${task.getTitle()}">title</div>
+            <div class="task_text" th:utext="${task.getText()}">text</div>
+
+
+            <form class="reading_texts_answer__form" th:action="@{/course/check}" enctype="application/json" method="post">
+              <div class="form_content">
+                <div class="form_inputs">
+
+                  <div class="numbers_">
+                    <div class="number_">1</div>
+                    <div class="number_">2</div>
+                    <div class="number_">3</div>
+                    <div class="number_">4</div>
+                    <div class="number_">5</div>
+                    <div class="number_">6</div>
+                  </div>
+
+                  <div class="inputs_" th:each="que : ${task.getQuestions()}">
+                    <div class="letter" th:if="${queStat.index == 0}">A</div>
+                    <div class="letter" th:if="${queStat.index == 1}">B</div>
+                    <div class="letter" th:if="${queStat.index == 2}">C</div>
+                    <div class="letter" th:if="${queStat.index == 3}">D</div>
+                    <div class="letter" th:if="${queStat.index == 4}">E</div>
+                    <div class="letter" th:if="${queStat.index == 5}">F</div>
+
+                    <div class="answers_">
+                      <input class="answer_" type="radio" th:name="${'answer' + queStat.index}" th:value="${task.getQuestions().get(0).getAnswers().get(0).getTitle()}">
+                      <input class="answer_" type="radio" th:name="${'answer' + queStat.index}" th:value="${task.getQuestions().get(1).getAnswers().get(0).getTitle()}">
+                      <input class="answer_" type="radio" th:name="${'answer' + queStat.index}" th:value="${task.getQuestions().get(2).getAnswers().get(0).getTitle()}">
+                      <input class="answer_" type="radio" th:name="${'answer' + queStat.index}" th:value="${task.getQuestions().get(3).getAnswers().get(0).getTitle()}">
+                      <input class="answer_" type="radio" th:name="${'answer' + queStat.index}" th:value="${task.getQuestions().get(4).getAnswers().get(0).getTitle()}">
+                      <input class="answer_" type="radio" th:name="${'answer' + queStat.index}" th:value="${task.getQuestions().get(5).getAnswers().get(0).getTitle()}">
+
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form_answers">
+                  <div class="answ_ active">select the correct answer</div>
+                  <div class="answ_" th:text="${task.getQuestions().get(0).getAnswers().get(0).getTitle()}"></div>
+                  <div class="answ_" th:text="${task.getQuestions().get(1).getAnswers().get(0).getTitle()}"></div>
+                  <div class="answ_" th:text="${task.getQuestions().get(2).getAnswers().get(0).getTitle()}"></div>
+                  <div class="answ_" th:text="${task.getQuestions().get(3).getAnswers().get(0).getTitle()}"></div>
+                  <div class="answ_" th:text="${task.getQuestions().get(4).getAnswers().get(0).getTitle()}"></div>
+                  <div class="answ_" th:text="${task.getQuestions().get(5).getAnswers().get(0).getTitle()}"></div>
+                </div >
+              </div>
+              <a class="check_button" href="#">Перевірити</a>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <div th:insert="~{fragments/footer :: footer}"></div>
+</div>
+<script>
+  const circularProgress = document.querySelectorAll(".circular-progress");
+
+  Array.from(circularProgress).forEach((progressBar) => {
+    const progressValue = progressBar.querySelector(".percentage");
+    const innerCircle = progressBar.querySelector(".inner-circle");
+    let startValue = -1,
+            endValue = Number(progressBar.getAttribute("data-percentage")),
+            speed = 10,
+            progressColor = progressBar.getAttribute("data-progress-color");
+
+    const progress = setInterval(() => {
+      startValue++;
+      progressValue.textContent = `${startValue}%`;
+      progressValue.style.color = `${progressColor}`;
+
+      innerCircle.style.backgroundColor = `${progressBar.getAttribute(
+              "data-inner-circle-color"
+      )}`;
+
+      progressBar.style.background = `conic-gradient(${progressColor} ${
+              startValue * 3.6
+      }deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
+      if (startValue === endValue) {
+        clearInterval(progress);
+      }
+    }, speed);
+  });
+
+</script>
+<script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
+</body>
+</html>

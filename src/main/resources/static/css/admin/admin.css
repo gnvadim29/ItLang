@@ -431,9 +431,8 @@ body{
     visibility: hidden;
 }
 .answer_block{
-    position: absolute;
-    visibility: hidden;
-    opacity: 0;
+    position: relative;
+    visibility: visible;
     width: 100%;
     margin: 10px 0 10px 0;
     transition: opacity .5s;
@@ -443,40 +442,6 @@ body{
     font-size: 16px;
     line-height: 162%;
     color: #383838;
-}
-#question_show-first:checked ~ .answer_block-first{
-    position: relative;
-    visibility: visible;
-    opacity: 1;
-}
-#question_show-second:checked ~ .answer_block-second{
-    position: relative;
-    visibility: visible;
-    opacity: 1;
-}
-#question_show-third:checked ~ .answer_block-third{
-    position: relative;
-    visibility: visible;
-    opacity: 1;
-}
-#question_show-forth:checked ~ .answer_block-forth{
-    position: relative;
-    visibility: visible;
-    opacity: 1;
-}
-
-
-#question_show-first:checked ~ .answers_label-first{
-    transform: rotate(-45deg);
-}
-#question_show-second:checked ~ .answers_label-second{
-    transform: rotate(-45deg);
-}
-#question_show-third:checked ~ .answers_label-third{
-    transform: rotate(-45deg);
-}
-#question_show-forth:checked ~ .answers_label-forth{
-    transform: rotate(-45deg);
 }
 
 .title-text{
@@ -517,4 +482,22 @@ body{
     object-fit: contain;
     border-radius: 10px;
 
+}
+.couses{
+    padding-bottom: 50px;
+}
+.select{
+    padding: 5px;
+}
+.writing_form{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+.text_writing{
+    width: 85%;
+}
+.add_writing{
+    height: 40px;
+    margin: 0;
 }

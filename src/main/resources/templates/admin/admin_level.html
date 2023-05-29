@@ -32,13 +32,12 @@
           <div class="answers_container container">
 
 
-<!--            LISTENING              -->
+
             <div class="answers_column">
+              <!--            LISTENING              -->
               <div class="answers_row">
                 <div class="answers-item">
                   <p class="question_title">Listening</p>
-                  <input class="answers_input" id="question_show-first" checked type="checkbox">
-                  <label class="answers_label answers_label-first" for="question_show-first">+</label>
                   <div class="answer_block answer_block-first">
                     <div class="answer_text">
                       <div class="listening_edit">
@@ -72,12 +71,9 @@
               </div>
 
 <!--            READING              -->
-
               <div class="answers_row">
                 <div class="answers-item">
                   <p class="question_title">Reading</p>
-                  <input class="answers_input" id="question_show-second" checked type="checkbox">
-                  <label class="answers_label answers_label-second" for="question_show-second">+</label>
                   <div class="answer_block answer_block-second">
                     <div class="answer_text">
                       <div class="reading_edit">
@@ -102,6 +98,41 @@
 
                           </tbody>
                         </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<!--            USE OF ENGLISH -->
+              <div class="answers_row">
+                <div class="answers-item">
+                  <p class="question_title">Use of English</p>
+                  <div class="answer_block answer_block-third">
+                    <div class="answer_text">
+                      <div class="useOE_edit">
+                        <button id="add_task_use" class="add_button">
+                          Додати завдання
+                        </button>
+
+                        <table th:if="${!useOfEnglish_tasks.isEmpty()}" class="table">
+                          <thead>
+                          <tr>
+                            <th scope="col">title</th>
+                            <th scope="col">action</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr th:each="tab : ${useOfEnglish_tasks}">
+                            <td th:text="${tab.getTitle()}">title</td>
+                            <td class="action_col" style="width: 90px">
+                              <a th:class="edit" th:href="@{/admin/task/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                              <a th:class="del" onclick="return confirm('Ви впевнені, що хочете видалити завдання?')" th:href="@{edit/delete_task/{sid}(sid = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
+                            </td>
+                          </tr>
+
+                          </tbody>
+                        </table>
 
                       </div>
 
@@ -110,31 +141,50 @@
                 </div>
               </div>
 
+<!--              WRITING-->
               <div class="answers_row">
                 <div class="answers-item">
-                  <p class="question_title">Use of English</p>
-                  <input class="answers_input" id="question_show-third" checked  type="checkbox">
-                  <label class="answers_label answers_label-third" for="question_show-third">+</label>
-                  <div class="answer_block answer_block-third">
+                  <p class="question_title">Writing</p>
+                  <div class="answer_block question_show-forth">
                     <div class="answer_text">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, neque sit amet aliquam cursus, ante urna porta mauris, eget venenatis risus turpis ac nisl. Aenean blandit, nulla tincidunt efficitur placerat, ante nisl auctor ipsum, in auctor mauris lacus sed nibh. Quisque id imperdiet metus, non semper dui. Phasellus pellentesque vitae leo in dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse id aliquam nunc. Sed dignissim, nibh quis dapibus dapibus, ex sapien ultricies leo, sit amet placerat arcu sem id sem.
+                      <div class="useOE_edit">
+                        <form class="writing_form" th:action="@{/admin/level/{id}/add_task(id = ${level.getId()})}" method="post">
+                          <input class="textarea text_writing" placeholder="Назва завдання" type="text" name="title" required>
+                          <input required type="hidden" name="task" value="writing">
+                          <button class="add_button add_writing" type="submit">
+                            Додати завдання
+                          </button>
+                        </form>
+
+
+                        <table th:if="${!writing_tasks.isEmpty()}" class="table">
+                          <thead>
+                          <tr>
+                            <th scope="col">title</th>
+                            <th scope="col">action</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr th:each="tab : ${writing_tasks}">
+                            <td th:text="${tab.getTitle()}">title</td>
+                            <td class="action_col" style="width: 90px">
+                              <a th:class="edit" th:href="@{/admin/task/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                              <a th:class="del" onclick="return confirm('Ви впевнені, що хочете видалити завдання?')" th:href="@{edit/delete_task/{sid}(sid = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
+                            </td>
+                          </tr>
+
+                          </tbody>
+                        </table>
+
+                      </div>
+
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="answers_row">
-                <div class="answers-item">
-                  <p class="question_title">Writing</p>
-                  <input class="answers_input" id="question_show-forth" checked type="checkbox">
-                  <label class="answers_label answers_label-forth" for="question_show-forth">+</label>
-                  <div class="answer_block answer_block-forth">
-                    <div class="answer_text">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, neque sit amet aliquam cursus, ante urna porta mauris, eget venenatis risus turpis ac nisl. Aenean blandit, nulla tincidunt efficitur placerat, ante nisl auctor ipsum, in auctor mauris lacus sed nibh. Quisque id imperdiet metus, non semper dui. Phasellus pellentesque vitae leo in dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse id aliquam nunc. Sed dignissim, nibh quis dapibus dapibus, ex sapien ultricies leo, sit amet placerat arcu sem id sem.
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+
             </div>
           </div>
         </section>
@@ -210,7 +260,34 @@
     </div>
   </div>
 
+<!--  USE OF ENGLISH-->
+  <div class="add_video-modal" id="add_use-modal">
+    <div class="add_task-modal__content">
+      <div class="modal_title">
+        Оберіть шаблон завдання
+      </div>
+      <form class="form" th:action="@{/admin/level/{id}/add_task(id = ${level.getId()})}" method="post">
+        <input class="textarea" placeholder="Текст завдання" type="text" name="title" required>
+        <div class="task_form">
+          <div class="form_block">
+            <label class="first_label">
+              <input required type="radio" name="task" value="use_text_answers">
+              <img class="task_image" th:src="@{/media/tasks/use_text_answers.jpg}" src="../../static/media/tasks/listening_text_more_answer.jpg" alt="">
+            </label>
+          </div>
+          <div class="form_block">
+            <label class="first_label">
+              <input required type="radio" name="task" value="use_text_paste">
+              <img class="task_image" th:src="@{/media/tasks/use_text_paste.jpg}" src="../../static/media/tasks/listening_true_false.jpg" alt="">
+            </label>
+          </div>
+        </div>
+        <button class="add_button btn task_button" type="submit">Далі</button>
+      </form>
+      <a class="close" id="close_add_use-modal"></a>
 
+    </div>
+  </div>
 
 </div>
 </body>
@@ -245,6 +322,22 @@
   }
   close2.onclick = function () {
     modal2.style.display = "none";
+  }
+
+  var btn3 = document.getElementById("add_task_use");
+  var modal3 = document.getElementById("add_use-modal");
+  var close3 = document.getElementById("close_add_use-modal")
+
+  btn3.onclick = function () {
+    modal3.style.display = "block";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal3) {
+      modal3.style.display = "none";
+    }
+  }
+  close3.onclick = function () {
+    modal3.style.display = "none";
   }
 </script>
 </html>

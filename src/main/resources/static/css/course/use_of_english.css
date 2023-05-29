@@ -1,0 +1,213 @@
+body{
+    font-family: Bitter;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+}
+.right_content{
+    max-width: 895px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 20px;
+}
+.listening_image_answer-img{
+    margin-left: 40px;
+}
+.listening_image_answer-image{
+    position: relative;
+}
+.task_title{
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 167%;
+    letter-spacing: 0.01em;
+    color: #23262D;
+    display: flex;
+    justify-content: center;
+}
+.title{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 125%;
+    letter-spacing: 0.01em;
+    color: #23262D;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.task_text{
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 162%;
+    letter-spacing: 0.035em;
+    color: #23262D;
+    text-align: justify;
+    text-indent: 60px;
+}
+b{
+    letter-spacing: -0.2px;
+}
+.number{
+    width: 40px;
+    height: 35px;
+    background: #757575;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+.question{
+    display: flex;
+    justify-content: space-between;
+}
+.answers{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.input_hidden{
+    position: absolute;
+    visibility: hidden;
+}
+#input:checked ~ .answ{
+    background: #E36F59;
+}
+.answ{
+    width: 183px;
+    height: 35px;
+    background: #757575;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s all;
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: white;
+}
+.form_content{
+    justify-content: space-between;
+    padding: 15px;
+    width: 100%;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin-top: 50px;
+    display: flex;
+
+}
+.form_inputs{
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+.numbers_{
+    display: flex;
+    justify-content: end;
+}
+.number_{
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
+    background: #E36F59;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+}
+.letter{
+    width: 35px;
+    height: 35px;
+    background: #757575;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: 10px;
+}
+.inputs_{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.answers_{
+    margin-top: 12px;
+    display: flex;
+}
+.answer_{
+    margin: 0 8px 0 22px;
+    width: 15px;
+    height: 15px;
+}
+.form_answers{
+    width: 60%;
+}
+.answ_{
+    width: 100%;
+    background: #757575;
+    border-radius: 5px;
+    font-family: 'Bitter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.answ_:not(:last-child){
+    margin-bottom: 10px;
+}
+.active{
+    background: #E36F59;
+    text-transform: uppercase;
+}
+.check_button{
+    padding: 15px 30px;
+    background: #E36F59;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.015em;
+    margin-top: 50px;
+    float: right;
+    border-radius: 8px;
+    transition: 0.2s all;
+    margin-bottom: 100px;
+}
+.check_button:hover{
+    background: #FF5F49;
+}
