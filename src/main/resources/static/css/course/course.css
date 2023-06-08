@@ -159,5 +159,39 @@ body{
 }
 .animated{
     width: 100%;
-    opacity: 90%;
+}
+
+.correct, .correct1 {
+    background: #48e348;
+    color: #000000;
+
+}
+.incorrect, .incorrect1{
+    background: #ff2929;
+    color: #FFF;
+}
+.correct, .incorrect{
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: 10px;
+    transition: 0.2s all;
+}
+.correct1, .incorrect1{
+    width: 180px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    transition: 0.2s all;
 }

@@ -1,9 +1,6 @@
 package com.itlang.controllers.admin;
 
-import com.itlang.models.course.Course;
-import com.itlang.models.course.Level;
-import com.itlang.models.course.QuestionBody;
-import com.itlang.models.course.Task;
+import com.itlang.models.course.*;
 import com.itlang.services.course.CourseService;
 import com.itlang.services.course.LevelService;
 import com.itlang.services.course.QuestionService;
@@ -102,8 +99,7 @@ public class AdminCourseController {
                                @RequestParam(name = "image2", required = false) MultipartFile image2,
                                @RequestParam(name = "image3", required = false) MultipartFile image3) throws IOException {
 
-                questionService.addQuestion(id, questionBody, type, image1, image2, image3);
-        System.out.println(type + "+++++");
+        questionService.addQuestion(id, questionBody, type, image1, image2, image3);
         return "redirect:/admin/task/{id}/edit";
     }
     @GetMapping("/admin/level/{id}/edit/delete_task/{sid}")
@@ -123,4 +119,5 @@ public class AdminCourseController {
         questionService.deleteQuestion(sid);
         return "redirect:/admin/task/{id}/edit";
     }
+
 }

@@ -1,5 +1,6 @@
 package com.itlang.models;
 
+import com.itlang.models.course.UserQuestions;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -49,7 +50,8 @@ public class Person {
 
     private String role;
 
-    @OneToOne(mappedBy = "person")
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private UserProgress userProgress;
+
     private Long userIconId;
 }

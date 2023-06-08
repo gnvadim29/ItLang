@@ -1,17 +1,25 @@
 package com.itlang.controllers;
 
 import com.itlang.models.Person;
+import com.itlang.models.course.CheckQuestion;
 import com.itlang.models.course.Course;
 import com.itlang.repositories.PeopleRepository;
 import com.itlang.repositories.course.LevelRepository;
+import com.itlang.repositories.course.UserQuestionsRepository;
 import com.itlang.services.course.CourseService;
+import com.itlang.services.course.QuestionService;
 import com.itlang.services.course.TaskService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 @Controller
 @RequestMapping("/course")
@@ -21,6 +29,9 @@ public class CourseController {
     private final CourseService courseService;
     private final PeopleRepository peopleRepository;
     private final LevelRepository levelRepository;
+    private final QuestionService questionService;
+    private final UserQuestionsRepository userQuestionsRepository;
+
 
     @GetMapping("/{url}")
     public String getCourse(@PathVariable( name = "url") String url, Model model){
@@ -47,6 +58,8 @@ public class CourseController {
 
         String levelTitle = levelRepository.findLevelById(id).getTitle();
         model.addAttribute("level", levelTitle);
+
+        model.addAttribute("user_questions", userQuestionsRepository.findUserQuestionsByPersonAndLevelId(person, id));
         return "course/listening";
     }
 
@@ -99,28 +112,30 @@ public class CourseController {
         return "course/writing";
     }
 
-
-
-
-
-//    @PostMapping("/check")
-//    public String check(@RequestParam String answer0,
-//                        @RequestParam String answer1,
-//                        @RequestParam String answer2,
-//                        @RequestParam String answer3,
-//                        @RequestParam String answer4,
-//                        @RequestParam String answer5) {
-//        System.out.println(answer0);
-//        System.out.println(answer1);
-//        System.out.println(answer2);
-//        System.out.println(answer3);
-//        System.out.println(answer4);
-//        System.out.println(answer5);
-//
-//        return "index";
-//
-//    }
-
+    @PostMapping("/{course_url}/level/{id}/{level_type}/check")
+    public String check(HttpServletRequest request, @RequestParam(name = "type") String type) {
+        List<CheckQuestion> answers = new ArrayList<>();
+        Enumeration<String> parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String paramName = parameterNames.nextElement();
+            if (paramName.startsWith("question")) {
+                Long answer = Long.valueOf(request.getParameter(paramName));
+                Long questionId = Long.parseLong(paramName.substring("question".length()));
+                CheckQuestion question = new CheckQuestion();
+                question.setUserAnswer(answer);
+                question.setId(questionId);
+                answers.add(question);
+            }
+        }
+        questionService.checkQuestions(answers, type);
+        System.out.println("------------------------------");
+        for (int i = 0; i < answers.size(); i++){
+            System.out.println(answers.get(i).getId());
+            System.out.println(answers.get(i).getUserAnswer());
+        }
+        System.out.println("------------------------------");
+        return "redirect:/course/{course_url}/level/{id}/{level_type}";
+    }
 
 
 }

@@ -72,10 +72,12 @@ body{
     font-size: 24px;
     line-height: 26px;
     color: #000000;
-    margin-bottom: 30px;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 #input:checked ~ .radio_input{
+    background: #FF9A6C;
+}
+#input_:checked ~ .radio_input{
     background: #FF9A6C;
 }
 .check_button{
@@ -90,7 +92,7 @@ body{
     float: right;
     border-radius: 8px;
     transition: 0.2s all;
-    margin-bottom: 100px;
+
 }
 .check_button:hover{
     background: #FF5F49;
@@ -132,7 +134,13 @@ body{
 #input1:checked ~ .answer_ .radio_input{
     background: #FF9A6C;
 }
+#input1_:checked ~ .answer_ .radio_input{
+    background: #FF9A6C;
+}
 #input2:checked ~ .answer_ .radio_input{
+    background: #FF9A6C;
+}
+#input2_:checked ~ .answer_ .radio_input{
     background: #FF9A6C;
 }
 .video{
@@ -161,21 +169,20 @@ body{
 #false:checked ~ .false{
     background: #E36F59;
 }
-#true, #false{
+#true, #false,#true_, #false_ {
     display: none;
 }
-.false{
-    margin-left: 20px;
+#true_:checked ~ #true_q{
+    background: #E36F59;
+    color: white;
+}
+#false_:checked ~ #false_q {
+    background: #E36F59;
+    color: white;
 }
 .answers{
     display: flex;
 }
-
-
-
-
-
-
 .listening_true_false-content{
     display: flex;
     flex-direction: column;
@@ -188,7 +195,7 @@ body{
     margin-top: 25px;
 }
 .title2 {
-    margin: 50px 0 15px 0;
+    margin: 0 0 15px 0;
 }
 
 
@@ -201,4 +208,57 @@ body{
     color: #23262D;
     margin-top: 50px;
     margin-bottom: 20px;
+}
+.green{
+    background: green;
+}
+.listening_image_answer-question{
+    display: block;
+}
+.ques{
+    position: relative;
+}
+.answered{
+    position: absolute;
+    background: white;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.answered2{
+    position: absolute;
+    background: white;
+    width: 95%;
+    top: 0;
+    right: 0;
+}
+.task{
+    margin-bottom: 100px;
+}
+.ques2, .questions_ {
+    position: relative;
+}
+
+.true_label{
+    order: 0;
+}
+.true_false-answers{
+    margin-right: 20px;
+}
+.tf_answers{
+    display: flex;
+}
+.que3 .answered{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.question__{
+    position: relative;
+    margin: 35px 0;
+}
+.question__ .answered{
+    position: absolute;
+    top: 0;
+    left: 0;
 }

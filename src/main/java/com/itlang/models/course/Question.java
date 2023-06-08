@@ -28,8 +28,14 @@ public class Question {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
 
+    private Long correctAnswerId;
+
     public void addAnswer(Answer answer) {
         answer.setQuestion(this);
+
+        if (answer.isCorrect()){
+            this.setCorrectAnswerId(answer.getId());
+        }
         answers.add(answer);
     }
 }

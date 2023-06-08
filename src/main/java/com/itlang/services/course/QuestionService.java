@@ -1,14 +1,15 @@
 package com.itlang.services.course;
 
 import com.itlang.models.Image;
+import com.itlang.models.Person;
 import com.itlang.models.course.*;
 import com.itlang.repositories.BlogPostImageRepository;
-import com.itlang.repositories.course.AnswerRepository;
-import com.itlang.repositories.course.CourseRepository;
-import com.itlang.repositories.course.QuestionRepository;
-import com.itlang.repositories.course.TaskRepository;
+import com.itlang.repositories.PeopleRepository;
+import com.itlang.repositories.course.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,8 @@ public class QuestionService {
     private final BlogPostImageRepository imageRepository;
     private final AnswerRepository answerRepository;
     private final CourseRepository courseRepository;
+    private final PeopleRepository peopleRepository;
+    private final UserQuestionsRepository userQuestionsRepository;
 
     public void addQuestion(Long id, QuestionBody questionBody, String type, MultipartFile image1, MultipartFile image2, MultipartFile image3) throws IOException {
         Task task = taskRepository.findTaskById(id);
@@ -31,29 +34,33 @@ public class QuestionService {
 
 //        LISTENING
         if (type.equals("listening_text")){
-
             Answer answer1 = new Answer();
             Answer answer2 = new Answer();
             Answer answer3 = new Answer();
 
-
             answer1.setTitle(questionBody.getAnswer1());
+            answer2.setTitle(questionBody.getAnswer2());
+            answer3.setTitle(questionBody.getAnswer3());
+
             if(questionBody.getCorrectAnswer().equals("0")){
                 answer1.setCorrect(true);
             }
-            question.addAnswer(answer1);
-
-            answer2.setTitle(questionBody.getAnswer2());
             if(questionBody.getCorrectAnswer().equals("1")){
                 answer2.setCorrect(true);
             }
-            question.addAnswer(answer2);
-
-            answer3.setTitle(questionBody.getAnswer3());
             if(questionBody.getCorrectAnswer().equals("2")){
                 answer3.setCorrect(true);
             }
+
+            answerRepository.save(answer1);
+            answerRepository.save(answer2);
+            answerRepository.save(answer3);
+
+
+
             question.addAnswer(answer3);
+            question.addAnswer(answer1);
+            question.addAnswer(answer2);
 
             task.addQuestion(question);
         }
@@ -69,6 +76,9 @@ public class QuestionService {
             } else {
                 answerFalse.setCorrect(true);
             }
+            answerRepository.save(answerFalse);
+            answerRepository.save(answerTrue);
+
             question.addAnswer(answerTrue);
             question.addAnswer(answerFalse);
 
@@ -112,6 +122,7 @@ public class QuestionService {
             question.addAnswer(answer1);
             question.addAnswer(answer2);
             question.addAnswer(answer3);
+
             task.addQuestion(question);
         }
 
@@ -207,6 +218,8 @@ public class QuestionService {
         if(type.equals("writing")){
             task.addQuestion(question);
         }
+
+
         taskRepository.save(task);
 
     }
@@ -217,19 +230,25 @@ public class QuestionService {
 
     @Transactional
     public void deleteQuestion(Long id) {
-        List<Answer> answers = questionRepository.findQuestionById(id).getAnswers();
-        if (answers.size() != 0){
-            if(answers.get(0).getImage()!=null){
-                for (Answer answer : answers) {
-                    imageRepository.deleteImageById(answer.getImage().getId());
-                    answerRepository.deleteById(answer.getId());
-                }
-            }
+        Question question = questionRepository.findQuestionById(id);
+        System.out.println(question.getId() + " +++ ");
+        List<UserQuestions> userQuestions = userQuestionsRepository.findUserQuestionsByQuestion(question);
+        for (int i = 0; i < userQuestions.size(); i++){
+            System.out.println(userQuestions.get(i).getId());
+            userQuestionsRepository.delete(userQuestions.get(i));
         }
-        questionRepository.deleteById(id);
 
-
-
+//        List<Answer> answers = questionRepository.findQuestionById(id).getAnswers();
+//        if (answers.size() != 0){
+//            if(answers.get(0).getImage()!=null){
+//                for (Answer answer : answers) {
+//                    imageRepository.deleteImageById(answer.getImage().getId());
+//                    answerRepository.deleteById(answer.getId());
+//                }
+//            }
+//        }
+//
+//        questionRepository.deleteById(id);
 
     }
     private Image toImageEntity(MultipartFile file) throws IOException {
@@ -242,4 +261,46 @@ public class QuestionService {
 
         return image;
     }
+
+    public void checkQuestions(List<CheckQuestion> answers, String type) {
+        //find userId
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Person person = peopleRepository.findPersonByEmail(authentication.getName());
+
+        for (int i = 0; i<answers.size(); i++){
+            Question question = questionRepository.findQuestionById(answers.get(i).getId());
+            UserQuestions userQuestions = userQuestionsRepository.findUserQuestionsByQuestionAndPerson(question, person);
+
+                if (userQuestions != null){
+                    if (question.getCorrectAnswerId().equals(answers.get(i).getUserAnswer())){
+                        userQuestions.setCorrect(true);
+                    } else {
+                        userQuestions.setCorrect(false);
+                    }
+                    userQuestions.setLastAnswer(answers.get(i).getUserAnswer());
+                    userQuestionsRepository.save(userQuestions);
+                }else {
+                    UserQuestions userQuestions1 = new UserQuestions();
+                    userQuestions1.setQuestion(question);
+                    userQuestions1.setPerson(person);
+                    userQuestions1.setLevelId(question.getTask().getLevel().getId());
+                    userQuestions1.setCourseTitle(question.getTask().getLevel().getCourse().getTitle());
+
+                    if (question.getCorrectAnswerId().equals(answers.get(i).getUserAnswer())){
+                        userQuestions1.setCorrect(true);
+                    } else {
+                        userQuestions1.setCorrect(false);
+                    }
+                    userQuestions1.setLastAnswer(answers.get(i).getUserAnswer());
+                    userQuestionsRepository.save(userQuestions1);
+                }
+        }
+
+
+
+
+    }
+
+
+
 }
