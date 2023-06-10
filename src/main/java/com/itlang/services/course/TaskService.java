@@ -1,11 +1,11 @@
 package com.itlang.services.course;
 
-import com.itlang.models.course.Level;
-import com.itlang.models.course.Task;
-import com.itlang.repositories.course.CourseRepository;
-import com.itlang.repositories.course.LevelRepository;
-import com.itlang.repositories.course.TaskRepository;
+import com.itlang.models.course.*;
+import com.itlang.repositories.BlogPostImageRepository;
+import com.itlang.repositories.course.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +16,10 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final LevelRepository levelRepository;
     private final CourseRepository courseRepository;
+    private final UserQuestionsRepository userQuestionsRepository;
+    private final QuestionRepository questionRepository;
+    private final BlogPostImageRepository imageRepository;
+    private final AnswerRepository answerRepository;
 
 
     public void createTask(Long id, String value, String title) {
@@ -44,8 +48,36 @@ public class TaskService {
         return  taskRepository.findTaskById(id);
     }
 
-    public void deleteTask(Long sid) {
-        taskRepository.deleteById(sid);
+    @Transactional
+    public void deleteTask(Long id) {
+        Task task = taskRepository.findTaskById(id);
+        List<Question> questions = task.getQuestions();
+
+        for (int i = 0; i < questions.size(); i++){
+            List<Answer> answers = questionRepository.findQuestionById(questions.get(i).getId()).getAnswers();
+            if (answers.size() != 0){
+                if(answers.get(0).getImage()!=null){
+                    for (Answer answer : answers) {
+                        imageRepository.deleteImageById(answer.getImage().getId());
+                        answerRepository.deleteById(answer.getId());
+                    }
+                }
+            }
+
+
+
+            List<UserQuestions> userQuestions = userQuestionsRepository.findUserQuestionsByQuestionId(questions.get(i).getId());
+            if (userQuestions.size() != 0){
+                for (int j = 0; j < userQuestions.size(); j++){
+                    if (userQuestions.get(j) != null){
+                        userQuestionsRepository.delete(userQuestions.get(j));
+                    }
+                }
+            }
+        }
+
+
+        taskRepository.deleteById(id);
     }
 
     public Long saveTask(Long id, Task task) {

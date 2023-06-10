@@ -9,7 +9,9 @@ import com.itlang.repositories.course.UserQuestionsRepository;
 import com.itlang.services.course.CourseService;
 import com.itlang.services.course.QuestionService;
 import com.itlang.services.course.TaskService;
+import com.itlang.util.ListUtils;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -59,7 +61,7 @@ public class CourseController {
         String levelTitle = levelRepository.findLevelById(id).getTitle();
         model.addAttribute("level", levelTitle);
 
-        model.addAttribute("user_questions", userQuestionsRepository.findUserQuestionsByPersonAndLevelId(person, id));
+        model.addAttribute("user_questions", userQuestionsRepository.findUserQuestionsByPersonIdAndLevelId(person.getId(), id));
         return "course/listening";
     }
 
@@ -76,6 +78,8 @@ public class CourseController {
 
         String levelTitle = levelRepository.findLevelById(id).getTitle();
         model.addAttribute("level", levelTitle);
+        model.addAttribute("listUtils", new ListUtils());
+        model.addAttribute("user_questions", userQuestionsRepository.findUserQuestionsByPersonIdAndLevelId(person.getId(), id));
         return "course/reading";
     }
 
@@ -92,6 +96,7 @@ public class CourseController {
 
         String levelTitle = levelRepository.findLevelById(id).getTitle();
         model.addAttribute("level", levelTitle);
+        model.addAttribute("user_questions", userQuestionsRepository.findUserQuestionsByPersonIdAndLevelId(person.getId(), id));
         return "course/use_of_english";
     }
 
@@ -113,7 +118,10 @@ public class CourseController {
     }
 
     @PostMapping("/{course_url}/level/{id}/{level_type}/check")
-    public String check(HttpServletRequest request, @RequestParam(name = "type") String type) {
+    public String check(HttpServletRequest request, @RequestParam(name = "type", required = false) String type,
+                        @RequestParam(name = "position", required = false) Long pos) {
+
+        String referer = request.getHeader("Referer");
         List<CheckQuestion> answers = new ArrayList<>();
         Enumeration<String> parameterNames = request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
@@ -128,13 +136,7 @@ public class CourseController {
             }
         }
         questionService.checkQuestions(answers, type);
-        System.out.println("------------------------------");
-        for (int i = 0; i < answers.size(); i++){
-            System.out.println(answers.get(i).getId());
-            System.out.println(answers.get(i).getUserAnswer());
-        }
-        System.out.println("------------------------------");
-        return "redirect:/course/{course_url}/level/{id}/{level_type}";
+        return "redirect:" + referer + "#" + pos;
     }
 
 

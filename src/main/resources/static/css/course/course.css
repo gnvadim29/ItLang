@@ -166,8 +166,8 @@ body{
     color: #000000;
 
 }
-.incorrect, .incorrect1{
-    background: #ff2929;
+.incorrect, .incorrect1, .incorrect__{
+    background: #e44141;
     color: #FFF;
 }
 .correct, .incorrect{
@@ -183,7 +183,7 @@ body{
     margin-top: 10px;
     transition: 0.2s all;
 }
-.correct1, .incorrect1{
+.correct1, .incorrect1, .correct__, .incorrect__ {
     width: 180px;
     height: 35px;
     border-radius: 5px;
@@ -194,4 +194,8 @@ body{
     font-weight: 700;
     font-size: 22px;
     transition: 0.2s all;
+}
+.mySelect_correct{
+    background: #72ff72;
+    color: #000000;
 }

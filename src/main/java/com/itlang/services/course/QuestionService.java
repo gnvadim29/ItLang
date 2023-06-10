@@ -128,7 +128,6 @@ public class QuestionService {
 
 //        READING
         if(type.equals("reading_text_answers")){
-            System.out.println("+++++++++++++++++++++++++++++++++++");
             Answer answer1 = new Answer();
             Answer answer2 = new Answer();
             Answer answer3 = new Answer();
@@ -136,29 +135,31 @@ public class QuestionService {
 
 
             answer1.setTitle(questionBody.getAnswer1());
+            answer2.setTitle(questionBody.getAnswer2());
+            answer3.setTitle(questionBody.getAnswer3());
+            answer4.setTitle(questionBody.getAnswer4());
+
             if(questionBody.getCorrectAnswer().equals("0")){
                 answer1.setCorrect(true);
             }
-            question.addAnswer(answer1);
-
-            answer2.setTitle(questionBody.getAnswer2());
             if(questionBody.getCorrectAnswer().equals("1")){
                 answer2.setCorrect(true);
             }
-            question.addAnswer(answer2);
-
-            answer3.setTitle(questionBody.getAnswer3());
             if(questionBody.getCorrectAnswer().equals("2")){
                 answer3.setCorrect(true);
             }
-            question.addAnswer(answer3);
-
-
-            answer4.setTitle(questionBody.getAnswer4());
-            System.out.println(answer4.getTitle());
             if(questionBody.getCorrectAnswer().equals("3")){
                 answer4.setCorrect(true);
             }
+
+            answerRepository.save(answer1);
+            answerRepository.save(answer2);
+            answerRepository.save(answer3);
+            answerRepository.save(answer4);
+
+            question.addAnswer(answer1);
+            question.addAnswer(answer2);
+            question.addAnswer(answer3);
             question.addAnswer(answer4);
 
             task.addQuestion(question);
@@ -167,6 +168,7 @@ public class QuestionService {
             Answer answer = new Answer();
             answer.setTitle(questionBody.getAnswer1());
             answer.setCorrect(true);
+            answerRepository.save(answer);
             question.addAnswer(answer);
             question.setText(questionBody.getQuestionText());
             task.addQuestion(question);
@@ -179,37 +181,42 @@ public class QuestionService {
             Answer answer3 = new Answer();
             Answer answer4 = new Answer();
 
-
             answer1.setTitle(questionBody.getAnswer1());
+            answer2.setTitle(questionBody.getAnswer2());
+            answer3.setTitle(questionBody.getAnswer3());
+            answer4.setTitle(questionBody.getAnswer4());
+
             if(questionBody.getCorrectAnswer().equals("0")){
                 answer1.setCorrect(true);
             }
-            question.addAnswer(answer1);
-
-            answer2.setTitle(questionBody.getAnswer2());
             if(questionBody.getCorrectAnswer().equals("1")){
                 answer2.setCorrect(true);
             }
-            question.addAnswer(answer2);
-
-            answer3.setTitle(questionBody.getAnswer3());
             if(questionBody.getCorrectAnswer().equals("2")){
                 answer3.setCorrect(true);
             }
-            question.addAnswer(answer3);
-
-
-            answer4.setTitle(questionBody.getAnswer4());
-            System.out.println(answer4.getTitle());
             if(questionBody.getCorrectAnswer().equals("3")){
                 answer4.setCorrect(true);
             }
+
+            answerRepository.save(answer1);
+            answerRepository.save(answer2);
+            answerRepository.save(answer3);
+            answerRepository.save(answer4);
+
+            question.addAnswer(answer1);
+            question.addAnswer(answer2);
+            question.addAnswer(answer3);
             question.addAnswer(answer4);
+
             task.addQuestion(question);
         }
         if(type.equals("use_text_paste")){
             Answer answer = new Answer();
             answer.setTitle(questionBody.getAnswer1());
+            answer.setCorrect(true);
+            answerRepository.save(answer);
+
             question.addAnswer(answer);
             task.addQuestion(question);
         }
@@ -232,23 +239,23 @@ public class QuestionService {
     public void deleteQuestion(Long id) {
         Question question = questionRepository.findQuestionById(id);
         System.out.println(question.getId() + " +++ ");
-        List<UserQuestions> userQuestions = userQuestionsRepository.findUserQuestionsByQuestion(question);
+        List<UserQuestions> userQuestions = userQuestionsRepository.findUserQuestionsByQuestionId(question.getId());
         for (int i = 0; i < userQuestions.size(); i++){
             System.out.println(userQuestions.get(i).getId());
             userQuestionsRepository.delete(userQuestions.get(i));
         }
 
-//        List<Answer> answers = questionRepository.findQuestionById(id).getAnswers();
-//        if (answers.size() != 0){
-//            if(answers.get(0).getImage()!=null){
-//                for (Answer answer : answers) {
-//                    imageRepository.deleteImageById(answer.getImage().getId());
-//                    answerRepository.deleteById(answer.getId());
-//                }
-//            }
-//        }
-//
-//        questionRepository.deleteById(id);
+        List<Answer> answers = questionRepository.findQuestionById(id).getAnswers();
+        if (answers.size() != 0){
+            if(answers.get(0).getImage()!=null){
+                for (Answer answer : answers) {
+                    imageRepository.deleteImageById(answer.getImage().getId());
+                    answerRepository.deleteById(answer.getId());
+                }
+            }
+        }
+
+        questionRepository.deleteById(id);
 
     }
     private Image toImageEntity(MultipartFile file) throws IOException {
@@ -269,7 +276,7 @@ public class QuestionService {
 
         for (int i = 0; i<answers.size(); i++){
             Question question = questionRepository.findQuestionById(answers.get(i).getId());
-            UserQuestions userQuestions = userQuestionsRepository.findUserQuestionsByQuestionAndPerson(question, person);
+            UserQuestions userQuestions = userQuestionsRepository.findUserQuestionsByQuestionIdAndPersonId(question.getId(), person.getId());
 
                 if (userQuestions != null){
                     if (question.getCorrectAnswerId().equals(answers.get(i).getUserAnswer())){
@@ -281,8 +288,8 @@ public class QuestionService {
                     userQuestionsRepository.save(userQuestions);
                 }else {
                     UserQuestions userQuestions1 = new UserQuestions();
-                    userQuestions1.setQuestion(question);
-                    userQuestions1.setPerson(person);
+                    userQuestions1.setQuestionId(question.getId());
+                    userQuestions1.setPersonId(person.getId());
                     userQuestions1.setLevelId(question.getTask().getLevel().getId());
                     userQuestions1.setCourseTitle(question.getTask().getLevel().getCourse().getTitle());
 

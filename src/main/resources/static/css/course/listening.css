@@ -103,7 +103,6 @@ body{
     justify-content: space-between;
 }
 .question{
-    margin-left: 20px;
     max-width: 385px;
 }
 .task_title1{
@@ -228,15 +227,19 @@ body{
 .answered2{
     position: absolute;
     background: white;
-    width: 95%;
+    width: 100%;
     top: 0;
-    right: 0;
+    left: 0;
 }
 .task{
     margin-bottom: 100px;
+    position: relative;
 }
 .ques2, .questions_ {
     position: relative;
+}
+.ques2{
+    margin-left: 20px;
 }
 
 .true_label{
@@ -261,4 +264,8 @@ body{
     position: absolute;
     top: 0;
     left: 0;
+}
+.position{
+    position: absolute;
+    top: -50px;
 }

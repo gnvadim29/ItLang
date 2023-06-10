@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>ItLang</title>
@@ -22,10 +21,6 @@
 
 </head>
 <body>
-<!--<div id="page-preloader" class="preloader">-->
-<!--    <div class="loader"></div>-->
-<!--</div>-->
-
 
 
 <div class="wrapper">
@@ -87,6 +82,7 @@
                 <h2 class="title" th:text="${level} + ' - Listening'">Listening</h2>
                 <div class="task" th:each="task : ${tasks}">
 
+                    <div class="position" th:id="${task.getId()}"></div>
                     <!--        listening_image_answer-->
                     <form method="post" th:action="@{listening/check}" th:if="${task.getDescription() == 'listening_image_answer'}" class="listening_image_answer ">
                             <input type="hidden" name="type" value="listening_image_answer">
@@ -114,13 +110,13 @@
                                                 </div>
                                         </div>
 
-
+                                    <input type="hidden" name="position" th:value="${task.getId()}">
                                     <button class="check_button" type="submit">Перевірити</button>
                                 </div>
                                 <div class="listening_image_answer-question answered">
                                     <div th:each="que : ${task.getQuestions()}">
                                         <div th:each="uq : ${user_questions}">
-                                            <div th:if="${uq.getQuestion().getId() == que.getId()}">
+                                            <div th:if="${uq.getQuestionId() == que.getId()}">
                                                 <p class="question_title" th:text="${que.getTitle()}"></p>
                                                 <div class="listening_image_answer-answers">
                                                     <div class="answer" th:each="answ : ${que.getAnswers()}">
@@ -133,6 +129,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" name="position" th:value="${task.getId()}">
                                                 <button class="check_button" type="submit">Перевірити</button>
                                             </div>
                                         </div>
@@ -141,7 +138,6 @@
                                 </div>
                             </div>
                         </form>
-
                     <!--        listening_text_answer-->
                     <form th:action="@{listening/check}" method="post" th:if="${task.getDescription() == 'listening_text_answer'}" class="listening_text_answer">
                         <input type="hidden" name="type" value="listening_text_answer">
@@ -153,7 +149,7 @@
                                     <div class="answered2">
                                         <div th:each="que : ${task.getQuestions()}">
                                             <div th:each="uq : ${user_questions}">
-                                                <div th:if="${uq.getQuestion().getId() == que.getId()}">
+                                                <div th:if="${uq.getQuestionId() == que.getId()}">
                                         <p class="task_title1" th:text="${task.getTitle()}">title</p>
                                         <p class="question_title title1" th:text="${que.getTitle()}">title</p>
                                         <div class="answers" th:each="answ : ${que.getAnswers()}">
@@ -199,14 +195,13 @@
 
                                 </div>
                             </div>
-
+                            <input type="hidden" name="position" th:value="${task.getId()}">
                             <button type="submit" class="check_button">Перевірити</button>
                         </div>
 
                     </form>
-
                     <!--        listening_true_false-->
-                    <form method="post" th:action="@{listening/check}"  th:if="${task.getDescription() == 'listening_true_false'}" class="listening_true_false task">
+                    <form th:action="@{listening/check}" method="post"  th:if="${task.getDescription() == 'listening_true_false'}" class="listening_true_false task">
                         <input type="hidden" name="type" value="listening_true_false">
                         <div class="listening_true_false-content">
                             <div class="listening_true_false-video">
@@ -220,7 +215,7 @@
                                     <div th:each="que : ${task.getQuestions()}" class="questions_">
                                         <div class="answered">
                                             <div th:each="uq : ${user_questions}">
-                                                <div th:if="${uq.getQuestion().getId() == que.getId()}" class="answered-item">
+                                                <div th:if="${uq.getQuestionId() == que.getId()}" class="answered-item">
                                                     <p class="question_title" th:text="${que.getTitle()}"></p>
                                                     <div class="tf_answers">
                                                         <div class="answers true_false-answers" th:each="answ: ${que.getAnswers()}">
@@ -255,12 +250,12 @@
                                     </div>
                             </div>
                         </div>
+                        <input type="hidden" name="position" th:value="${task.getId()}">
                         <button type="submit" class="check_button">Перевірити</button>
 
                     </form>
-
                     <!--        listening_text_more_answer-->
-                    <form method="post" th:action="@{listening/check}" th:if="${task.getDescription() == 'listening_text_more_answer'}" class="listening_text_more_answer">
+                    <form th:action="@{listening/check}" method="post" th:if="${task.getDescription() == 'listening_text_more_answer'}" class="listening_text_more_answer">
                         <input type="hidden" name="type" value="listening_text_more_answer">
                         <div class="listening_text_more_answer-content">
                             <div class="listening_true_false-video">
@@ -273,7 +268,7 @@
                             <div class="question__" th:each="que : ${task.getQuestions()}">
                                 <div class="answered">
                                     <div class="" th:each="uq : ${user_questions}">
-                                        <div class="" th:if="${uq.getQuestion().getId() == que.getId()}">
+                                        <div class="" th:if="${uq.getQuestionId() == que.getId()}">
                                             <p class="question_title title2" th:text="${que.getTitle()}">title</p>
                                             <div class="answers" th:each="answ : ${que.getAnswers()}">
                                                 <label class="answer_label1">
@@ -318,14 +313,12 @@
                             </div>
 
                         </div>
+                        <input type="hidden" name="position" th:value="${task.getId()}">
                         <button type="submit" class="check_button">Перевірити</button>
 
                     </form>
-
                 </div>
             </div>
-
-
         </div>
     </div>
 
@@ -361,16 +354,7 @@
         }, speed);
     });
 
-</script>
-<script>
-    var fullBlock = document.getElementById("full");
-    var emptyBlock = document.getElementById("empty");
 
-    if (fullBlock.style.display === "block") {
-        emptyBlock.style.display = "none";
-    } else {
-        emptyBlock.style.display = "block";
-    }
 
 </script>
 </body>

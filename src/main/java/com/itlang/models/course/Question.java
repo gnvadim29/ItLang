@@ -38,4 +38,7 @@ public class Question {
         }
         answers.add(answer);
     }
+    public Answer getAnswer(){
+        return answers.get(0);
+    }
 }

@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface UserQuestionsRepository extends JpaRepository<UserQuestions, Long> {
-    UserQuestions findUserQuestionsByQuestionAndPerson (Question question, Person person);
-    List<UserQuestions> findUserQuestionsByPersonAndLevelId (Person person, Long id);
-    List<UserQuestions> findUserQuestionsByQuestion(Question question);
+    UserQuestions findUserQuestionsByQuestionIdAndPersonId (Long questionId, Long personId);
+    List<UserQuestions> findUserQuestionsByPersonIdAndLevelId (Long personId, Long id);
+    List<UserQuestions> findUserQuestionsByQuestionId(Long id);
     void deleteAllById(Long id);
 }
