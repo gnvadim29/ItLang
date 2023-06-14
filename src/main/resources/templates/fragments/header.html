@@ -45,13 +45,14 @@
                 </a>
             </div>
 
-            <div sec:authorize="hasAnyRole('ADMIN', 'USER')">
-                <a class="add_btn" th:href="@{/myaccount}">
-                    <img class="avatar" src="../../static/media/general/account.svg" th:src="@{/media/general/account.svg}" alt="">
-<!--                    <img class="avatar" th:src="@{/image/{id}(id = ${user.getUserIconId()})}" src="../../static/media/general/account.svg" th:src="@{/media/general/account.svg}" alt="">-->
-                </a>
-            </div>
-
+            <label class="user_icon">
+                <div class="icon" sec:authorize="hasAnyRole('ADMIN', 'USER')">
+                    <a class="add_btn" th:href="@{/myaccount}">
+                        <img th:if="${#authentication.principal.userIconId == null}" class="avatar" src="../../static/media/general/account.svg" th:src="@{/media/general/account.svg}" alt="">
+                        <img th:if="${#authentication.principal.userIconId != null}" class="avatar" src="../../static/media/general/account.svg" th:src="@{/image/{id}(id=${#authentication.principal.userIconId})}" alt="">
+                    </a>
+                </div>
+            </label>
         </nav>
     </div>
 </header>

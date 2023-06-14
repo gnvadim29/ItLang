@@ -71,6 +71,10 @@
                                     <div class="save_btn">
                                         <button class="save_button" type="submit">Зберегти</button>
                                     </div>
+                                    <div class="action">
+                                        <a th:href="@{/myaccount/{id}/delete (id = ${user.getId()})}" onclick="return confirm('Ви впевнені, що хочете видалити акаунт?')">Видалити акаунт</a>
+                                        <a href="/logout">Вихід</a>
+                                    </div>
                                 </div>
                             </form>
                         </div>

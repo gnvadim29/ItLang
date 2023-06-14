@@ -9,280 +9,314 @@
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
 
-  <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
-  <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
-  <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
+  <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
 
 </head>
 <body>
 <div class="wrapper">
-  <div class="content_blog">
-    <div th:insert="~{fragments/admin_bar.html :: admin_bar}"></div>
+  <div class="content">
+    <a th:href="@{/admin/level/{id}/edit (id = ${task.getLevel().getId()})}" class="close">
+    <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4 ">IT Lang</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="/admin" class="nav-link active text-black bg-warning" aria-current="page">
+            <svg class="bi pe-none me-2 " width="16" height="16"><use xlink:href="#home"></use></svg>
+            Курси
+          </a>
+        </li>
+        <li>
+          <a href="/admin/blog" class="nav-link  text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Блог
+          </a>
+        </li>
+        <li>
+          <a href="/admin/users" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+            Користувачі
+          </a>
+        </li>
+        <li>
+          <a href="/admin/level-test" class="nav-link text-white ">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+            Тестування
+          </a>
+        </li>
+      </ul>
+      <hr>
+    </div>
+    <div class="page_content">
+      <div class="edit_task">
+        <h1 class="title_text" th:text="${task.getTitle()}">title</h1>
+        <hr style="margin: 10px 0" class="line">
 
-    <div class="main_content">
-        <div class="edit_task">
-          <p style="position: absolute; top: 0; right: 20px; color: #00a096" th:text="${task.getType() + '/' + task.getDescription()}">
-            some text
-          </p>
-          <h1 class="title_text" th:text="${task.getTitle()}">title</h1>
-          <hr style="margin: 10px 0" class="line">
+        <form th:action="@{save}" method="post">
+          <p class="text_p">Назва завдання:</p>
+          <textarea required th:text="${task.getTitle()}" th:field="*{task.title}" name="title" class="textarea" cols="30" rows="1"></textarea>
+          <div th:if="${task.getType() == 'listening'}">
+            <p class="text_p">Посилання на аудіозапис (відео):</p>
+            <textarea required th:text="${task.getMediaUrl()}" th:field="*{task.mediaUrl}" name="mediaUrl" class="textarea" cols="30" rows="1"></textarea>
+          </div>
+          <div th:if="${task.getType() == 'writing'}">
+            <p class="text_p">Опис завдання:</p>
+            <textarea required th:text="${task.getTextDescription()}" th:field="*{task.textDescription}" name="title" class="textarea" cols="30" rows="2"></textarea>
+          </div>
+          <div th:if="${task.getType() == 'reading' || task.getType() == 'useOfEnglish' || task.getType() == 'writing'}">
+            <p class="text_p">Текст завдання:</p>
+            <textarea required th:text="${task.getText()}" th:field="*{task.text}" name="title" class="textarea" cols="30" rows="10"></textarea>
+          </div>
+          <button type="submit" class="btn btn-warning">Зберегти</button>
+        </form>
+        <hr class="line">
 
-          <form th:action="@{save}" method="post">
-            <p class="text_p">Назва завдання:</p>
-            <textarea required th:text="${task.getTitle()}" th:field="*{task.title}" name="title" class="textarea" cols="30" rows="1"></textarea>
-            <div th:if="${task.getType() == 'listening'}">
-              <p class="text_p">Посилання на аудіозапис (відео):</p>
-              <textarea required th:text="${task.getMediaUrl()}" th:field="*{task.mediaUrl}" name="mediaUrl" class="textarea" cols="30" rows="1"></textarea>
-            </div>
-            <div th:if="${task.getType() == 'writing'}">
-              <p class="text_p">Опис завдання:</p>
-              <textarea required th:text="${task.getTextDescription()}" th:field="*{task.textDescription}" name="title" class="textarea" cols="30" rows="2"></textarea>
-            </div>
-            <div th:if="${task.getType() == 'reading' || task.getType() == 'useOfEnglish' || task.getType() == 'writing'}">
-              <p class="text_p">Текст завдання:</p>
-              <textarea required th:text="${task.getText()}" th:field="*{task.text}" name="title" class="textarea" cols="30" rows="10"></textarea>
-            </div>
-            <button style="float: right; margin-bottom: 10px;" type="submit" class="add_button">Зберегти</button>
+        <!--        LISTENING-->
+
+        <!--      listening_text_more_answer  -->
+        <div th:if="${task.getDescription() == 'listening_text_more_answer'}" class="">
+          <p class="title-text">Додати запитання</p>
+          <form class="form" th:action="@{edit/add_question}" method="post">
+            <textarea required class="textarea" th:field="*{question.title}" name="title" id="title" cols="100" placeholder="Текст запитання" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" id="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer2}" name="answer2" id="answer2" cols="100" placeholder="Відповідь 2" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer3}" name="answer3" id="answer3" cols="100" placeholder="Відповідь 3" rows="1"></textarea>
+            <select required class="select" name="correctAnswer" >
+              <option value="" disabled selected>Правильна відповідь</option>
+              <option value="0">1</option>
+              <option value="1">2</option>
+              <option value="2">3</option>
+            </select>
+            <input type="hidden" name="type" value="listening_text">
+            <button class="btn btn-warning" type="submit">Додати</button>
           </form>
-          <hr class="line">
-
-  <!--        LISTENING-->
-
-  <!--      listening_text_more_answer  -->
-          <div th:if="${task.getDescription() == 'listening_text_more_answer'}" class="">
-            <p class="title-text">Додати запитання</p>
-            <form class="form" th:action="@{edit/add_question}" method="post">
-              <textarea required class="textarea" th:field="*{question.title}" name="title" id="title" cols="100" placeholder="Текст запитання" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" id="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer2}" name="answer2" id="answer2" cols="100" placeholder="Відповідь 2" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer3}" name="answer3" id="answer3" cols="100" placeholder="Відповідь 3" rows="1"></textarea>
-              <select required class="select" name="correctAnswer" >
-                <option value="" disabled selected>Правильна відповідь</option>
-                <option value="0">1</option>
-                <option value="1">2</option>
-                <option value="2">3</option>
-              </select>
-              <input type="hidden" name="type" value="listening_text">
-              <button class="btn save_btn" type="submit">Додати</button>
-            </form>
-            <div class="question" th:each="que : ${questions}">
-              <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
-              <div th:each="answ: ${que.getAnswers()}">
-                <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
-              </div>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
+          <div class="question" th:each="que : ${questions}">
+            <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
+            <div th:each="answ: ${que.getAnswers()}">
+              <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
             </div>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
           </div>
+        </div>
 
-  <!--      listening_true_false-->
-          <div th:if="${task.getDescription() == 'listening_true_false'}" class="">
-            <p class="title-text">Додати запитання</p>
-            <form class="form" th:action="@{edit/add_question}" method="post">
-              <textarea required class="textarea" th:field="*{question.title}" name="title" id="title1" cols="100" placeholder="Текст запитання" rows="1"></textarea>
-              <select required class="select" name="correctAnswer" >
-                <option value="" disabled selected>Відповідь</option>
-                <option value="true">true</option>
-                <option value="false">false</option>
-              </select>
-              <input type="hidden" name="type" value="listening_true_false">
-              <button class="btn save_btn" type="submit">Додати</button>
-            </form>
+        <!--      listening_true_false-->
+        <div th:if="${task.getDescription() == 'listening_true_false'}" class="">
+          <p class="title-text">Додати запитання</p>
+          <form class="form" th:action="@{edit/add_question}" method="post">
+            <textarea required class="textarea" th:field="*{question.title}" name="title" id="title1" cols="100" placeholder="Текст запитання" rows="1"></textarea>
+            <select required class="select" name="correctAnswer" >
+              <option value="" disabled selected>Відповідь</option>
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+            <input type="hidden" name="type" value="listening_true_false">
+            <button class="btn btn-warning" type="submit">Додати</button>
+          </form>
 
-            <div class="question" th:each="que : ${questions}">
-              <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
-              <div th:each="answ: ${que.getAnswers()}">
-                <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
-              </div>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
+          <div class="question" th:each="que : ${questions}">
+            <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
+            <div th:each="answ: ${que.getAnswers()}">
+              <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
             </div>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
           </div>
+        </div>
 
-  <!--      listening_text_answer-->
-          <div th:if="${task.getDescription() == 'listening_text_answer'}" class="">
-            <form th:if="${task.getQuestions().isEmpty()}" class="form" th:action="@{edit/add_question}" method="post">
-              <p class="title-text">Додати запитання</p>
-              <textarea required class="textarea" th:field="*{question.title}" name="title" id="title2" cols="100" placeholder="Текст запитання" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer1}" name="answer1"  cols="100" placeholder="Відповідь 1" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer2}" name="answer2"  cols="100" placeholder="Відповідь 2" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer3}" name="answer3"  cols="100" placeholder="Відповідь 3" rows="1"></textarea>
-              <select required class="select" name="correctAnswer" >
-                <option value="" disabled selected>Правильна відповідь</option>
-                <option value="0">1</option>
-                <option value="1">2</option>
-                <option value="2">3</option>
-              </select>
-              <input type="hidden" name="type" value="listening_text">
-              <button class="btn save_btn" type="submit">Додати</button>
-            </form>
-            <div class="question" th:each="que : ${questions}">
-              <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
-              <div th:each="answ: ${que.getAnswers()}">
-                <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
-              </div>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
-            </div>
-          </div>
-
-  <!--      listening_image_answer-->
-          <div th:if="${task.getDescription() == 'listening_image_answer'}" class="">
+        <!--      listening_text_answer-->
+        <div th:if="${task.getDescription() == 'listening_text_answer'}" class="">
+          <form th:if="${task.getQuestions().isEmpty()}" class="form" th:action="@{edit/add_question}" method="post">
             <p class="title-text">Додати запитання</p>
-            <form th:if="${task.getQuestions().isEmpty()}" enctype="multipart/form-data" class="form" th:action="@{edit/add_question}" method="post">
-              <textarea required class="textarea" th:field="*{question.title}" name="title" cols="100" placeholder="Текст запитання" rows="1"></textarea>
-              <br><br>
-              <label for="image1">Image 1</label>
-              <input id="image1" required type="file" name="image1">
-              <label for="image2">Image 2</label>
-              <input id="image2" required type="file" name="image2">
-              <label for="image3">Image 3</label>
-              <input id="image3" required type="file" name="image3">
-              <br><br>
-              <select required class="select" name="correctAnswer" >
-                <option value="" disabled selected>Правильна відповідь</option>
-                <option value="0">1</option>
-                <option value="1">2</option>
-                <option value="2">3</option>
-              </select>
-              <input type="hidden" name="type" value="listening_image_answer">
-              <button class="btn save_btn" type="submit">Додати</button>
-            </form>
+            <textarea required class="textarea" th:field="*{question.title}" name="title" id="title2" cols="100" placeholder="Текст запитання" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer1}" name="answer1"  cols="100" placeholder="Відповідь 1" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer2}" name="answer2"  cols="100" placeholder="Відповідь 2" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer3}" name="answer3"  cols="100" placeholder="Відповідь 3" rows="1"></textarea>
+            <select required class="select" name="correctAnswer" >
+              <option value="" disabled selected>Правильна відповідь</option>
+              <option value="0">1</option>
+              <option value="1">2</option>
+              <option value="2">3</option>
+            </select>
+            <input type="hidden" name="type" value="listening_text">
+            <button class="btn btn-warning" type="submit">Додати</button>
+          </form>
+          <div class="question" th:each="que : ${questions}">
+            <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
+            <div th:each="answ: ${que.getAnswers()}">
+              <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
+            </div>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
+          </div>
+        </div>
 
-            <div class="question" th:each="que : ${questions}">
-              <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
-              <div class="images_answ">
+        <!--      listening_image_answer-->
+        <div th:if="${task.getDescription() == 'listening_image_answer'}" class="">
+          <p class="title-text">Додати запитання</p>
+          <form th:if="${task.getQuestions().isEmpty()}" enctype="multipart/form-data" class="form" th:action="@{edit/add_question}" method="post">
+            <textarea required class="textarea" th:field="*{question.title}" name="title" cols="100" placeholder="Текст запитання" rows="1"></textarea>
+            <br><br>
+            <label for="image1">Image 1</label>
+            <input class="form-control border border-secondary mb-2" id="image1" required type="file" name="image1">
+            <label for="image2">Image 2</label>
+            <input class="form-control border border-secondary mb-2"  id="image2" required type="file" name="image2">
+            <label for="image3">Image 3</label>
+            <input class="form-control border border-secondary mb-2"  id="image3" required type="file" name="image3">
+            <br><br>
+            <select required class="select" name="correctAnswer" >
+              <option value="" disabled selected>Правильна відповідь</option>
+              <option value="0">1</option>
+              <option value="1">2</option>
+              <option value="2">3</option>
+            </select>
+            <input type="hidden" name="type" value="listening_image_answer">
+            <button class="btn btn-warning" type="submit">Додати</button>
+          </form>
+
+          <div class="question" th:each="que : ${questions}">
+            <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
+            <div class="images_answ">
               <div class="" th:each="answ: ${que.getAnswers()}">
                 <img th:class="${answ.isCorrect() ? 'correct_image' : 'image_answ'}" th:src="@{/image/{id}(id = ${answ.getImage().getId()})}" alt="">
               </div>
-              </div>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
             </div>
-
-          </div>
-
-  <!--         READING-->
-
-<!--          reading_text_answers-->
-          <div th:if="${task.getDescription() == 'reading_text_answers'}" class="">
-            <p class="title-text">Додати запитання</p>
-            <form  class="form" th:action="@{edit/add_question}" method="post">
-              <textarea required class="textarea" th:field="*{question.title}" name="title"  cols="100" placeholder="Текст запитання" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer2}" name="answer2" cols="100" placeholder="Відповідь 2" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer3}" name="answer3" cols="100" placeholder="Відповідь 3" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer4}" name="answer4" cols="100" placeholder="Відповідь 4" rows="1"></textarea>
-              <select required class="select" name="correctAnswer" >
-                <option value="" disabled selected>Правильна відповідь</option>
-                <option value="0">1</option>
-                <option value="1">2</option>
-                <option value="2">3</option>
-                <option value="3">4</option>
-              </select>
-              <input type="hidden" name="type" value="reading_text_answers">
-              <button class="btn save_btn" type="submit">Додати</button>
-            </form>
-            <div class="question" th:each="que : ${questions}">
-              <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
-              <div th:each="answ: ${que.getAnswers()}">
-                <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
-              </div>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
-            </div>
-
-          </div>
-
-<!--          reading_texts_answer-->
-          <div class="" th:if="${task.getDescription() == 'reading_texts_answer'}">
-            <form th:if="${task.getQuestions().size() < 6}" class="form" th:action="@{edit/add_question}" method="post">
-              <textarea required class="textarea" th:field="*{question.title}" name="title"  cols="100" placeholder="Запитання" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.questionText}" name="answer" cols="100" placeholder="Текст запитання" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer1}" name="answer" cols="100" placeholder="Відповідь" rows="1"></textarea>
-              <input type="hidden" name="type" value="reading_texts_answer">
-              <button class="btn save_btn" type="submit">Додати</button>
-            </form>
-            <div class="question" th:each="que : ${questions}">
-              <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Запитання - ' + que.getTitle()}"></p>
-              <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст - ' + que.getText()}"></p>
-              <div th:each="answ: ${que.getAnswers()}">
-                <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
-              </div>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
-            </div>
-
-          </div>
-
-<!--          USE OF ENGLISH-->
-          <div class="" th:if="${task.getDescription() == 'use_text_answers'}">
-            <form th:if="${task.getQuestions().size() < 6}" class="form" th:action="@{edit/add_question}" method="post">
-              <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer2}" name="answer2" cols="100" placeholder="Відповідь 2" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer3}" name="answer3" cols="100" placeholder="Відповідь 3" rows="1"></textarea>
-              <textarea required class="textarea" th:field="*{question.answer4}" name="answer4" cols="100" placeholder="Відповідь 4" rows="1"></textarea>
-              <select required class="select" name="correctAnswer" >
-                <option value="" disabled selected>Правильна відповідь</option>
-                <option value="0">1</option>
-                <option value="1">2</option>
-                <option value="2">3</option>
-                <option value="3">4</option>
-              </select>
-              <input type="hidden" name="type" value="use_text_answers">
-              <button class="btn save_btn" type="submit">Додати</button>
-
-            </form>
-            <div class="question" th:each="que : ${questions}">
-              <div th:each="answ: ${que.getAnswers()}">
-                <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
-              </div>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
-            </div>
-          </div>
-
-          <div class="" th:if="${task.getDescription() == 'use_text_paste'}">
-            <form th:if="${task.getQuestions().size() < 6}" class="form" th:action="@{edit/add_question}" method="post">
-              <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
-              <input type="hidden" name="type" value="use_text_paste">
-              <button class="btn save_btn" type="submit">Додати</button>
-
-            </form>
-            <div class="question" th:each="que : ${questions}">
-              <div th:each="answ: ${que.getAnswers()}">
-                <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
-              </div>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
-            </div>
-          </div>
-
-<!--          WRITING-->
-          <div class="" th:if="${task.getDescription() == 'writing'}">
-            <form th:if="${task.getQuestions().size() < 3}" class="form" th:action="@{edit/add_question}" method="post">
-              <textarea required class="textarea" th:field="*{question.title}" name="title"  cols="100" placeholder="Запитання" rows="1"></textarea>
-              <input type="hidden" name="type" value="writing">
-              <button class="btn save_btn" type="submit">Додати</button>
-            </form>
-            <div class="question" th:each="que : ${questions}">
-              <p th:text="${que.getTitle()}"></p>
-              <a class="del_btn" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
-                <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
-              </a>
-            </div>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
           </div>
 
         </div>
+
+        <!--         READING-->
+
+        <!--          reading_text_answers-->
+        <div th:if="${task.getDescription() == 'reading_text_answers'}" class="">
+          <p class="title-text">Додати запитання</p>
+          <form  class="form" th:action="@{edit/add_question}" method="post">
+            <textarea required class="textarea" th:field="*{question.title}" name="title"  cols="100" placeholder="Текст запитання" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer2}" name="answer2" cols="100" placeholder="Відповідь 2" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer3}" name="answer3" cols="100" placeholder="Відповідь 3" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer4}" name="answer4" cols="100" placeholder="Відповідь 4" rows="1"></textarea>
+            <select required class="select" name="correctAnswer" >
+              <option value="" disabled selected>Правильна відповідь</option>
+              <option value="0">1</option>
+              <option value="1">2</option>
+              <option value="2">3</option>
+              <option value="3">4</option>
+            </select>
+            <input type="hidden" name="type" value="reading_text_answers">
+            <button class="btn btn-warning" type="submit">Додати</button>
+          </form>
+          <div class="question" th:each="que : ${questions}">
+            <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
+            <div th:each="answ: ${que.getAnswers()}">
+              <p style="font-size: 16px; margin: 10px 0" th:class="${answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
+            </div>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
+          </div>
+
+        </div>
+
+        <!--          reading_texts_answer-->
+        <div class="" th:if="${task.getDescription() == 'reading_texts_answer'}">
+          <form th:if="${task.getQuestions().size() < 6}" class="form" th:action="@{edit/add_question}" method="post">
+            <textarea required class="textarea" th:field="*{question.title}" name="title"  cols="100" placeholder="Запитання" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.questionText}" name="answer" cols="100" placeholder="Текст запитання" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer1}" name="answer" cols="100" placeholder="Відповідь" rows="1"></textarea>
+            <input type="hidden" name="type" value="reading_texts_answer">
+            <button class="btn btn-warning" type="submit">Додати</button>
+          </form>
+          <div class="question" th:each="que : ${questions}">
+            <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Запитання - ' + que.getTitle()}"></p>
+            <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст - ' + que.getText()}"></p>
+            <div th:each="answ: ${que.getAnswers()}">
+              <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
+            </div>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
+          </div>
+
+        </div>
+
+        <!--          USE OF ENGLISH-->
+        <div class="" th:if="${task.getDescription() == 'use_text_answers'}">
+          <form th:if="${task.getQuestions().size() < 6}" class="form" th:action="@{edit/add_question}" method="post">
+            <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer2}" name="answer2" cols="100" placeholder="Відповідь 2" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer3}" name="answer3" cols="100" placeholder="Відповідь 3" rows="1"></textarea>
+            <textarea required class="textarea" th:field="*{question.answer4}" name="answer4" cols="100" placeholder="Відповідь 4" rows="1"></textarea>
+            <select required class="select" name="correctAnswer" >
+              <option value="" disabled selected>Правильна відповідь</option>
+              <option value="0">1</option>
+              <option value="1">2</option>
+              <option value="2">3</option>
+              <option value="3">4</option>
+            </select>
+            <input type="hidden" name="type" value="use_text_answers">
+            <button class="btn btn-warning" type="submit">Додати</button>
+
+          </form>
+          <div class="question" th:each="que : ${questions}">
+            <div th:each="answ: ${que.getAnswers()}">
+              <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
+            </div>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
+          </div>
+        </div>
+
+        <div class="" th:if="${task.getDescription() == 'use_text_paste'}">
+          <form th:if="${task.getQuestions().size() < 6}" class="form" th:action="@{edit/add_question}" method="post">
+            <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
+            <input type="hidden" name="type" value="use_text_paste">
+            <button class="btn btn-warning" type="submit">Додати</button>
+
+          </form>
+          <div class="question" th:each="que : ${questions}">
+            <div th:each="answ: ${que.getAnswers()}">
+              <p style="font-size: 16px; margin: 10px 0" th:class="${ answ.isCorrect() ? 'correct' : ''}" th:text="${'Відповідь: ' + answ.getTitle()}"></p>
+            </div>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
+          </div>
+        </div>
+
+        <!--          WRITING-->
+        <div class="" th:if="${task.getDescription() == 'writing'}">
+          <form th:if="${task.getQuestions().size() < 3}" class="form" th:action="@{edit/add_question}" method="post">
+            <textarea required class="textarea" th:field="*{question.title}" name="title"  cols="100" placeholder="Запитання" rows="1"></textarea>
+            <input type="hidden" name="type" value="writing">
+            <button class="btn btn-warning" type="submit">Додати</button>
+          </form>
+          <div class="question" th:each="que : ${questions}">
+            <p th:text="${que.getTitle()}"></p>
+            <a class="btn btn-dark" th:href="@{edit/question/{sid}/delete (sid = ${que.getId()}) }">
+              <img class="del_img" src="../../static/media/general/delete.svg" th:src="@{/media/general/delete.svg}" alt="delete">
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
+
   </div>
 </div>
 </body>

@@ -6,15 +6,13 @@ import com.itlang.repositories.PeopleRepository;
 //import com.itlang.repositories.UserProgressRepository;
 import com.itlang.security.PersonDetails;
 import com.itlang.services.AccountService;
+import com.itlang.services.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -27,9 +25,8 @@ import java.io.IOException;
 public class AccountController {
 
     private final PeopleRepository peopleRepository;
-//    private final UserProgressRepository progressRepository;
     private final AccountService accountService;
-
+    private final PersonService personService;
     @GetMapping("/myaccount")
     public String accountPage(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -49,5 +46,10 @@ public class AccountController {
         accountService.changeInfo(person);
         System.out.println(person.getName() + " " + person.getSurname() + " " + person.getGroup() + " " + person.getEmail());
         return "redirect:/myaccount";
+    }
+    @GetMapping("/myaccount/{id}/delete")
+    public String deleteAccount(@PathVariable(name = "id") Long id){
+        personService.deleteUser(id);
+        return "redirect:/logout";
     }
 }

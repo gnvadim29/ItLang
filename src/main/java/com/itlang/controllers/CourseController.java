@@ -118,7 +118,7 @@ public class CourseController {
     }
 
     @PostMapping("/{course_url}/level/{id}/{level_type}/check")
-    public String check(HttpServletRequest request, @RequestParam(name = "type", required = false) String type,
+    public String check(HttpServletRequest request, @PathVariable(name = "course_url", required = false) String courseUrl,
                         @RequestParam(name = "position", required = false) Long pos) {
 
         String referer = request.getHeader("Referer");
@@ -135,7 +135,7 @@ public class CourseController {
                 answers.add(question);
             }
         }
-        questionService.checkQuestions(answers, type);
+        questionService.checkQuestions(answers, courseUrl);
         return "redirect:" + referer + "#" + pos;
     }
 

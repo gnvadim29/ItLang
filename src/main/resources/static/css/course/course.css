@@ -1,6 +1,7 @@
 .content{
     flex: 1 0 auto;
 }
+
 body{
     font-family: Bitter;
 }
@@ -198,4 +199,38 @@ body{
 .mySelect_correct{
     background: #72ff72;
     color: #000000;
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.mySelect_incorrect{
+    background: #ff4242;
+    color: #fff;
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.mySelect_correct1{
+    background: #72ff72;
+    color: #000000;
+    width: 94%;
+    height: 35px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+}
+.mySelect_incorrect1{
+    background: #ff4242;
+    color: #fff;
+    width: 94%;
+    height: 35px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
 }

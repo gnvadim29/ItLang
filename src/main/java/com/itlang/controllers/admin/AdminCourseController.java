@@ -112,7 +112,7 @@ public class AdminCourseController {
     public String saveTask(@PathVariable (name = "id") Long id,
                            @ModelAttribute (name = "task") Task task){
         String sid = String.valueOf(taskService.saveTask(id, task));
-        return "redirect:/admin/level/" + sid + "/edit";
+        return "redirect:/admin/task/" + sid + "/edit";
     }
     @GetMapping("/admin/task/{id}/edit/question/{sid}/delete")
     public String deleteQuestion(@PathVariable (name = "sid") Long sid){

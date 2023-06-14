@@ -20,34 +20,6 @@ import java.util.List;
 public class EnglishLevelTestController {
 
     private final EnglishLevelTestService englishLevelTestService;
-    private final EnglishLevelTestRepository englishLevelTestRepository;
-
-    @GetMapping("/questions")
-    public String showQuestions(Model model){
-        model.addAttribute("question", new EnglishLevelTestQuestion());
-        model.addAttribute("table", englishLevelTestRepository.findAllByOrderByQuestionLevel());
-        return "english_level_test/show-questions";
-    }
-    @PostMapping("/save-question")
-    public String addQuestion(@ModelAttribute EnglishLevelTestQuestion question){
-        englishLevelTestService.saveQuestion(question);
-        return "redirect:/english-level-test/questions";
-    }
-    @GetMapping("/questions/{id}/edit")
-    public String editQuestion(@PathVariable Long id, Model model){
-        model.addAttribute("question", englishLevelTestRepository.findEnglishLevelTestQuestionById(id));
-        return "english_level_test/edit-question";
-    }
-    @PostMapping("/questions/{id}/edit")
-    public String saveEditedQuestion(@PathVariable Long id, @ModelAttribute EnglishLevelTestQuestion question){
-        englishLevelTestService.saveEditedQuestion(id, question);
-        return "redirect:/english-level-test/questions";
-    }
-    @GetMapping("/questions/{id}/delete")
-    public String deleteQuestion(@PathVariable Long id){
-        englishLevelTestService.deleteQuestion(id);
-        return "redirect:/english-level-test/questions";
-    }
 
     @GetMapping("/test")
     public String startTest(Model model){

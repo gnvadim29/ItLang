@@ -145,7 +145,7 @@
                             <div th:if="${queStat.index == 3}" class="letter">D</div>
                             <div th:if="${queStat.index == 4}" class="letter">E</div>
                             <div th:if="${queStat.index == 5}" class="letter">F</div>
-                            <select th:class="${uq.getLastAnswer() == que.getCorrectAnswerId() && uq.isCorrect()} ? 'mySelect_correct + mySelect'  : 'mySelect'" th:name="${'question' + que.getId()}" th:id="mySelect" class="mySelect">
+                            <select th:class="${uq.getLastAnswer() == que.getCorrectAnswerId() && uq.isCorrect()} ? 'mySelect_correct1'  : 'mySelect_incorrect1'" th:name="${'question' + que.getId()}" th:id="mySelect" class="mySelect">
                               <option th:selected="${uq.getLastAnswer() == q.getAnswer().getId()}" class="option" th:each="q : ${task.getQuestions()}" th:value="${q.getAnswer().getId()}" th:text="${q.getAnswer().getTitle()}"></option>
                             </select>
                           </div>

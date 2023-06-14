@@ -1,57 +1,125 @@
-body, html{height:100%}
-body{
-    font-family: Bitter, sans-serif;
-    color: #23262D;
-    margin: 0;
-    padding: 0;
-
-}
 .content{
     display: flex;
-    height: 100%;
 }
-.content_blog{
-    display: flex;
+body {
+    font-family: Bitter !important;
 }
-.admin_content{
-    height: 100%;
+.nav-pills {
+
+
 }
 .wrapper{
-    height: 100%;
+    overflow-x: hidden;
     position: relative;
-    z-index: 1;
 }
-.left_bar{
-    height: 100%;
-    width: 300px;
-    background: #302C2E;
-    padding: 20px;
+.page_content{
+    width: 100%;
+    min-height: 100vh;
+    padding:20px;
 }
 
-.main_content{
-    width: 100%;
+/*GENERAL PAGE*/
+.courses{
+    margin-top: 20px;
 }
-.links_list{
-    list-style: none;
-    padding: 0;
+
+.courses_row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
 }
-.link_item{
-    margin-bottom: 20px;
+.courses_column{
+    flex: 0 1 50%;
+    padding: 0 10px;
+
 }
-.link{
-    text-decoration: none;
+.courses_item_column{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px 25px 25px 20px;
+    border-radius: 8px;
+}
+.courses_column-first{
+    box-shadow: 0px 0px 20px 1px #343a40;
+}
+.label{
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    align-self: flex-end;
+}
+.input{
+    visibility: hidden;
+}
+.info_list li{
+    list-style: revert;
+}
+.list-info{
+    margin-left: 15px;
+    font-family: "Segoe UI", serif;
+    font-size: 14px;
+}
+.list-info:not(:last-child){
+    margin-bottom: 15px;
+
+}
+.item_more-title{
+    font-family: "Segoe UI", serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 20px;
     color: white;
-    font-size: 22px;
-    font-weight: 500;
 }
-.admin_line{
-    height: 1px;
+
+.more_line{
+    height: 2px;
     width: 100%;
     background: white;
-    margin: 20px 0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+.courses_item-title{
+    height: 50px;
+    font-family: 'Segoe UI', serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    margin: 0 0 15px 0;
+    z-index: 2;
+}
+.courses_item-image{
+    margin: 0 0 10px 0;
+    z-index: 2;
+}
+.courses_item-text{
+    font-family: 'Segoe UI', serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    height: 60px;
 }
 
-/*BLOG//////////////////////////////*/
+.courses_item-back{
+    position: absolute;
+    right: 10px;
+    z-index: 1;
+}
+.courses_item-back-second{
+    top: 10px;
+}
+.courses_column-second{
+    box-shadow: 0px 0px 15px 1px #343a40;
+}
+.course_IT_img{
+    width: 123px;
+}
+.course_ZNO_img{
+    width: 245px;
+}
+
 .title_text{
     font-weight: 700;
     font-size: 40px;
@@ -61,53 +129,18 @@ body{
 
 }
 .title_line{
-    width: 110px;
-    height: 16px;
+    width: 100%;
+    height: 5px;
     opacity: 0.5;
     border-radius: 4px;
-    background: #E36F59;
-    position: absolute;
-    z-index: -1;
-    bottom: 2px;
+    background-color: #E36F59;
+    border-top: 0;
+
 }
 .main_content{
     margin: 0 20px;
 }
-.title{
-    margin: 30px 0 0 0;
-    position: relative;
-}
 
-.add_button{
-    margin-top: 10px;
-    background: #2D3034;
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 5px;
-    transition: .1s ease-in-out;
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-family: Bitter;
-}
-
-.table{
-    width: 100%;
-    margin-top: 10px;
-}
-.table th{
-    background: #2D3034;
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    padding: 8px;
-}
-.table td{
-    background: #eaac9f;
-    padding: 5px 10px;
-    font-weight: 200;
-    font-size: 20px;
-}
 .edit{
     margin: 0 5px 0 5px
 }
@@ -173,7 +206,7 @@ body{
 .add_task-modal__content{
     width: 935px;
     background: white;
-    margin: 30px auto 30px auto;
+    margin: auto;
     padding: 20px 20px 20px 20px;
     border-radius: 8px;
     position: relative;
@@ -187,10 +220,11 @@ body{
 }
 .line{
     width: 100%;
-    height: 2px;
+    height: 4px;
     background: #E36F59;
     border-radius: 10px;
-    margin: 20px 0;
+    margin: 10px 0;
+    border: 0;
 }
 .textarea{
     border-radius: 5px;
@@ -198,11 +232,14 @@ body{
     width: 100%;
     margin-bottom: 5px;
     font-size: 16px;
-    padding: 10px;
+    padding: 5px 10px;
     border: 0;
 }
 .subtheme{
     position: relative;
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 8px;
 }
 .red{
     position: absolute;
@@ -211,6 +248,7 @@ body{
     text-align: right;
     color: red;
 }
+
 .edit-container{
     width: 100%;
     margin: 0 auto;
@@ -239,6 +277,14 @@ body{
 .subtext{
     font-size: 18px;
     margin-bottom: 10px;
+}
+.textarea2{
+    height: 37px;
+    padding: 0 10px;
+    width: 50%;
+    background-color: lightgray;
+    border-radius: 8px;
+    border: 0;
 }
 .subtheme{
     margin-bottom: 10px;
@@ -385,7 +431,7 @@ body{
 
 /****************************************answers********************************/
 .answers{
-    margin: 50px 0 0 0;
+    margin: 20px 0 0 0;
 }
 .answers_column{
     display: flex;
@@ -501,3 +547,4 @@ body{
     height: 40px;
     margin: 0;
 }
+

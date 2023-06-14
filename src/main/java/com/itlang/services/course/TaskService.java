@@ -88,7 +88,7 @@ public class TaskService {
         task1.setText(task.getText());
 
         taskRepository.save(task1);
-        return task1.getLevel().getId();
+        return task1.getId();
     }
 
     public Object getReadingTasks(Long id) {

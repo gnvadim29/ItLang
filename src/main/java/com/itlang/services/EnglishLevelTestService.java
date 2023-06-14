@@ -85,7 +85,6 @@ public class EnglishLevelTestService {
                 result++;
             }
         }
-
         String res = null;
         if(result>=0 && result<=5) {
             res = "Ваш результат - " + result + "/25, що може свідчити про рівень володіння мовою - A1";

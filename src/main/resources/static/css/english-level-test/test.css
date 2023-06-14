@@ -571,5 +571,7 @@ body{
     font-weight: 600;
     color: #FF5F49;
 }
-
+.error{
+    width: 60%;
+}
 

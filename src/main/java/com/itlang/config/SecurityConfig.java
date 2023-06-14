@@ -17,42 +17,41 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig{
+    public class SecurityConfig{
+        private final PersonDetailsService personDetailsService;
 
-    private final PersonDetailsService personDetailsService;
-    private final MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+            http.authorizeHttpRequests()
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/course/**").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers("/auth/login" ,"/auth/registration", "/error", "/verify").permitAll()
+                    .requestMatchers("/css/**", "/js/**", "/media/**", "/about").permitAll()
+                    .requestMatchers("/", "/image/*","/blog", "/blog/post/*").permitAll()
+                    .requestMatchers("/english-level-test/**").permitAll()
+                    .anyRequest().hasAnyRole("USER", "ADMIN")
+                    .and()
+                    .formLogin().loginPage("/auth/login")
+                    .loginProcessingUrl("/process_login")
+                    .defaultSuccessUrl("/myaccount", true)
+                    .failureUrl("/auth/login?error")
+                    .and()
+                    .logout().logoutUrl("/logout")
+                    .permitAll();
+            return http.build();
+        }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .requestMatchers("/admin/**","/course/**", "/admin", "/blog/post/add", "/blog/post/edit/**", "/blog/post/delete/*", "/english-level-test/questions").permitAll()
-                .requestMatchers("/auth/login" ,"/auth/registration", "/error", "/verify").permitAll()
-                .requestMatchers("/css/**", "/js/**", "/media/**").permitAll()
-                .requestMatchers("/", "/image/*","/blog", "/blog/post/*").permitAll()
-                .requestMatchers("/english-level-test/**").permitAll()
-                .anyRequest().hasAnyRole("USER", "ADMIN")
-                .and()
-                .formLogin().loginPage("/auth/login")
-                .loginProcessingUrl("/process_login")
-                .defaultSuccessUrl("/myaccount", true)
-                .failureUrl("/auth/login?error")
-                .and()
-                .logout().logoutUrl("/logout")
-                .permitAll();
-        return http.build();
+        @Bean
+        public DaoAuthenticationProvider authProvider() {
+            DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+            authProvider.setUserDetailsService(personDetailsService);
+            authProvider.setPasswordEncoder(encoder());
+            return authProvider;
+        }
+
+        @Bean
+        public PasswordEncoder encoder() {
+            return new BCryptPasswordEncoder();
+        }
+
     }
-
-    @Bean
-    public DaoAuthenticationProvider authProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(personDetailsService);
-        authProvider.setPasswordEncoder(encoder());
-        return authProvider;
-    }
-
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-}

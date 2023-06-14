@@ -29,12 +29,8 @@ public class AdminBlogController {
     }
     @PostMapping("/admin/blog/post/add")
     public String addPost(@RequestParam(name = "previewImage") MultipartFile preview,
-                          @RequestParam("files") MultipartFile[] multipartFiles,
-                          @ModelAttribute(name = "post") BlogPost blogPost,
-                          @ModelAttribute(name = "subtheme") BlogPostSubtheme subtheme,
-                          @ModelAttribute(name = "video") BlogPostVideo video) throws IOException {
-        blogPostService.savePost(preview, multipartFiles, blogPost, subtheme, video);
-        System.out.println("++++");
+                          @ModelAttribute(name = "post") BlogPost blogPost) throws IOException {
+        blogPostService.savePost(preview, blogPost);
         return "redirect:/admin/blog";
     }
     @GetMapping("/admin/blog/post/{id}/edit")

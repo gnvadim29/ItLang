@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,21 +35,13 @@ public class BlogPostService {
 
     }
 
-    public void savePost(MultipartFile preview, MultipartFile[] file, BlogPost blogPost, BlogPostSubtheme subtheme, BlogPostVideo video) throws IOException {
+    public void savePost(MultipartFile preview, BlogPost blogPost) throws IOException {
         //images
         Image previewImage;
         if(preview.getSize()!= 0){
             previewImage = toImageEntity(preview);
             previewImage.setPreviewImage(true);
             blogPost.addImageToPost(previewImage);
-        }
-
-        Image image;
-        if (file[0].getSize()!=0){
-            for (MultipartFile multipartFile : file) {
-                image = toImageEntity(multipartFile);
-                blogPost.addImageToPost(image);
-            }
         }
 
         //previewText
@@ -60,11 +51,6 @@ public class BlogPostService {
         }
         else {
             blogPost.setPreviewText(prText.substring(0,151));
-        }
-
-        blogPost.addSubthemeToPost(subtheme);
-        if (!video.getBlogPostVideoLink().equals("")){
-            blogPost.addVideoToPost(video);
         }
 
         BlogPost postFromDB = blogPostRepository.save(blogPost);

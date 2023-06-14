@@ -26,6 +26,9 @@ public class PersonDetails implements UserDetails {
         return this.person.getPassword();
     }
 
+    public Long getUserIconId(){
+        return this.getPerson().getUserIconId();
+    }
     @Override
     public String getUsername() {
         return this.person.getEmail();

@@ -164,7 +164,7 @@
                 <div class="answered_select">
                   <th:block th:each="uq : ${user_questions}">
                     <th:block th:if="${uq.getQuestionId() == que.getId()}">
-                      <select th:class="${uq.getLastAnswer() == que.getCorrectAnswerId() && uq.isCorrect()} ? 'mySelect_correct + mySelect'  : 'mySelect'" th:name="${'question' + que.getId()}" class="mySelect" th:id="mySelect">
+                      <select th:class="${uq.getLastAnswer() == que.getCorrectAnswerId() && uq.isCorrect()} ? 'mySelect_correct'  : 'mySelect_incorrect'" th:name="${'question' + que.getId()}" class="mySelect" th:id="mySelect">
                         <option th:selected="${uq.getLastAnswer() == q.getAnswer().getId()}" class="option" th:each="q : ${task.getQuestions()}" th:value="${q.getAnswer().getId()}" th:text="${q.getAnswer().getTitle()}"></option>
                       </select>
                     </th:block>

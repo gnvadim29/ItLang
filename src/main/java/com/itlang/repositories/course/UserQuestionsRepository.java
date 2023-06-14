@@ -14,4 +14,6 @@ public interface UserQuestionsRepository extends JpaRepository<UserQuestions, Lo
     List<UserQuestions> findUserQuestionsByPersonIdAndLevelId (Long personId, Long id);
     List<UserQuestions> findUserQuestionsByQuestionId(Long id);
     void deleteAllById(Long id);
+    List<UserQuestions> findUserQuestionsByPersonId(Long id);
+    List<UserQuestions> findUserQuestionsByPersonIdAndCourseTitle(Long id, String courseTitle);
 }

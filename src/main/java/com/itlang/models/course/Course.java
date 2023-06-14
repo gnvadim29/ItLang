@@ -19,16 +19,10 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Size(min = 1, max = 30, message = "Title should be between 1 and 30 characters")
     private String title;
-
     private String courseUrl;
-
-    private int numberOfQuestions;
-
-    @Column(columnDefinition = "boolean default false")
-    private boolean active;
+    private int questionCount;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "course")
     private List<Level> levels = new ArrayList<>();
@@ -36,5 +30,8 @@ public class Course {
     public void addLevel(Level level){
         level.setCourse(this);
         levels.add(level);
+    }
+    public void addQuestionCount(){
+        this.questionCount++;
     }
 }

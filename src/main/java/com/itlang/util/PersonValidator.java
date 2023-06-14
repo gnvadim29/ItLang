@@ -33,6 +33,9 @@ public class PersonValidator implements Validator {
         if (!person.isEmpty()){
             errors.rejectValue("email", "", "Користувач з таким e-mail вже існує");
         }
-
+        String emailDomain = ((Person) o).getEmail().split("@")[1];
+        if (!emailDomain.equals("nemk.ukr.education")) {
+            errors.rejectValue("email", "", "Реєстрація доступна лише для домену nemk.urk.education");
+        }
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class LevelService {
     private final LevelRepository levelRepository;
 
-
     public Level getLevel(Long id) {
         return levelRepository.findLevelById(id);
     }

@@ -2,9 +2,11 @@ package com.itlang.services.course;
 
 import com.itlang.models.Image;
 import com.itlang.models.Person;
+import com.itlang.models.UserProgress;
 import com.itlang.models.course.*;
 import com.itlang.repositories.BlogPostImageRepository;
 import com.itlang.repositories.PeopleRepository;
+import com.itlang.repositories.UserProgressRepository;
 import com.itlang.repositories.course.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,8 @@ public class QuestionService {
     private final CourseRepository courseRepository;
     private final PeopleRepository peopleRepository;
     private final UserQuestionsRepository userQuestionsRepository;
+    private final UserProgressRepository userProgressRepository;
+
 
     public void addQuestion(Long id, QuestionBody questionBody, String type, MultipartFile image1, MultipartFile image2, MultipartFile image3) throws IOException {
         Task task = taskRepository.findTaskById(id);
@@ -63,6 +67,8 @@ public class QuestionService {
             question.addAnswer(answer2);
 
             task.addQuestion(question);
+            incrementCourse(task);
+
         }
         if (type.equals("listening_true_false")){
             Answer answerTrue = new Answer();
@@ -83,14 +89,16 @@ public class QuestionService {
             question.addAnswer(answerFalse);
 
             task.addQuestion(question);
+            incrementCourse(task);
+
         }
         if (type.equals("listening_image_answer")){
-// create Answer objects
+
             Answer answer1 = new Answer();
             Answer answer2 = new Answer();
             Answer answer3 = new Answer();
 
-// set titles and correct answers
+
             if (questionBody.getCorrectAnswer().equals("0")) {
                 answer1.setCorrect(true);
             }
@@ -101,7 +109,6 @@ public class QuestionService {
                 answer3.setCorrect(true);
             }
 
-// create Image objects and add them to Answer objects
             Image firstImage = toImageEntity(image1);
             imageRepository.save(firstImage);
             answer1.addImageToAnswer(firstImage);
@@ -112,18 +119,18 @@ public class QuestionService {
             answer2.addImageToAnswer(secondImage);
             answerRepository.save(answer2);
 
-
             Image thirdImage = toImageEntity(image3);
             imageRepository.save(thirdImage);
             answer3.addImageToAnswer(thirdImage);
             answerRepository.save(answer3);
 
-            // add Answer objects to Question
             question.addAnswer(answer1);
             question.addAnswer(answer2);
             question.addAnswer(answer3);
 
             task.addQuestion(question);
+
+            incrementCourse(task);
         }
 
 //        READING
@@ -163,6 +170,8 @@ public class QuestionService {
             question.addAnswer(answer4);
 
             task.addQuestion(question);
+            incrementCourse(task);
+
         }
         if(type.equals("reading_texts_answer")){
             Answer answer = new Answer();
@@ -172,6 +181,8 @@ public class QuestionService {
             question.addAnswer(answer);
             question.setText(questionBody.getQuestionText());
             task.addQuestion(question);
+            incrementCourse(task);
+
         }
 
 //        USE OF ENGLISH
@@ -210,6 +221,8 @@ public class QuestionService {
             question.addAnswer(answer4);
 
             task.addQuestion(question);
+            incrementCourse(task);
+
         }
         if(type.equals("use_text_paste")){
             Answer answer = new Answer();
@@ -219,6 +232,8 @@ public class QuestionService {
 
             question.addAnswer(answer);
             task.addQuestion(question);
+            incrementCourse(task);
+
         }
 
 //        WRITING
@@ -226,9 +241,11 @@ public class QuestionService {
             task.addQuestion(question);
         }
 
-
         taskRepository.save(task);
+    }
 
+    public void incrementCourse(Task task){
+        task.getLevel().getCourse().addQuestionCount();
     }
 
     public List<Question> getQuestions(Long id) {
@@ -254,6 +271,9 @@ public class QuestionService {
                 }
             }
         }
+        Course course = question.getTask().getLevel().getCourse();
+        course.setQuestionCount(course.getQuestionCount()-1);
+        courseRepository.save(course);
 
         questionRepository.deleteById(id);
 
@@ -269,7 +289,7 @@ public class QuestionService {
         return image;
     }
 
-    public void checkQuestions(List<CheckQuestion> answers, String type) {
+    public void checkQuestions(List<CheckQuestion> answers, String courseUrl) {
         //find userId
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Person person = peopleRepository.findPersonByEmail(authentication.getName());
@@ -302,12 +322,28 @@ public class QuestionService {
                     userQuestionsRepository.save(userQuestions1);
                 }
         }
+        updateUserProgress(person, courseUrl);
+    }
+    public void updateUserProgress(Person person, String courseUrl){
+        UserProgress userProgress = userProgressRepository.findUserProgressById(person.getUserProgress().getId());
+        Course course = courseRepository.findCourseByCourseUrl(courseUrl);
+        List<UserQuestions> userQuestions = userQuestionsRepository.findUserQuestionsByPersonIdAndCourseTitle(person.getId(), course.getTitle());
+        int count = 0;
+        for (int i = 0; i < userQuestions.size(); i++){
+            if (userQuestions.get(i).isCorrect()){
+                count++;
+            }
+        }
+        int value = (count * 100)/course.getQuestionCount();
+        System.out.println("value - " + value);
+        if (courseUrl.equals("znoenglish")){
+            userProgress.setZnoEnglish(value);
+        } else {
+            userProgress.setItEnglish(value);
+        }
 
-
-
-
+        userProgressRepository.save(userProgress);
     }
 
-
-
 }
+
