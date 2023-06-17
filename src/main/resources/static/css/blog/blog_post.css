@@ -234,7 +234,11 @@ body{
             text-align: center;
         }
         .video_player-frame{
-            height: 150px;
+            height: 200px;
+        }
+        .container{
+            padding: 0 10px;
+            max-width: none;
         }
     }
 

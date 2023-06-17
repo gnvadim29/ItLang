@@ -31,6 +31,7 @@ public class AccountController {
     public String accountPage(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Person person = peopleRepository.findPersonByEmail(authentication.getName());
+        personService.setLastActivity(person);
         model.addAttribute("user", person);
         return "myaccount";
     }

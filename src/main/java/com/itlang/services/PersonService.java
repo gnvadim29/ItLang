@@ -11,6 +11,8 @@ import com.itlang.repositories.course.UserQuestionsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -40,4 +42,20 @@ public class PersonService {
         peopleRepository.delete(person);
     }
 
+    public void setLastActivity(Person person) {
+        LocalDate time = LocalDate.now();
+        person.setLastActivity(time);
+        peopleRepository.save(person);
+    }
+
+    public void deleteInactive() {
+        List<Person> people = peopleRepository.findInactive();
+        for (int i = 0; i < people.size(); i++){
+            deleteUser(people.get(i).getId());
+        }
+        List<Person> people1 = peopleRepository.findDisabled();
+        for (int i = 0; i < people1.size(); i++){
+            peopleRepository.delete(people1.get(i));
+        }
+    }
 }

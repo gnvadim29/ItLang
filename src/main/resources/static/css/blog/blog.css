@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 body{
     position: relative;
     font-family: 'Bitter', serif;
@@ -62,7 +63,7 @@ body{
 }
 .navigation_link{
     margin: 0 10px;
-    font-family: "Segoe UI", serif;
+    font-family: "Segoe UI", "Open Sans", serif;
     font-weight: 400;
     font-size: 14px;
     color: #212836;
@@ -147,7 +148,7 @@ body{
     border-radius: 8px 8px 0 0;
 }
 .item_body-title{
-    font-family: "Segoe UI", serif;
+    font-family: "Segoe UI", "Open Sans", serif;
     font-weight: 700;
     font-size: 16px;
     line-height: 138%;
@@ -155,7 +156,7 @@ body{
     color: #23262D;
 }
 .item_body-text{
-    font-family: "Segoe UI", serif;
+    font-family: "Segoe UI", "Open Sans", serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 143%;
@@ -219,6 +220,7 @@ body{
         width: 300px;
         left: 20px;
     }
+
 }
 .add_btn{
     display: flex;

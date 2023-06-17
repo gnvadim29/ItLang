@@ -73,11 +73,16 @@
             </label>
           </div>
           <div class="progress">
-            <div class="circular-progress" data-inner-circle-color="white" th:attr="data-percentage=${user.getUserProgress().getZnoEnglish()}" data-percentage="100"  data-progress-color="#E36F59" data-bg-color="#C4C4C4">
+            <div th:if="${course.getCourseUrl().equals('znoenglish')}" class="circular-progress" data-inner-circle-color="white" th:attr="data-percentage=${user.getUserProgress().getZnoEnglish()}" data-percentage="100"  data-progress-color="#E36F59" data-bg-color="#C4C4C4">
+              <div class="inner-circle"></div>
+              <p class="percentage">10%</p>
+            </div>
+            <div th:if="${course.getCourseUrl().equals('itenglish')}" class="circular-progress" data-inner-circle-color="white" th:attr="data-percentage=${user.getUserProgress().getItEnglish()}" data-percentage="100"  data-progress-color="#E36F59" data-bg-color="#C4C4C4">
               <div class="inner-circle"></div>
               <p class="percentage">10%</p>
             </div>
           </div>
+
 
         </div>
 

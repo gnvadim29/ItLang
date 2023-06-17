@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
 body{
     font-family: Bitter, sans-serif;
     color: #23262D;
@@ -142,7 +144,7 @@ body{
     margin: 0 15px 0 0;
 }
 .swipe-text{
-    font-family: "Segoe UI", serif;
+    font-family: "Segoe UI", "Open Sans";
     font-weight: 400;
     font-size: 14px;
     line-height: 100%;
@@ -314,7 +316,7 @@ body{
     height: 100%;
 }
 .item_title{
-    font-family: 'Segoe UI', serif;
+    font-family: "Segoe UI", "Open Sans", serif;
     font-weight: 700;
     font-size: 18px;
     line-height: 117%;
@@ -331,7 +333,7 @@ body{
 
 }
 .item_text{
-    font-family: 'Segoe UI', serif;
+    font-family: "Segoe UI", "Open Sans", serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 117%;
@@ -501,7 +503,8 @@ body{
 }
 .list-info{
     margin-left: 15px;
-    font-family: "Segoe UI", serif;
+    font-family: "Segoe UI", "Open Sans", serif;
+
     font-size: 14px;
 
 
@@ -511,7 +514,8 @@ body{
 
 }
 .item_more-title{
-    font-family: "Segoe UI", serif;
+    font-family: "Segoe UI", "Open Sans", serif;
+
     font-size: 18px;
     font-weight: 700;
     padding-bottom: 20px;
@@ -552,7 +556,7 @@ body{
 }
 .courses_item-title{
     height: 50px;
-    font-family: 'Segoe UI', serif;
+    font-family: "Segoe UI", "Open Sans", serif;
     font-weight: 700;
     font-size: 24px;
     line-height: 100%;
@@ -564,7 +568,8 @@ body{
     z-index: 2;
 }
 .courses_item-text{
-    font-family: 'Segoe UI', serif;
+    font-family: "Segoe UI", "Open Sans", serif;
+
     font-weight: 400;
     font-size: 14px;
     line-height: 143%;

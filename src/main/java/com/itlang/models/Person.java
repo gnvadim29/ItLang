@@ -9,6 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 /**
  * @author Vadym Hnatiuk
@@ -54,4 +57,5 @@ public class Person {
     private UserProgress userProgress;
 
     private Long userIconId;
+    private LocalDate lastActivity;
 }

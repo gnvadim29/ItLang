@@ -16,7 +16,9 @@
                     <li><a class="menu__item" href="/">Головна</a></li>
                     <li><a class="menu__item" href="/blog">Блог</a></li>
                     <li><a class="menu__item" href="/about">Про нас</a></li>
-                    <li><a class="menu__item" href="/auth/login"><span class="orange_color">Увійти</span></a></li>
+                    <li sec:authorize="hasAnyRole('ADMIN', 'USER')"><a class="menu__item" href="/myaccount">Особистий кабінет</a></li>
+                    <li sec:authorize="isAnonymous()"><a class="menu__item" href="/auth/login">Увійти</a></li>
+
                 </ul>
             </div>
 
