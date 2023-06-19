@@ -69,6 +69,7 @@
                             <div th:if="${param.error}" style="color: red" class="error">
                                 Неправильний логін або пароль
                             </div>
+                            <a href="/auth/resetPassword" class="forgot">Забули пароль?</a>
                         </form>
                     </div>
                     <div class="registration_block block">
@@ -142,7 +143,6 @@
         // toggle the eye slash icon
         this.classList.toggle('fa-eye-slash');
     });
-
 </script>
 </body>
 </html>

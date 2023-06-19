@@ -74,7 +74,7 @@
                   <div class="answer_block answer_block-first">
                     <div class="answer_text">
                       <div class="listening_edit">
-                        <button id="add_task" class="btn btn-dark mt-2">
+                        <button id="add_task" class="custom-btn mt-2">
                           Додати завдання
                         </button>
                         <table th:if="${!listening_tasks.isEmpty()}" class="table table-hover table-dark table-striped mt-2">
@@ -110,7 +110,7 @@
                   <div class="answer_block answer_block-second">
                     <div class="answer_text">
                       <div class="reading_edit">
-                        <button id="add_task_reading" class="btn btn-dark mt-2">
+                        <button id="add_task_reading" class="custom-btn mt-2">
                           Додати завдання
                         </button>
                         <table th:if="${!reading_tasks.isEmpty()}" class="table table-hover table-dark table-striped mt-2">
@@ -144,7 +144,7 @@
                   <div class="answer_block answer_block-third">
                     <div class="answer_text">
                       <div class="useOE_edit">
-                        <button id="add_task_use" class="btn btn-dark mt-2">
+                        <button id="add_task_use" class="custom-btn mt-2">
                           Додати завдання
                         </button>
 
@@ -184,7 +184,7 @@
                         <form class="writing_form" th:action="@{/admin/level/{id}/add_task(id = ${level.getId()})}" method="post">
                           <input class="textarea2 " placeholder="Назва завдання" type="text" name="title" required>
                           <input required type="hidden" name="task" value="writing">
-                          <button class="btn btn-dark " type="submit">
+                          <button class="custom-btn " type="submit">
                             Додати завдання
                           </button>
                         </form>

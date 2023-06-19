@@ -27,38 +27,33 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="/admin" class="nav-link text-white " aria-current="page">
+                    <a href="/admin" class="nav-link text-white" aria-current="page">
                         <svg class="bi pe-none me-2 " width="16" height="16"><use xlink:href="#home"></use></svg>
                         Курси
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/blog" class="nav-link active text-black bg-warning ">
+                    <a href="/admin/blog" class="nav-link active text-black bg-warning">
                         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
                         Блог
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="/admin/users" class="nav-link text-white">
                         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                        Orders
+                        Користувачі
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                        Products
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link text-white ">
+                    <a href="/admin/level-test" class="nav-link text-white ">
                         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                        Customers
+                        Тестування
                     </a>
                 </li>
             </ul>
             <hr>
         </div>
+
         <div class="page_content">
             <div class="edit-container">
                 <img class="header_image" th:src="@{/image/{id}(id = ${post.getPreviewImageId()})}" src="../../static/media/index/advantages1.png" alt="previewImage">

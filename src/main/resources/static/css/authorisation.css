@@ -218,7 +218,7 @@ body{
 }
 .error{
     font-size: 14px;
-    margin-top: 5px;
+    margin: 5px 0;
 }
 .fa-reg{
     right: 15px;
@@ -272,4 +272,13 @@ body{
 .email_text{
     color: #E36F59;
     font-weight: 700;
+}
+.forgot{
+    color: red;
+    font-weight: 500;
+    font-size: 14px;
+    transition: 0.2s all;
+}
+.forgot:hover{
+    text-decoration: underline;
 }

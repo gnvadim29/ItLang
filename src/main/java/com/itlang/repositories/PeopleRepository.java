@@ -22,5 +22,6 @@ public interface PeopleRepository extends JpaRepository<Person, Long> {
     List<Person> findInactive();
     @Query(value = "SELECT * FROM person WHERE enabled = false", nativeQuery = true)
     List<Person> findDisabled();
+    Person findPersonByResetToken(String token);
 
 }

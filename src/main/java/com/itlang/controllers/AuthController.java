@@ -61,7 +61,6 @@ public class AuthController {
     }
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code) {
-        System.out.println("++++++++++++++++++++++++++++++++++");
         if (registrationService.verify(code)) {
             return "redirect:/auth/login";
         } else {

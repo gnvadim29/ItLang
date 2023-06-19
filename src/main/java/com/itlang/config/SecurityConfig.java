@@ -25,7 +25,7 @@ import org.springframework.security.web.SecurityFilterChain;
             http.authorizeHttpRequests()
                     .requestMatchers("/admin/**").hasRole("ADMIN")
                     .requestMatchers("/course/**").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers("/auth/login" ,"/auth/registration", "/error", "/verify").permitAll()
+                    .requestMatchers("/auth/login" ,"/auth/registration", "/error", "/verify", "/auth/resetPassword", "/reset", "/auth/changePassword").permitAll()
                     .requestMatchers("/css/**", "/js/**", "/media/**", "/about").permitAll()
                     .requestMatchers("/", "/image/*","/blog", "/blog/post/*").permitAll()
                     .requestMatchers("/english-level-test/**").permitAll()

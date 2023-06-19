@@ -4,9 +4,23 @@
 body {
     font-family: Bitter !important;
 }
-.nav-pills {
-
-
+a.nav-link.active {
+    background-color: #E36F59 !important;
+}
+.custom-border {
+    border-color: #E36F59 !important;
+}
+.custom-btn{
+    background-color: #ee7f6c; !important;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 .wrapper{
     overflow-x: hidden;

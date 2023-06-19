@@ -64,7 +64,7 @@
           <hr class="title_line">
         </div>
         <div class="blog_content">
-          <button id="add_post" class="btn btn-dark mb-2">
+          <button id="add_post" class="custom-btn mb-2">
             Додати пост
           </button>
           <table class="table table-dark table-striped">
@@ -103,7 +103,7 @@
       <textarea style="width: 100%" class="textarea" th:field="*{post.blogPostTitle}" required="required" minlength="20" maxlength="255" name="blogPostTitle" id="blogPostTitle" cols="100" rows="1" placeholder="Тема публікації"></textarea><br>
       <textarea style="width: 100%" class="textarea" th:field="*{post.blogPostText}" required="required" minlength="20" name="blogPostText" id="blogPostText" cols="100" rows="10" placeholder="Текст публікації"></textarea>
 
-      <button class="btn btn-dark" type="submit">Додати публікацію</button>
+      <button class="custom-btn" type="submit">Додати публікацію</button>
     </form>
 
   </div>

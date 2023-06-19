@@ -75,7 +75,7 @@
             <p class="text_p">Текст завдання:</p>
             <textarea required th:text="${task.getText()}" th:field="*{task.text}" name="title" class="textarea" cols="30" rows="10"></textarea>
           </div>
-          <button type="submit" class="btn btn-warning">Зберегти</button>
+          <button type="submit" class="custom-btn">Зберегти</button>
         </form>
         <hr class="line">
 
@@ -96,7 +96,7 @@
               <option value="2">3</option>
             </select>
             <input type="hidden" name="type" value="listening_text">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
           </form>
           <div class="question" th:each="que : ${questions}">
             <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
@@ -120,7 +120,7 @@
               <option value="false">false</option>
             </select>
             <input type="hidden" name="type" value="listening_true_false">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
           </form>
 
           <div class="question" th:each="que : ${questions}">
@@ -149,7 +149,7 @@
               <option value="2">3</option>
             </select>
             <input type="hidden" name="type" value="listening_text">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
           </form>
           <div class="question" th:each="que : ${questions}">
             <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
@@ -182,7 +182,7 @@
               <option value="2">3</option>
             </select>
             <input type="hidden" name="type" value="listening_image_answer">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
           </form>
 
           <div class="question" th:each="que : ${questions}">
@@ -218,7 +218,7 @@
               <option value="3">4</option>
             </select>
             <input type="hidden" name="type" value="reading_text_answers">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
           </form>
           <div class="question" th:each="que : ${questions}">
             <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Текст запитання - ' + que.getTitle()}"></p>
@@ -239,7 +239,7 @@
             <textarea required class="textarea" th:field="*{question.questionText}" name="answer" cols="100" placeholder="Текст запитання" rows="1"></textarea>
             <textarea required class="textarea" th:field="*{question.answer1}" name="answer" cols="100" placeholder="Відповідь" rows="1"></textarea>
             <input type="hidden" name="type" value="reading_texts_answer">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
           </form>
           <div class="question" th:each="que : ${questions}">
             <p style="font-size: 18px; margin: 10px 0 20px 0" th:text="${'Запитання - ' + que.getTitle()}"></p>
@@ -269,7 +269,7 @@
               <option value="3">4</option>
             </select>
             <input type="hidden" name="type" value="use_text_answers">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
 
           </form>
           <div class="question" th:each="que : ${questions}">
@@ -286,7 +286,7 @@
           <form th:if="${task.getQuestions().size() < 6}" class="form" th:action="@{edit/add_question}" method="post">
             <textarea required class="textarea" th:field="*{question.answer1}" name="answer1" cols="100" placeholder="Відповідь 1" rows="1"></textarea>
             <input type="hidden" name="type" value="use_text_paste">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
 
           </form>
           <div class="question" th:each="que : ${questions}">
@@ -304,7 +304,7 @@
           <form th:if="${task.getQuestions().size() < 3}" class="form" th:action="@{edit/add_question}" method="post">
             <textarea required class="textarea" th:field="*{question.title}" name="title"  cols="100" placeholder="Запитання" rows="1"></textarea>
             <input type="hidden" name="type" value="writing">
-            <button class="btn btn-warning" type="submit">Додати</button>
+            <button class="custom-btn" type="submit">Додати</button>
           </form>
           <div class="question" th:each="que : ${questions}">
             <p th:text="${que.getTitle()}"></p>

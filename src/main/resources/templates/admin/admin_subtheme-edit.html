@@ -27,13 +27,13 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="/admin" class="nav-link active text-black bg-warning" aria-current="page">
+          <a href="/admin" class="nav-link text-white" aria-current="page">
             <svg class="bi pe-none me-2 " width="16" height="16"><use xlink:href="#home"></use></svg>
             Курси
           </a>
         </li>
         <li>
-          <a href="/admin/blog" class="nav-link  text-white">
+          <a href="/admin/blog" class="nav-link active text-black bg-warning">
             <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
             Блог
           </a>
@@ -53,12 +53,13 @@
       </ul>
       <hr>
     </div>
+
     <div class="page_content">
       <div class="edit-container">
         <form class="form" th:action="@{edit-subtheme}" method="post">
           <textarea class="textarea" th:text="${subtheme.getBlogPostSubthemeTitle()}" th:field="*{subtheme.blogPostSubthemeTitle}" name="blogPostSubthemeTitle" id="title" cols="100" placeholder="Назва абзацу" rows="1"></textarea>
           <textarea class="textarea" th:text="${subtheme.getBlogPostSubthemeText()}" th:field="*{subtheme.blogPostSubthemeText}" name="blogPostSubthemeText" id="text" cols="100" placeholder="Текст" rows="10"></textarea>
-          <button class="btn-dark btn" type="submit">Зберегти</button>
+          <button class="custom-btn" type="submit">Зберегти</button>
         </form>
 
       </div>

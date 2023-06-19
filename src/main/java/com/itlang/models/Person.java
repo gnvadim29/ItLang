@@ -4,6 +4,7 @@ import com.itlang.models.course.UserQuestions;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,6 +46,7 @@ public class Person {
 
     @Column(columnDefinition = "text")
     @NotEmpty(message = "Password should not be empty")
+    @Pattern(regexp = "^[a-zA-Z0-9@#$&!*/+-]+$", message = "Password should contain only Latin letters, digits, and special characters")
     private String password;
 
     @Column(name = "verification_code", length = 64)
@@ -58,4 +60,5 @@ public class Person {
 
     private Long userIconId;
     private LocalDate lastActivity;
+    private String resetToken;
 }
