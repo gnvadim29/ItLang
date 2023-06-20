@@ -2,16 +2,20 @@ body{
     font-family: Bitter;
 }
 .container{
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+.content{
     display: flex;
+    width: 100%;
 }
 .right_content{
-    max-width: 895px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     margin-left: 20px;
+    flex: 1 1 0;
 }
 .listening_image_answer-img{
     margin-left: 40px;
@@ -107,7 +111,7 @@ b{
     font-family: 'Bitter';
     font-style: normal;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 20px;
     letter-spacing: -0.01em;
     color: white;
 }
@@ -193,6 +197,8 @@ b{
     border-radius: 5px;
     background: #757575;
     display: flex;
+    flex: none;
+    margin-right: 10px;
     align-items: center;
     justify-content: center;
     font-weight: 700;
@@ -225,8 +231,58 @@ label select{
     width: 100%;
 
 }
+.answ, .correct_answ, .incorrect_answ{
+    font-size: 20px;
+}
 .answered__content{
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+.task{
+    position: relative;
+}
+.position{
+    position: absolute;
+    top: -50px;
+}
+@media (max-width: 1130px) {
+    .answers{
+        flex-wrap: wrap;
+    }
+    .answer{
+        width: 49%;
+        margin-bottom: 10px;
+    }
+    .answ, .correct_answ, .incorrect_answ{
+        width: unset;
+    }
+    .answered {
+        width: 100%;
+    }
+}
+@media (max-width: 500px) {
+    .answ, .correct_answ, .incorrect_answ{
+        font-size: 18px;
+    }
+    .task_text{
+        line-height: 150%;
+        font-size: 18px;
+    }
+    .task_text{
+        text-indent: 30px;
+    }
+
+}
+@media (max-width: 770px) {
+    .title{
+        font-size: 30px;
+    }
+    .task_title{
+        font-size: 26px;
+    }
+    .right_content{
+        margin: 0;
+    }
+
 }

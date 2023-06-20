@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
 
 /**
  * @author Vadym Hnatiuk
@@ -32,6 +33,8 @@ public class RegistrationService {
     public void register(Person person, String siteUrl) throws MessagingException, UnsupportedEncodingException {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         person.setRole("ROLE_USER");
+        LocalDate date = LocalDate.now().minusMonths(11);
+        person.setLastActivity(date);
 
         String randomCode = RandomString.make(64);
         person.setVerificationCode(randomCode);

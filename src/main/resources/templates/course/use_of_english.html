@@ -31,8 +31,8 @@
 <div class="wrapper">
   <div th:insert="~{fragments/header.html :: header}"></div>
 
-  <div class="content">
-    <div class="container">
+  <div class="container">
+    <div class="content">
       <div class="left_menu">
         <div class="navigation">
           <img src="/media/general/home.svg" alt="home">
@@ -42,7 +42,6 @@
           <img class="navigation_next" src="/media/general/next.svg" alt="next">
           <a class="navigation_link" href="/" th:text="${course.getTitle()}"></a>
         </div>
-
         <div class="left_menu-item">
           <div class="levels" th:each="lev : ${course.getLevels()}">
             <label>
@@ -85,14 +84,13 @@
 
 
         </div>
-
-
       </div>
       <div class="right_content">
         <h2 class="title" th:text="${level} + ' - Use of English'">Use of English</h2>
         <div class="" th:each="task : ${tasks}">
 
           <form method="post" th:action="@{use_of_English/check}" class="task" th:if="${task.getDescription() == 'use_text_answers'}">
+            <div class="position" th:id="${task.getId()}"></div>
             <div class="task_title" th:text="${task.getTitle()}">title</div>
             <div class="task_text" th:utext="${task.getText()}"></div>
 
@@ -126,16 +124,15 @@
             </div>
 
           </div>
-
+            <input type="hidden" name="position" th:value="${task.getId()}">
             <button class="check_button" type="submit">Перевірити</button>
 
           </form>
-
           <div th:if="${task.getDescription() == 'use_text_paste'}" class="task">
             <div class="task_title" th:text="${task.getTitle()}">title</div>
             <div class="task_text" th:utext="${task.getText()}">text</div>
 
-
+            <div class="position" th:id="${task.getId()}"></div>
             <form method="post" th:action="@{use_of_English/check}" class="reading_texts_answer__form">
               <div class="questions" th:each="que : ${task.getQuestions()}">
 
@@ -171,14 +168,13 @@
                     </label>
                   </div>
                 </div>
+              <input type="hidden" name="position" th:value="${task.getId()}">
               <button class="check_button" type="submit">Перевірити</button>
             </form>
           </div>
 
         </div>
       </div>
-
-
     </div>
   </div>
 

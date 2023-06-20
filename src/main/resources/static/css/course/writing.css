@@ -1,3 +1,19 @@
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+.content{
+    display: flex;
+    width: 100%;
+}
+.right_content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    flex: 1 1 0;
+}
 .title{
     font-style: normal;
     font-weight: 700;
@@ -60,4 +76,18 @@
 .writing_questions{
     font-weight: 500;
 
+}
+@media (max-width: 770px) {
+    .title{
+        font-size: 35px;
+    }
+    .right_content{
+        margin: 0;
+    }
+}
+@media (max-width: 500px) {
+    .task_text{
+        line-height: 145%;
+        font-size: 18px;
+    }
 }

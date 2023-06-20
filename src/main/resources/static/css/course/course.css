@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 .content{
     flex: 1 0 auto;
 }
@@ -6,9 +7,24 @@ body{
     font-family: Bitter;
 }
 .container{
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    width: 100%;
+}
+.course_container{
     display: flex;
+}
+.content{
+    display: flex;
+    width: 100%;
+}
+.right_content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    flex: 1 1 0;
 }
 .wrapper{
     min-height: 100%;
@@ -26,9 +42,12 @@ body{
     margin-top: 30px;
     margin-bottom: 15px;
 }
+.navigation_{
+    width: 300px;
+}
 .navigation_link{
     margin: 0 10px;
-    font-family: "Segoe UI", serif;
+    font-family: "Open Sans";
     font-weight: 400;
     font-size: 14px;
     color: #212836;
@@ -44,7 +63,7 @@ body{
 }
 /* LEFT MENU */
 .left_menu-item {
-    width: 285px;
+    width: 255px;
     background: #FFFFFF;
     border: 1px solid #E1544B;
     box-shadow: 0px 3px 23px rgba(0, 0, 0, 0.07);
@@ -52,8 +71,18 @@ body{
     overflow: hidden;
     padding-bottom: 10px;
 }
+.left_menu-item_ {
+    width: 255px;
+    background: #FFFFFF;
+    border: 1px solid #E1544B;
+    box-shadow: 0px 3px 23px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
 .level_title{
-    font-family: 'Segoe UI';
+    font-family: "Open Sans";
     font-weight: 600;
     font-size: 16px;
     line-height: 26px;
@@ -81,7 +110,7 @@ body{
 }
 .submenu_item-text{
     margin-left: 10px;
-    font-family: 'Segoe UI';
+    font-family: "Open Sans";
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -142,7 +171,8 @@ body{
 
 .percentage {
     position: relative;
-    font-family: 'Segoe UI', serif;
+    font-family: "Open Sans";
+
     font-weight: 700;
     font-size: 40px;
     color: #E36F59;
@@ -183,6 +213,8 @@ body{
     font-size: 22px;
     margin-top: 10px;
     transition: 0.2s all;
+    flex: none;
+
 }
 .correct1, .incorrect1, .correct__, .incorrect__ {
     width: 180px;
@@ -195,6 +227,7 @@ body{
     font-weight: 700;
     font-size: 22px;
     transition: 0.2s all;
+    flex: none;
 }
 .mySelect_correct{
     background: #72ff72;
@@ -233,4 +266,31 @@ body{
     border-radius: 5px;
     padding: 5px;
     font-size: 16px;
+}
+@media (max-width: 750px) {
+    .left_menu_{
+        width: 100%;
+    }
+    .left_menu-item_{
+        width: 100%;
+    }
+    .right{
+        display: none;
+    }
+
+}
+@media (max-width: 770px) {
+    .content{
+        flex-direction: column;
+    }
+    .title{
+        margin: 30px auto 0 auto;
+    }
+    .right_content{
+        margin: 0;
+    }
+    .left_menu-item {
+        width: 100%;
+    }
+
 }

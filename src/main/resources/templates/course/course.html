@@ -30,9 +30,9 @@
   <div th:insert="~{fragments/header.html :: header}"></div>
 
   <div class="content">
-  <div class="container">
-    <div class="left_menu">
-      <div class="navigation">
+  <div class="container course_container">
+    <div class="left_menu left_menu_">
+      <div class="navigation navigation_">
         <img src="/media/general/home.svg" alt="home">
         <a   class="navigation_link" href="/"><span class="unactive_link">Головна</span></a>
         <img class="navigation_next" src="/media/general/next.svg" alt="next">
@@ -41,7 +41,7 @@
         <a class="navigation_link" href="/templates/blog" th:text="${course.getTitle()}"></a>
       </div>
 
-      <div class="left_menu-item">
+      <div class="left_menu-item_">
         <div class="levels" th:each="lev : ${course.getLevels()}">
           <label>
             <input id="level_" type="radio" name="radio" class="radio">

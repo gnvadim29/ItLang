@@ -46,7 +46,7 @@ public class Person {
 
     @Column(columnDefinition = "text")
     @NotEmpty(message = "Password should not be empty")
-    @Pattern(regexp = "^[a-zA-Z0-9@#$&!*/+-]+$", message = "Password should contain only Latin letters, digits, and special characters")
+    @Pattern(regexp = "\\S+", message = "Password should not contain spaces")
     private String password;
 
     @Column(name = "verification_code", length = 64)
