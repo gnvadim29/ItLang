@@ -1,0 +1,36 @@
+body{
+    font-family: Bitter, serif;
+}
+.wrapper{
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+.container{
+    max-width: 1200px;
+    margin: 20px auto;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 15px 1px #E36F59;
+    border-radius: 8px;
+    padding: 20px 0;
+}
+.textarea{
+    border-radius: 5px;
+    background: lightgray;
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 16px;
+    padding: 10px;
+}
+.form{
+    padding: 0 20px;
+}
+.add_btn{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    background: #00a096;
+    color: white;
+    margin-top: 10px;
+}

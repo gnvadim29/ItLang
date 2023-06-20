@@ -1,0 +1,486 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+body{
+    position: relative;
+    font-family: 'Bitter', serif;
+    color: #23262D;
+}
+.wrapper{
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    margin: 15px 0 0 0;
+}
+/*CONTAINER******************************************* */
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+
+/**************************************************/
+.title_text{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    padding-left: 10px;
+    z-index: 1;
+
+}
+.title_line{
+    width: 110px;
+    height: 16px;
+    opacity: 0.5;
+    border-radius: 4px;
+    background: #E36F59;
+    position: absolute;
+    z-index: -1;
+    bottom: 2px;
+}
+.title{
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+.user_info{
+    margin-top: 25px;
+}
+.my_account{
+    box-shadow: 0px 0px 10px #000000;
+    border-radius: 8px;
+    background: white;
+    padding: 10px 80px 70px 80px;
+}
+.title_text{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    padding-left: 10px;
+    position: relative;
+    z-index: 1;
+
+}
+.title_line{
+    width: 110px;
+    height: 16px;
+    opacity: 0.5;
+    border-radius: 4px;
+    background: #E36F59;
+    position: absolute;
+    z-index: 0;
+    bottom: 2px;
+}
+
+@media (max-width: 1024px){
+    .title_text{
+        font-size: 32px;
+    }
+    .title_line{
+        width: 75px;
+        height: 10px;
+    }
+}
+@media (max-width: 575px){
+    .title_text{
+        font-size: 30px;
+        text-align: justify;
+    }
+    .title_line{
+        width: 60px;
+        height: 10px;
+    }
+}
+.info_content{
+    margin-top: 30px;
+}
+.user_image{
+    position: relative;
+    background: 0;
+    width: 250px;
+    height: 250px;
+    display: block;
+}
+.user_image-img{
+    width: 250px;
+    height: 250px;
+    background: url("/media/general/user_icon.jpg") center;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.user_image:hover .overlay {
+    opacity: 1;
+}
+.active{
+    font-size: 84px;
+    width: 7px;
+    font-weight: 800;
+}
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    top: 0;
+    border-radius: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.save_button{
+    padding: 15px 30px;
+    background: #E36F59;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.user_inputs{
+    margin-top: 15px;
+    margin-left: 75px;
+}
+._fields{
+    display: flex;
+    flex-wrap: wrap;
+}
+.label_block{
+    flex: 1 0 40%;
+    padding: 0 20px;
+}
+.info_content{
+    display: flex;
+}
+.label{
+    position: absolute;
+    top: 5px;
+    left: 30px;
+    font-family: Bitter, serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 13px;
+    color: rgba(64, 58, 75, 0.6);
+
+}
+.label_block{
+    position: relative;
+    min-width: 200px;
+    margin-bottom: 30px;
+}
+.input{
+    height: 47px;
+    width: 100%;
+    padding: 20px 10px 0 10px;
+    color: #403A4B;
+    font-size: 16px;
+    background: rgba(227, 111, 89, 0.3);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .user_image{
+        width: 200px;
+        height: 200px;
+    }
+    .user_image-img{
+        width: 200px;
+        height: 200px;
+    }
+    .user_inputs{
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+    .label_block{
+        position: relative;
+        min-width: 300px;
+        margin-bottom: 20px;
+    }
+    .my_account{
+        padding: 10px 40px 70px 40px ;
+    }
+}
+@media (max-width: 575px){
+    .info_content{
+        flex-direction: column;
+    }
+    .label_block{
+        min-width: 100px;
+        flex: 0 1 100%;
+        padding: 0;
+    }
+    .my_account{
+        padding: 10px 15px 70px 15px ;
+    }
+    .user_image{
+        margin: 0 auto;
+    }
+    .user_inputs{
+        margin-left: 0;
+    }
+    .save_button{
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .label{
+        left: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+._level{
+    margin-top: 150px;
+}
+.subtext{
+    margin-top: 5px;
+    max-width: 680px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 141%;
+    letter-spacing: 0.01em;
+}
+.grad_line{
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #FFF849 0%, #FF5F49 100%);
+    border-radius: 5px;
+}
+.line{
+    margin-top: 50px;
+    height: 90px;
+}
+.line_dots{
+    font-size: 80px;
+    width: 7px;
+}
+.dots{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -65.5px;
+    left: -4px;
+}
+.level{
+    width: 9px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 31px;
+}
+.test_btn{
+    padding: 15px 20px;
+    color: white;
+    background: #E36F59;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+/*courses*/
+._courses{
+    margin-top: 150px;
+}
+.courses_row{
+    margin-top: 40px;
+    display: flex;
+}
+.course_column{
+    width: 50%;
+}
+.course_item{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 10px rgba(180, 180, 180, 0.25);
+    border-radius: 25px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+.course_title{
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 10px;
+}
+.course_line{
+    width: 100%;
+    height: 2px;
+    background: #FF5F49;
+}
+.course_button{
+    padding: 0 20px;
+}
+.course_btn{
+    display: block;
+    color: black;
+    background: #F7D4CD;
+    text-align: center;
+    max-width: 230px;
+    margin: 0 auto 40px auto;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 18px;
+    padding: 10px 0;
+    border-radius: 25px;
+
+}
+
+/*progress ring*/
+:root {
+    --progress-bar-width: 250px;
+    --progress-bar-height: 250px;
+}
+
+.circular-progress {
+    width: var(--progress-bar-width);
+    height: var(--progress-bar-height);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+}
+.inner-circle {
+    position: absolute;
+    width: calc(var(--progress-bar-width) - 30px);
+    height: calc(var(--progress-bar-height) - 30px);
+    border-radius: 50%;
+    background-color: lightgrey;
+}
+
+.percentage {
+    position: relative;
+    font-family: "Segoe UI", "Open Sans", serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #E36F59;
+}
+
+@media screen and (max-width: 800px) {
+    :root {
+        --progress-bar-width: 180px;
+        --progress-bar-height: 180px;
+        --font-size: 1.3rem;
+    }
+    .course_btn{
+        font-size: 18px;
+    }
+
+}
+
+@media screen and (max-width: 575px) {
+    .course_column{
+        width: 100%;
+    }
+    .course_item{
+        width: 100%;
+    }
+    .courses_row{
+        flex-direction: column;
+    }
+    .course_column:not(:last-child){
+        margin-bottom: 30px;
+    }
+    .circular-progress{
+        margin: 30px auto;
+    }
+}
+
+/*modal*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 320px;
+    border-radius: 10px;
+    margin: 200px auto;
+    position: relative;
+
+}
+
+/* Стилі для закриваючої кнопки */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.close{
+    position: absolute;
+    right: 20px;
+}
+.icon_submit{
+    background: #FF5F49;
+    color: white;
+    padding: 7px 12px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 8px;
+
+}
+
+._buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 0 20px;
+}
+.action{
+    display: flex;
+    flex-direction: column;
+}
+.action a{
+    margin-bottom: 10px;
+    color: #FF5F49;
+    font-size: 16px;
+    font-weight: 700;
+    transition: 0.3s all;
+}
+.action a:hover{
+    color: #2D3034;
+}

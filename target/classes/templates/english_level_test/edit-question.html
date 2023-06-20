@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>ItLang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+  <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrapper">
+  <div class="content">
+    <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4 ">IT Lang</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="/admin" class="nav-link text-white " aria-current="page">
+            <svg class="bi pe-none me-2 " width="16" height="16"><use xlink:href="#home"></use></svg>
+            Курси
+          </a>
+        </li>
+        <li>
+          <a href="/admin/blog" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Блог
+          </a>
+        </li>
+        <li>
+          <a href="/admin/users" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+            Користувачі
+          </a>
+        </li>
+        <li>
+          <a href="/admin/level-test" class="nav-link active text-black ">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+            Тестування
+          </a>
+        </li>
+      </ul>
+      <hr>
+    </div>
+    <div class="page_content">
+      <h2 class="mt-2 fw-bold">Редагування запитання</h2>
+      <form class="form-control mt-4 custom-border" th:action="@{/english-level-test/questions/{id}/edit(id = ${question.getId()})}" method="post">
+        <h6>Title: <span style="color: red; font-weight: 800;">*</span></h6>
+        <input required id="title" th:value="${question.getQuestionTitle()}" class="form-control mb-3 custom-border" type="text" name="questionTitle" th:field="*{question.questionTitle}"></input>
+        <h6>English level: <span style="color: red; font-weight: 800;">*</span></h6>
+        <select required class="form-select mb-3 custom-border" name="questionLevel" id="question_level">
+          <option th:selected="${question.getQuestionLevel() eq 'A1'}" value="A1">A1</option>
+          <option th:selected="${question.getQuestionLevel() eq 'A2'}" value="A2">A2</option>
+          <option th:selected="${question.getQuestionLevel() eq 'B1'}" value="B1">B1</option>
+          <option th:selected="${question.getQuestionLevel() eq 'B2'}" value="B2">B2</option>
+          <option th:selected="${question.getQuestionLevel() eq 'C'}" value="C">C</option>
+        </select>
+        <h6>Answer_1: <span style="color: red; font-weight: 800;">*</span></h6>
+        <input th:value="${question.getQuestionAnswer1()}" required class="form-control mb-3 custom-border" type="text" placeholder="Answer1" name="questionAnswer1" th:field="*{question.questionAnswer1}">
+        <h6>Answer_2: <span style="color: red; font-weight: 800;">*</span></h6>
+        <input th:value="${question.getQuestionAnswer2()}" required class="form-control mb-3 custom-border" type="text" placeholder="Answer2" name="questionAnswer2" th:field="*{question.questionAnswer2}">
+        <h6>Answer_3: <span style="color: red; font-weight: 800;">*</span></h6>
+        <input th:value="${question.getQuestionAnswer3()}" required class="form-control mb-3 custom-border" type="text" placeholder="Answer3" name="questionAnswer3" th:field="*{question.questionAnswer3}">
+        <h6>Answer_4 (optional):</h6>
+        <input th:value="${question.getQuestionAnswer4()}" class="form-control mb-3 custom-border" type="text" placeholder="Answer4" name="questionAnswer4" th:field="*{question.questionAnswer4}">
+        <h6>Correct answer:<span style="color: red; font-weight: 800;">*</span></h6>
+        <select required class="form-select mb-3 custom-border" name="questionCorrectAnswer" id="correct">
+          <option th:selected="${question.getQuestionCorrectAnswer() == 1}" value="1">1</option>
+          <option th:selected="${question.getQuestionCorrectAnswer() == 2}" value="2">2</option>
+          <option th:selected="${question.getQuestionCorrectAnswer() == 3}" value="3">3</option>
+          <option th:selected="${question.getQuestionCorrectAnswer() == 4}" value="4">4</option>
+        </select>
+        <button class="custom-btn mt-3" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

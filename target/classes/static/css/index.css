@@ -1,0 +1,744 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+body{
+    font-family: Bitter, sans-serif;
+    color: #23262D;
+}
+.wrapper{
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 40;
+}
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+/*=============================================VECTORS=====================================================*/
+.vector{
+    position: absolute;
+    z-index: -10000;
+    width: 857px;
+    height: 695px;
+}
+.main_vector{
+    left: -220px;
+    top: -63px;
+}
+.second_vector{
+    top: 1000px;
+    right: -470px;
+}
+.third_vector{
+    width: 752px;
+    left: -400px;
+    top: 1650px;
+}
+.forth_vector{
+    width: 528px;
+    height: 475px;
+    right: -50px;
+    bottom: -50px;
+    transform: matrix(1, 0.09, 0.09, -1, 0, 0);
+}
+.header{
+    margin: 15px 0 0 0;
+}
+/*=============================================MAIN=====================================================*/
+.main_container{
+    position: relative;
+    margin-top: 100px;
+}
+.main_content{
+    display: flex;
+    flex-direction: column;
+}
+.right-content{
+    position: absolute;
+    right: 15px;
+    z-index: -1;
+}
+.right_content-image{
+    margin-top: 22px;
+}
+.left-text-title{
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0.005em;
+}
+.left_text{
+    max-width: 55%;
+}
+.orange_color{
+    color: #E36F59;
+}
+.left-action{
+    margin-top: 85px;
+}
+.action_text{
+    max-width: 285px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 117%;
+    margin-bottom: 15px;
+}
+.action_btn{
+    color: #fff;
+    padding: 20px 40px;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.03em;
+    background: #E36F59;
+    border-radius: 8px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.action_btn:after {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 200px;
+    margin-left: 50px;
+    background: #fff;
+    background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(255, 255, 255, 1) 50%,
+            rgba(255, 255, 255, 0.5) 100%
+    );
+    left: -40px;
+    top: -100px;
+    z-index: 1;
+    transform: rotate(45deg);
+    position: absolute;
+    animation: movingFlare 3s ease-in-out 0.05s infinite;
+}
+
+@keyframes movingFlare {
+    0% {
+        left: -30px;
+        margin-left: 0px;
+    }
+    30% {
+        left: 110%;
+        margin-left: 80px;
+    }
+    100% {
+        left: 110%;
+        margin-left: 80px;
+    }
+}
+.action_swipe{
+    display: flex;
+    align-items: center;
+    margin-top: 75px;
+}
+.action_swipe_mouse{
+    display: flex;
+    align-items: center;
+}
+.swipe-mouse{
+    margin: 0 15px 0 0;
+}
+.swipe-text{
+    font-family: "Segoe UI", "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    margin: 0 30px 0 0;
+    
+}
+.swipe-line{
+    margin-top: 3px;
+    border: 1px solid #D8DFDA;
+    background: #D8DFDA;
+    width: 40%;
+}
+
+@media (max-width: 1127px) {
+    .left-text-title{
+        font-size: 46px;
+    }
+    .right-image-img{
+        width: 90%;
+        float: right;
+    }
+    .right_content-image{
+        margin-top: 15px;
+    }
+    .main_vector{
+        left: -500px;
+    }
+}
+@media (max-width: 1024px){
+    .container{
+        max-width: 700px;
+    }
+    .left-text-title{
+        font-size: 32px;
+    }
+    .right-image-img{
+        width: 60%;
+    }
+    .right_content-image{
+        margin-top: 10px;
+    }
+    .main_vector{
+        left: -550px;
+    }
+    .left-action{
+        margin-top: 45px;
+    }
+    .action_text{
+        font-size: 16px;
+        max-width: 200px;
+        margin-bottom: 10px;
+    }
+    .action_btn{
+        font-size: 15px;
+        padding: 15px 30px;
+    }
+    .action_swipe{
+        margin-top: 30px;
+        justify-content: space-between;
+    }
+    .swipe-text{
+        font-size: 10px;
+    }
+    .swipe-line{
+        width: 75%;
+    }
+    .main_container{
+        margin-top: 50px;
+    }
+}
+@media (max-width: 575px){
+    .right-content{
+        position: relative;
+    }
+    .left_text{
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    .left-text-title{
+        text-align: center;
+        font-size: 28px;
+    }
+    .right-content{
+        margin-top: 20px;
+    }
+    .right-image-img{
+        width: 90%;
+    }
+    .action_text{
+        text-align: center;
+        margin: 0 auto;
+    }
+    .action_btn{
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .left-action{
+        margin: 30px auto 0 auto;
+        width: 100%;
+    }
+    .action_swipe{
+        visibility: hidden;
+        position: absolute;
+    }
+}
+/*=============================================ADVANTAGES=====================================================*/
+.advantages{
+    margin-top: 150px;
+}
+.title_text{
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    padding-left: 10px;
+
+}
+.title_line{
+    width: 110px;
+    height: 16px;
+    opacity: 0.5;
+    border-radius: 4px;
+    background: #E36F59;
+    position: absolute;
+    z-index: -1;
+    bottom: 2px;
+}
+.title{
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.advantages_row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+
+}
+.advantages_column{
+    flex: 0 1 25%;
+    padding: 0 10px;
+    min-width: 181px;
+    margin-bottom: 20px;
+}
+.item_column:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 15px 1px #E36F59;
+    transition: all 0.2s;
+}
+.item_column{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    height: 375px;
+    position: relative;
+    z-index: 10;
+    background: white;
+}
+
+.item_image__img{
+    width: 100%;
+    height: 181px;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+}
+.item_body{
+    padding: 25px 25px 0 25px;
+    height: 100%;
+}
+.item_title{
+    font-family: "Segoe UI", "Open Sans", serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 117%;
+    color: #23262D;
+    height: 25px;
+    text-align: center;
+}
+.item_line{
+    border: 0.3px solid #23262D;
+    margin: 30px auto 15px auto;
+    background:  #23262D;
+    opacity: 70%;
+    width: 80%;
+
+}
+.item_text{
+    font-family: "Segoe UI", "Open Sans", serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 117%;
+    color: rgba(0, 0, 0, 0.73);
+    text-align: center;
+}
+@media (max-width: 1197px) {
+    .item_body{
+        padding: 25px 15px 0 15px;
+
+    }
+}
+@media (max-width: 1117px) {
+    .item_title{
+        font-size: 16px;
+    }
+}
+@media (max-width: 1024px) {
+    .advantages_vector{
+        top: 700px;
+    }
+    .advantages{
+        margin-top: 100px;
+    }
+    .advantages_title-text{
+        font-size: 32px;
+    }
+    .title_text{
+        font-size: 32px;
+    }
+    .title_line{
+        width: 75px;
+        height: 10px;
+    }
+    .item_column{
+        flex-direction: row;
+        max-height: 170px;
+    }
+    .advantages_column{
+        flex: 0 1 50%;
+    }
+    .item_image{
+        max-height: 170px;
+    }
+    .item_image__img{
+        height: 170px;
+        width: 150px;
+        border-radius: 8px 0 0 8px;
+        object-fit: cover;
+    }
+    .item_body{
+        padding: 15px 5px 0 10px;
+    }
+    .item_title{
+        font-size: 14px;
+        height: 45px;
+    }
+    .item_text{
+        font-size: 12px;
+    }
+    .item_line{
+        margin: 10px auto 10px auto;
+    }
+}
+@media (max-width: 575px) {
+    .item_line{
+        margin: 20px 0 10px 0;
+    }
+}
+@media (max-width: 650px){
+
+    .advantages_column{
+        flex: 0 1 100%;
+    }
+    .item_image__img{
+        width: 200px;
+        height: 150px;
+    }
+    .item_column{
+        max-height: 150px;
+    }
+    .item_title{
+        height: 27px;
+    }
+    .item_text{
+        margin-top: 15px;
+    }
+    .item_body{
+        padding: 30px 50px 0 50px;
+    }
+}
+
+@media (max-width: 575px) {
+    .container{
+        padding: 0 10px;
+    }
+    .title_text{
+        font-size: 30px;
+    }
+    .title_line{
+        width: 60px;
+        height: 8px;
+    }
+    .item_image__img{
+        width: 130px;
+        height: 180px;
+    }
+    .item_title{
+        height: 40px;
+        font-size: 14px;
+    }
+    .item_text{
+        font-size: 12px;
+    }
+    .item_column{
+        max-height: 180px;
+    }
+    .item_body{
+        padding: 20px 10px 0 10px;
+    }
+    .item_line{
+        margin: 20px auto 0 auto;
+    }
+}
+/*=============================================СOURSES=====================================================*/
+.courses{
+    margin-top: 130px;
+
+}
+.courses_item{
+
+}
+.courses_row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+.courses_column{
+    flex: 0 1 50%;
+    padding: 0 10px;
+
+}
+.courses_item_column{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px 25px 25px 20px;
+    border-radius: 8px;
+    transition: height 2s ease-out 0.3s;
+}
+.courses_column-first{
+    background: #CCC1F6;
+}
+.label{
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    align-self: flex-end;
+}
+.input{
+    visibility: hidden;
+}
+.info_list li{
+    list-style: revert;
+}
+.list-info{
+    margin-left: 15px;
+    font-family: "Segoe UI", "Open Sans", serif;
+
+    font-size: 14px;
+
+
+}
+.list-info:not(:last-child){
+    margin-bottom: 15px;
+
+}
+.item_more-title{
+    font-family: "Segoe UI", "Open Sans", serif;
+
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+.courses_item-more{
+    width: 100%;
+    position: absolute;
+    transition: opacity ease-in-out 0.5s;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 8px;
+    z-index: 20 ;
+}
+.courses_item-more_first{
+    background: #CCC1F6;
+}
+.courses_item-more_second{
+    background: #C6DDEE;
+}
+#first:checked ~ .courses_item-more_first{
+    position: relative;
+    transform: translateY(5px);
+    visibility: visible;
+    opacity: 1;
+}
+#second:checked ~ .courses_item-more_second{
+    position: relative;
+    transform: translateY(5px);
+    visibility: visible;
+    opacity: 1;
+}
+.more_line{
+    height: 2px;
+    width: 100%;
+    background: white;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+.courses_item-title{
+    height: 50px;
+    font-family: "Segoe UI", "Open Sans", serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    margin: 0 0 15px 0;
+    z-index: 2;
+}
+.courses_item-image{
+    margin: 0 0 10px 0;
+    z-index: 2;
+}
+.courses_item-text{
+    font-family: "Segoe UI", "Open Sans", serif;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    height: 60px;
+}
+
+.courses_item-back{
+    position: absolute;
+    right: 10px;
+    z-index: 1;
+}
+.courses_item-back-second{
+    top: 10px;
+}
+.courses_column-second{
+    background: #C6DDEE;
+}
+.course_IT_img{
+    width: 123px;
+}
+.course_ZNO_img{
+    width: 245px;
+}
+
+@media (max-width: 1024px) {
+    .courses{
+        margin-top: 100px;
+    }
+    .courses_column{
+        flex: 0 1 100%;
+    }
+    .courses_column-second{
+        margin-top: 20px;
+    }
+    .courses_item-title{
+        font-size: 20px;
+        height: 30px;
+    }
+    #first:checked ~ .courses_item-more_first{
+        transform: translateY(0px);
+
+
+    }
+    #second:checked ~ .courses_item-more_second{
+        transform: translateY(0px);
+    }
+}
+@media (max-width: 575px){
+    .courses_item-back{
+        visibility: hidden;
+    }
+    .courses_item_column{
+        align-items: center;
+    }
+    .courses_item-title{
+        font-size: 18px;
+        height: 40px;
+        text-align: center;
+    }
+    .courses_item-text{
+        height: 100px;
+    }
+    .label{
+        margin-top: 20px;
+    }
+
+}
+/****************************************answers********************************/
+.answers{
+    margin: 150px 0 0 0;
+}
+.answers_column{
+    display: flex;
+    flex-direction: column;
+}
+.answers_row{
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    position: relative;
+    transition: all .5s;
+    border-radius: 8px;
+    min-height: 70px;
+}
+.answers_row:not(:first-child){
+    margin-top: 20px;
+}
+.answers_row:hover{
+    box-shadow: 0 0 15px 1px #E36F59;
+}
+
+.question_title{
+    margin: 18px 0 0 25px;
+    font-family: 'Bitter', serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+
+}
+.answers_label{
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    cursor: pointer;
+    font-weight: 400;
+    font-family: Rubik, serif;
+    font-size: 35px;
+    user-select: none;
+    transition: all .5s;
+}
+.answers_input{
+    position: absolute;
+    visibility: hidden;
+}
+.answer_block{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    margin: 10px 0 10px 0;
+    transition: opacity .5s;
+    padding: 0 25px;
+    font-family: 'Bitter', serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 162%;
+    color: #383838;
+}
+#question_show-first:checked ~ .answer_block-first{
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+#question_show-second:checked ~ .answer_block-second{
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+#question_show-third:checked ~ .answer_block-third{
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+#question_show-forth:checked ~ .answer_block-forth{
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+#question_show-first:checked ~ .answers_label-first{
+    transform: rotate(-45deg);
+}
+#question_show-second:checked ~ .answers_label-second{
+    transform: rotate(-45deg);
+}
+#question_show-third:checked ~ .answers_label-third{
+    transform: rotate(-45deg);
+}
+#question_show-forth:checked ~ .answers_label-forth{
+     transform: rotate(-45deg);
+}
+
+@media (max-width: 575px) {
+    .question_title{
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .answers{
+        margin-top: 100px;
+    }
+}

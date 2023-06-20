@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet" >
+    <link th:href="@{/css/loader.css}" href="../static/css/loader.css" rel="stylesheet" >
+    <link th:href="@{/css/english-level-test/test.css}" href="../../static/css/english-level-test/test.css" rel="stylesheet" >
+    <link th:href="@{/css/fragments/header.css}" rel="stylesheet" >
+    <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div id="page-preloader" class="preloader">
+    <div class="loader"></div>
+</div>
+
+<div class="wrapper">
+    <div class="header1" th:insert="~{fragments/header.html :: header}"></div>
+
+    <section class="result">
+        <div class="container">
+            <div class="result_content">
+                <div class="test_header">
+                    <div class="image">
+                        <img th:src="@{/media/level-test/bg.svg}" src="../../static/media/level-test/bg.svg" class="header_bg" alt="">
+                    </div>
+                    <div class="test_title">
+                        English Level Test
+                    </div>
+                </div>
+                <hr class="header_line">
+                <div th:text="${result}" class="result_text">
+                    here your result
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div th:insert="~{fragments/footer :: footer}"></div>
+</div>
+
+<script>
+    // Отримуємо посилання на таймер і кнопку submit
+    const timerEl = document.getElementById('timer');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Встановлюємо початковий час на 15 хвилин
+    let timeLeft = 10 * 60;
+
+    // Функція, яка оновлює значення таймера і перевіряє, чи закінчився час
+    function updateTimer() {
+        // Обчислюємо хвилини і секунди
+        const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const seconds = (timeLeft % 60).toString().padStart(2, '0');
+
+        // Оновлюємо значення таймера
+        timerEl.textContent = `${minutes}:${seconds}`;
+
+        // Перевіряємо, чи закінчився час
+        if (timeLeft === 0) {
+            // Автоматично натискаємо кнопку submit
+            alert("Час закінчився!");
+            submitBtn.click();
+            clearInterval(timerInterval);
+        } else {
+            // Якщо час ще не закінчився, зменшуємо його на 1 секунду
+            timeLeft--;
+        }
+    }
+
+    // Оновлюємо таймер кожну секунду
+    const timerInterval = setInterval(updateTimer, 1000);
+
+</script>
+<script th:src="@{/js/preloader.js}" src="../../static/js/preloader.js"></script>
+
+</body>
+</html>

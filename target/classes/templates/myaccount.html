@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link media="all" th:href="@{/css/fragments/header.css}" rel="stylesheet">
+    <link media="all" th:href="@{/css/fragments/footer.css}" rel="stylesheet">
+    <link media="all" th:href="@{/css/nullstyle.css}" href="../static/css/nullstyle.css" rel="stylesheet">
+    <link media="all" th:href="@{/css/loader.css}" rel="stylesheet">
+    <link media="all" th:href="@{/css/myaccount.css}" href="../static/css/myaccount.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="page-preloader" class="preloader">
+    <div class="loader"></div>
+</div>
+
+
+
+    <div class="wrapper">
+
+        <div th:insert="~{fragments/header.html :: header}"></div>
+        <section class="user_info">
+            <div class="container account_container">
+                <div class="my_account">
+                    <div class="_info">
+                        <div class="info_title title">
+                            <div class="info_title-text title_text">
+                                Особиста інформація
+                            </div>
+                            <hr class="title_line">
+                        </div>
+                        <div class="info_content">
+                            <button id="myBtn" class="user_image">
+                                <img class="user_image-img" th:src="@{/image/{id}(id = ${user.getUserIconId()})}">
+                                <div class="overlay">
+                                    <p>Change icon</p>
+                                </div>
+                            </button>
+                            <form class="user_inputs" method="post" th:action="@{/myaccount/changeInfo}">
+                                <div class="_fields">
+                                    <div class="label_block">
+                                        <label class="label"  for="name">Name:</label>
+                                        <input class="input" name="name" th:value="${user.getName()}" type="text" id="name">
+                                    </div>
+                                    <div class="label_block">
+                                        <label class="label"  for="surname">Surname:</label>
+                                        <input class="input" name="surname" th:value="${user.getSurname()}" type="text" id="surname">
+                                    </div>
+
+                                    <div class="label_block">
+                                        <label class="label"  for="email">Email:</label>
+                                        <input class="input" name="email" th:value="${user.getEmail()}" type="email" id="email" readonly>
+                                    </div>
+
+                                    <div class="label_block">
+                                        <label class="label" for="group">Group:</label>
+                                        <input class="input" name="group" th:value="${user.getGroup()}" type="text" id="group">
+                                    </div>
+
+                                </div>
+                                <div class="_buttons">
+                                    <div class="save_btn">
+                                        <button class="save_button" type="submit">Зберегти</button>
+                                    </div>
+                                    <div class="action">
+                                        <a th:href="@{/myaccount/{id}/delete (id = ${user.getId()})}" onclick="return confirm('Ви впевнені, що хочете видалити акаунт?')">Видалити акаунт</a>
+                                        <a href="/logout">Вихід</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="_level">
+                        <div class=" title">
+                            <div class=" title_text">
+                                Рівень англійської
+                            </div>
+                            <hr class="title_line">
+                        </div>
+                        <div class="subtext">
+                            Пройди тест на визначення свого рівня, та порівняй результати після проходження курсів. Результат з’явиться на шкалі після завершення тесту.
+                        </div>
+                        <div class="line">
+                            <hr class="grad_line">
+                            <div class="dots">
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'A1'} ? active : line_dots" class="A1 line_dots">.</p>
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'A2'} ? active : line_dots" class="A2 line_dots">.</p>
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'B1'} ? active : line_dots" class="B1 line_dots">.</p>
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'B2'} ? active : line_dots" class="B2 line_dots">.</p>
+                                <p th:class="${user.getUserProgress().getEnglishLevel() == 'C'} ? active : line_dots" class="C line_dots">.</p>
+                            </div>
+                            <div class="dots levels">
+                                <p class=" level">A1</p>
+                                <p class=" level">A2</p>
+                                <p class=" level">B1</p>
+                                <p class=" level">B2</p>
+                                <p class=" level">C+</p>
+                            </div>
+                        </div>
+                        <div class="test_button">
+                            <a class="test_btn" th:href="@{/english-level-test/test}">Пройти тестування</a>
+                        </div>
+                    </div>
+
+                    <div class="_courses">
+                        <div class=" title">
+                            <div class=" title_text">
+                                Курси
+                            </div>
+                            <hr class="title_line">
+                        </div>
+                        <div class="subtext">
+                            Після проходження курсів ти зможеш отримати сертифікат та обміняти його на хорошу оцінку в свого викладача :)                        </div>
+                    </div>
+
+                    </th:block>
+                    <div class="courses_row">
+                        <div class="course_column">
+                            <div class="course_item">
+                                <div class="course_title">IT English</div>
+                                <hr class="course_line">
+                                <div class="circular-progress" data-inner-circle-color="white" th:attr="data-percentage=${user.getUserProgress().getItEnglish()}" data-percentage="80" data-progress-color="#E36F59" data-bg-color="#C4C4C4">
+                                    <div class="inner-circle"></div>
+                                    <p class="percentage">10%</p>
+                                </div>
+                                <div class="course_button">
+                                    <a th:if="${user.getUserProgress().getItEnglish() == 0}" href="/course/itenglish" class="course_btn">
+                                        Розпочати <br> курс
+                                    </a>
+                                    <a th:if="${user.getUserProgress().getItEnglish() != 0 && user.getUserProgress().getItEnglish()<100}" href="/course/itenglish" class="course_btn">
+                                        Продовжити <br> курс
+                                    </a>
+                                    <a th:if="${user.getUserProgress().getItEnglish() == 100}" href="/createCertificate?course=itenglish" class="course_btn">
+                                        Отримати <br> сертифікат
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course_column">
+                            <div class="course_item">
+                                <div class="course_title">ZNO English</div>
+                                <hr class="course_line">
+                                <div class="circular-progress" data-inner-circle-color="white" th:attr="data-percentage=${user.getUserProgress().getZnoEnglish()}" data-percentage="100"  data-progress-color="#E36F59" data-bg-color="#C4C4C4">
+                                    <div class="inner-circle"></div>
+                                    <p class="percentage">10%</p>
+                                </div>
+                                <div class="course_button">
+                                    <a th:if="${user.getUserProgress().getZnoEnglish() == 0}" href="/course/znoenglish" class="course_btn">
+                                        Розпочати <br> курс
+                                    </a>
+                                    <a th:if="${user.getUserProgress().getZnoEnglish() != 0 && user.getUserProgress().getZnoEnglish()<100}" href="/course/znoenglish" class="course_btn">
+                                        Продовжити <br> курс
+                                    </a>
+                                    <a th:if="${user.getUserProgress().getZnoEnglish() == 100}" href="/createCertificate?course=znoenglish" class="course_btn">
+                                        Отримати <br> сертифікат
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form th:action="@{/myaccount/changeIcon}" method="post" enctype="multipart/form-data">
+                            <input class="icon_file" size="2000000" type="file" id="myFileInput" name="userIcon"><br><br>
+                            <button class="icon_submit" type="submit">Зберегти</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section>
+
+
+
+        <div th:insert="~{fragments/footer :: footer}"></div>
+
+    </div>
+<script>
+    var input = document.getElementById("myFileInput");
+
+    input.addEventListener("change", function() {
+        var file = input.files[0]; // Отримуємо перший файл зі списку
+        var allowedSize = 1 * 1024 * 1024; // Максимальний розмір файлу в байтах (10 Мб)
+
+        if (file.size > allowedSize) {
+            alert("Розмір файлу перевищує допустиме значення - 1Mb");
+            input.value = null; // Очищаємо значення input file
+        }
+    });
+
+</script>
+<script>
+    var btn = document.getElementById("myBtn");
+
+    // Отримуємо модальне вікно
+    var modal = document.getElementById("myModal");
+
+    // Отримуємо кнопку закриття
+    var span = document.getElementsByClassName("close")[0];
+    // Відкриваємо модальне вікно
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // При натисканні на кнопку закриття модального вікна
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // При кліку на будь-яку частину екрану, окрім модального вікна, закриваємо його
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+    <script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
+
+    <script>
+        const circularProgress = document.querySelectorAll(".circular-progress");
+
+        Array.from(circularProgress).forEach((progressBar) => {
+            const progressValue = progressBar.querySelector(".percentage");
+            const innerCircle = progressBar.querySelector(".inner-circle");
+            let startValue = -1,
+                endValue = Number(progressBar.getAttribute("data-percentage")),
+                speed = 10,
+                progressColor = progressBar.getAttribute("data-progress-color");
+
+            const progress = setInterval(() => {
+                startValue++;
+                progressValue.textContent = `${startValue}%`;
+                progressValue.style.color = `${progressColor}`;
+
+                innerCircle.style.backgroundColor = `${progressBar.getAttribute(
+                    "data-inner-circle-color"
+                )}`;
+
+                progressBar.style.background = `conic-gradient(${progressColor} ${
+                    startValue * 3.6
+                }deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
+                if (startValue === endValue) {
+                    clearInterval(progress);
+                }
+            }, speed);
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,564 @@
+.content{
+    display: flex;
+}
+body {
+    font-family: Bitter !important;
+}
+a.nav-link.active {
+    background-color: #E36F59 !important;
+}
+.custom-border {
+    border-color: #E36F59 !important;
+}
+.custom-btn{
+    background-color: #ee7f6c; !important;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+.wrapper{
+    overflow-x: hidden;
+    position: relative;
+}
+.page_content{
+    width: 100%;
+    min-height: 100vh;
+    padding:20px;
+}
+
+/*GENERAL PAGE*/
+.courses{
+    margin-top: 20px;
+}
+
+.courses_row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+.courses_column{
+    flex: 0 1 50%;
+    padding: 0 10px;
+
+}
+.courses_item_column{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px 25px 25px 20px;
+    border-radius: 8px;
+}
+.courses_column-first{
+    box-shadow: 0px 0px 20px 1px #343a40;
+}
+.label{
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    align-self: flex-end;
+}
+.input{
+    visibility: hidden;
+}
+.info_list li{
+    list-style: revert;
+}
+.list-info{
+    margin-left: 15px;
+    font-family: "Segoe UI", serif;
+    font-size: 14px;
+}
+.list-info:not(:last-child){
+    margin-bottom: 15px;
+
+}
+.item_more-title{
+    font-family: "Segoe UI", serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 20px;
+    color: white;
+}
+
+.more_line{
+    height: 2px;
+    width: 100%;
+    background: white;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+.courses_item-title{
+    height: 50px;
+    font-family: 'Segoe UI', serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    margin: 0 0 15px 0;
+    z-index: 2;
+}
+.courses_item-image{
+    margin: 0 0 10px 0;
+    z-index: 2;
+}
+.courses_item-text{
+    font-family: 'Segoe UI', serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    height: 60px;
+}
+
+.courses_item-back{
+    position: absolute;
+    right: 10px;
+    z-index: 1;
+}
+.courses_item-back-second{
+    top: 10px;
+}
+.courses_column-second{
+    box-shadow: 0px 0px 15px 1px #343a40;
+}
+.course_IT_img{
+    width: 123px;
+}
+.course_ZNO_img{
+    width: 245px;
+}
+
+.title_text{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    padding-left: 10px;
+
+}
+.title_line{
+    width: 100%;
+    height: 5px;
+    opacity: 0.5;
+    border-radius: 4px;
+    background-color: #E36F59;
+    border-top: 0;
+
+}
+.main_content{
+    margin: 0 20px;
+}
+
+.edit{
+    margin: 0 5px 0 5px
+}
+.add_post-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Темний колір фону */
+    background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
+}
+.add_subtheme-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Темний колір фону */
+    background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
+}
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Темний колір фону */
+    background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
+}
+.add_listening_true_false-modal, .add_listening_text_more_answer-modal{
+    display: none;
+}
+.add_video-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Темний колір фону */
+    background-color: rgba(0,0,0,0.4); /* Темний колір фону з прозорістю */
+}
+
+.add_post-modal__content{
+    width: 900px;
+    background: white;
+    margin: 30px auto 30px auto;
+    padding: 20px 20px 20px 20px;
+    border-radius: 8px;
+    position: relative;
+}
+.add_task-modal__content{
+    width: 935px;
+    background: white;
+    margin: auto;
+    padding: 20px 20px 20px 20px;
+    border-radius: 8px;
+    position: relative;
+}
+.modal_title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+
+}
+.line{
+    width: 100%;
+    height: 4px;
+    background: #E36F59;
+    border-radius: 10px;
+    margin: 10px 0;
+    border: 0;
+}
+.textarea{
+    border-radius: 5px;
+    background: lightgray;
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 0;
+}
+.subtheme{
+    position: relative;
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 8px;
+}
+.red{
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+    color: red;
+}
+
+.edit-container{
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+.subthemes{
+    position: relative;
+}
+.add_btn{
+    position: absolute;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 500;
+    font-size: 40px;
+    border-radius: 10px;
+    user-select: none;
+    text-decoration: none;
+    right: 0;
+    top: 0;
+    background: green;
+}
+.subtext{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.textarea2{
+    height: 37px;
+    padding: 0 10px;
+    width: 50%;
+    background-color: lightgray;
+    border-radius: 8px;
+    border: 0;
+}
+.subtheme{
+    margin-bottom: 10px;
+}
+.subtheme .text{
+    font-size: 20px;
+}
+.btn{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.edit_btn{
+    background: #00a096;
+    color: white;
+    margin-right: 5px;
+}
+.delete_btn{
+    background: indianred;
+    color: white;
+
+}
+.images{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.image{
+    flex: 0 1 31%;
+    margin: 0 10px;
+    margin-bottom: 15px;
+}
+.img{
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.content{
+    position: relative;
+}
+.image iframe{
+    height: 200px;
+    margin-bottom: 5px;
+}
+.save_btn{
+    background: green;
+    color: white;
+    display: inline-block;
+    padding: 15px 30px;
+}
+.del_btn{
+    padding: 17px 30px;
+}
+
+/**********************************************************/
+.header_image{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 20px;
+}
+.close {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+}
+.close:hover {
+    opacity: 1;
+}
+.close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+}
+.close:before {
+    transform: rotate(45deg);
+}
+.close:after {
+    transform: rotate(-45deg);
+}
+.task_form{
+    display: flex;
+    justify-content: space-between;
+}
+.task_form input{
+    display: none;
+}
+.task_form input:checked ~ .task_image{
+    box-shadow: 0px 0px 20px red;
+}
+.task_image{
+    max-width: 442px;
+    transition: .2s all;
+    border-radius: 10px;
+}
+.task_image:hover{
+    box-shadow: 0px 0px 20px #E36F59;
+}
+.form_block{
+    display: flex;
+    flex-direction: column;
+}
+.first_label{
+    margin-bottom: 10px;
+}
+.correct{
+    color: red;
+}
+.text_p{
+    font-size: 18px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+.select{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background: lightgray;
+    font-family: Bitter, serif;
+    font-size: 16px;
+    color: dimgray;
+    border: none;
+    margin-bottom: 10px;
+}
+.question{
+    padding: 20px;
+    background: lightgray;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+.question *{
+    font-size: 16px;
+}
+
+/****************************************answers********************************/
+.answers{
+    margin: 20px 0 0 0;
+}
+.answers_column{
+    display: flex;
+    flex-direction: column;
+}
+.answers_row{
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    position: relative;
+    transition: all .5s;
+    border-radius: 8px;
+    min-height: 70px;
+}
+.answers_row:not(:first-child){
+    margin-top: 20px;
+}
+.answers_row:hover{
+    box-shadow: 0 0 15px 1px #E36F59;
+}
+
+.question_title{
+    margin: 18px 0 0 25px;
+    font-family: 'Bitter', serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+
+}
+.answers_label{
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    cursor: pointer;
+    font-weight: 400;
+    font-family: Rubik, serif;
+    font-size: 35px;
+    user-select: none;
+    transition: all .5s;
+}
+.answers_input{
+    position: absolute;
+    visibility: hidden;
+}
+.answer_block{
+    position: relative;
+    visibility: visible;
+    width: 100%;
+    margin: 10px 0 10px 0;
+    transition: opacity .5s;
+    padding: 0 25px;
+    font-family: 'Bitter', serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 162%;
+    color: #383838;
+}
+
+.title-text{
+    text-align: center;
+    margin: 10px 0 20px 0;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    padding-left: 10px;
+}
+.del_btn{
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+.del_img{
+    height: 30px;
+    width: 30px;
+}
+.image_answ{
+    width: 230px;
+    height: 230px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.images_answ{
+    display: flex;
+    justify-content: space-around;
+}
+.correct_image{
+    box-shadow: 0 0 15px 1px #E36F59;
+    width: 230px;
+    height: 230px;
+    object-fit: contain;
+    border-radius: 10px;
+
+}
+.couses{
+    padding-bottom: 50px;
+}
+.select{
+    padding: 5px;
+}
+.writing_form{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+.text_writing{
+    width: 85%;
+}
+.add_writing{
+    height: 40px;
+    margin: 0;
+}
+

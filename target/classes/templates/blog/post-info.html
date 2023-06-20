@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/fragments/header.css}" rel="stylesheet" >
+    <link th:href="@{/css/fragments/footer.css}" rel="stylesheet" >
+    <link th:href="@{/css/nullstyle.css}" href="../../static/css/nullstyle.css" rel="stylesheet">
+    <link th:href="@{/css/blog/blog_post.css}" href="../../static/css/blog/blog_post.css" rel="stylesheet">
+    <link th:href="@{/css/loader.css}" rel="stylesheet">
+</head>
+<body>
+<div id="page-preloader" class="preloader">
+    <div class="loader"></div>
+</div>
+    <div class="wrapper">
+        <img src="../../static/media/general/main-vector.png" th:src="@{/media/general/main-vector.png}" class="main_vector vector">
+        <img th:src="@{/media/general/vector2.png}" class="second_vector vector">
+
+        <div th:insert="~{fragments/header.html :: header}"></div>
+
+        <section class="content">
+            <div class="container content_container">
+                <img class="blog_image" th:src="@{/media/blog/Blog.png}" alt="BLOG">
+                <div class="navigation">
+                    <img th:src="@{/media/general/home.svg}" alt="home">
+                    <a class="navigation_link" th:href="@{/static}" href="#"><span class="unactive_link">Головна</span></a>
+                    <img class="navigation_next" th:src="@{/media/general/next.svg}" alt="next">
+                    <a class="navigation_link" th:href="@{/templates/blog}">Блог</a>
+                </div>
+                <div class="blog_title title">
+                    <div class="blog_title-text title_text">
+                        Блог
+                    </div>
+                    <hr class="title_line">
+                </div>
+
+                <div class="blog_post">
+
+                    <div class="blog_post_header">
+                        <img class="header_image" th:src="@{/image/{id}(id = ${blog_post.getPreviewImageId()})}" src="../../static/media/index/advantages1.png" alt="HEADER_IMAGE">
+                    </div>
+
+                    <div class="blog_post_content">
+                        <div class="blog_post_theme">
+                            <div th:text="${blog_post.getBlogPostTitle()}" class="theme_title">Хто такий QAOps і чим він займається?</div>
+                            <div th:text="${blog_post.getBlogPostText()}" class="theme_text post_text">QAOps (quality assurance + software operations) — не нова спеціалізація. У різних компаніях вже досить давно використовують різні зв'язки термінів Test та OPS для опису цієї проєктної ролі: у Microsoft обрали назву TestOps, Google - TestSecOps, в ЕРАМ - DevTestSecOps.
+                                Ці, на перший погляд, громіздкі терміни, насправді допомагають повноцінно зрозуміти, чим займаються фахівці з автоматизації тестування.
+                                Адже їхнє коло обов'язків спочатку передбачає вміння не лише написати тест, а й інтегрувати його в існуючу інфраструктуру або створити нову, отримати необхідні дані, обробити та проаналізувати результати.
+                                Набагато швидше зробити це самостійно, аніж залучати до процесу колег-розробників або DevOps-інженерів.
+                                Примітно, що QAOps часто знаходять такий функціонал хмарних систем, про який не знають навіть DevOps. Ми — провокатори просунутого навчання.
+                                Адже їхнє коло обов'язків спочатку передбачає вміння не лише написати тест, а й інтегрувати його в існуючу інфраструктуру або створити нову, отримати необхідні дані, обробити та проаналізувати результати.
+                            </div>
+                        </div>
+                        <div th:each="sub : ${subthemes}" class="blog_post_subtheme">
+                            <div th:text="${sub.getBlogPostSubthemeTitle()}" class="subtheme_title">ЩО МАЄ ВМІТИ DEVTESTSECOPS?</div>
+                            <div th:text="${sub.getBlogPostSubthemeText()}" class="subtheme_text post_text">                 DevTestSecOps — це універсальний солдат, який може з нуля розгорнути фреймворк, створити всю необхідну для тестування інфраструктуру, підтримувати автотести в робочому стані, у разі знайдених дефектів у програмному коді вміти їх виправити.
+                                Це свого роду Full-Stack-інженери з фокусом на тестуванні програмного забезпечення, які, окрім своїх безпосередніх обов'язків, можуть виконувати низку інших завдань.
+                                DevTestSecOps-спеціалістам (як і автоматизаторам тестування) досить важливо переглядати код розробників, щоб заздалегідь відстежити зміни в продукті, розуміти ті області, на які слід звернути увагу при тестуванні, та, як бонус, вдосконалювати власний стиль написання коду, навчаючись у розробників.</div>
+                        </div>
+                        <div th:each="video : ${videos}" class="video_player">
+                            <iframe th:src="@{${video.getBlogPostVideoLink()}}" class="video_player-frame" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div th:each="img : ${images}" class="photos">
+                            <img class="photo" th:src="@{/image/{id}(id = ${img.getId()})}" alt="" src="">
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </section>
+
+        <div th:insert="~{fragments/footer :: footer}"></div>
+
+    </div>
+
+    <script th:src="@{/js/preloader.js}" src="../../static/js/preloader.js"></script>
+</body>
+</html>

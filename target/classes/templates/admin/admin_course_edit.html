@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4 ">IT Lang</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link active text-black bg-warning" aria-current="page">
+                        <svg class="bi pe-none me-2 " width="16" height="16"><use xlink:href="#home"></use></svg>
+                        Курси
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/blog" class="nav-link  text-white">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        Блог
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/users" class="nav-link text-white">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Користувачі
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/level-test" class="nav-link text-white ">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                        Тестування
+                    </a>
+                </li>
+            </ul>
+            <hr>
+
+        </div>
+
+
+        <div class="page_content">
+            <div class="couses">
+                <div class="blog_title title">
+                    <div th:text="${course.getTitle()}" class="blog_title-text title_text">
+                        Назва курсу
+                    </div>
+                    <hr class="title_line">
+                </div>
+
+                <div class="course_edit">
+                    <button type="button" class="custom-btn mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Додати рівень
+                    </button>
+                    <table class="table table-dark table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">title</th>
+                            <th scope="col">action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tab : ${levels}">
+                            <td th:text="${tab.getTitle()}">title</td>
+                            <td class="action_col" style="width: 90px">
+                                <a th:class="edit" th:href="@{/admin/level/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                                <a th:class="del" id="del" onclick="return confirm('Ви впевнені, що хочете видалити рівень?')" th:href="@{edit/delete_level/{sid}(sid = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Додати рівень</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form" th:action="@{edit/add_level}" method="post">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Назва рівня</label>
+                        <textarea th:field="*{level.title}" class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                    </div>
+
+                    <button class="custom-btn" type="submit">Додати</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

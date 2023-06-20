@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>ItLang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+  <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrapper">
+  <div class="content">
+    <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4 ">IT Lang</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="/admin" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2 " width="16" height="16"><use xlink:href="#home"></use></svg>
+            Курси
+          </a>
+        </li>
+        <li>
+          <a href="/admin/blog" class="nav-link active text-black bg-warning">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Блог
+          </a>
+        </li>
+        <li>
+          <a href="/admin/users" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+            Користувачі
+          </a>
+        </li>
+        <li>
+          <a href="/admin/level-test" class="nav-link text-white ">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+            Тестування
+          </a>
+        </li>
+      </ul>
+      <hr>
+    </div>
+
+
+    <div class="page_content">
+      <div class="blog">
+        <div class="blog_title title">
+          <div class="blog_title-text title_text">
+            Блог
+          </div>
+          <hr class="title_line">
+        </div>
+        <div class="blog_content">
+          <button id="add_post" class="custom-btn mb-2">
+            Додати пост
+          </button>
+          <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+              <th scope="col">title</th>
+              <th scope="col">date</th>
+              <th scope="col">action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tab : ${blog_post}">
+              <td th:text="${tab.getBlogPostTitle()}">title</td>
+              <td th:text="${tab.getDateOfCreation()}">date</td>
+              <td class="action_col" style="width: 90px">
+                <a th:class="edit" th:href="@{/admin/blog/post/{id}/edit(id = ${tab.getId()})}"><img style="width: 25px; height: 25px"  th:src="@{/media/general/edit.svg}" alt="edit"></a>
+                <a th:class="del" id="del" onclick="return confirm('Ви впевнені, що хочете видалити публікацію?')" th:href="@{/admin/blog/post/{id}/delete(id = ${tab.getId()})}" class="ms-2" href="#"><img style="width: 25px; height: 25px"  th:src="@{/media/general/delete.svg}" alt="delete"></a>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div id="add_post-modal" class="add_post-modal">
+  <div class="add_post-modal__content">
+    <form class="form" th:action="@{/admin/blog/post/add}" method="post" enctype="multipart/form-data">
+      <h2 class="modal_title">Основна інформація</h2>
+      <div class="text">Головне зображення</div>
+      <input class="form-control border border-secondary mb-2" type="file" id="previewImage" name="previewImage" required="required">
+      <textarea style="width: 100%" class="textarea" th:field="*{post.blogPostTitle}" required="required" minlength="20" maxlength="255" name="blogPostTitle" id="blogPostTitle" cols="100" rows="1" placeholder="Тема публікації"></textarea><br>
+      <textarea style="width: 100%" class="textarea" th:field="*{post.blogPostText}" required="required" minlength="20" name="blogPostText" id="blogPostText" cols="100" rows="10" placeholder="Текст публікації"></textarea>
+
+      <button class="custom-btn" type="submit">Додати публікацію</button>
+    </form>
+
+  </div>
+</div>
+<script>
+  var btn = document.getElementById("add_post");
+  var modal = document.getElementById("add_post-modal");
+
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+</body>
+</html>

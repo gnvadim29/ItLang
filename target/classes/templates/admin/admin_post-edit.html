@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ItLang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;900&family=Rubik&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/admin/admin.css}" href="../../static/css/admin/admin.css" rel="stylesheet" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4 ">IT Lang</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link text-white" aria-current="page">
+                        <svg class="bi pe-none me-2 " width="16" height="16"><use xlink:href="#home"></use></svg>
+                        Курси
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/blog" class="nav-link active text-black bg-warning">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        Блог
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/users" class="nav-link text-white">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Користувачі
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/level-test" class="nav-link text-white ">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                        Тестування
+                    </a>
+                </li>
+            </ul>
+            <hr>
+        </div>
+
+        <div class="page_content">
+            <div class="edit-container">
+                <img class="header_image" th:src="@{/image/{id}(id = ${post.getPreviewImageId()})}" src="../../static/media/index/advantages1.png" alt="previewImage">
+                <form class="form" th:action="@{/admin/blog/post/{id}/edit(id = ${post.getId()})}" method="post" enctype="multipart/form-data">
+
+                    <h2 class="modal_title">Основна інформація</h2>
+
+                    <div class="text">Нове головне зображення</div>
+                    <input type="file" class="form-control border border-secondary mb-2" id="previewImage" name="previewImage">
+                    <textarea class="textarea" th:text="${post.getBlogPostTitle()}" th:field="*{post.blogPostTitle}" required="required" minlength="5" maxlength="255" name="blogPostTitle" id="blogPostTitle" cols="100" rows="1" placeholder="Тема публікації"></textarea><br>
+                    <textarea class="textarea" th:text="${post.getBlogPostText()}" th:field="*{post.blogPostText}" required="required" name="blogPostText" id="blogPostText" cols="100" rows="10" placeholder="Текст публікації"></textarea>
+
+                    <hr class="line">
+
+                    <div class="subthemes">
+                        <h2 class="modal_title">Абзаци</h2>
+                        <div class="subtheme" th:each="sub : ${subtheme}">
+                            <p class="text">Назва: </p>
+                            <p class="subtext" th:text="${sub.getBlogPostSubthemeTitle()}">123322456</p>
+                            <p class="text">Текст: </p>
+                            <p class="subtext" th:text="${sub.getBlogPostSubthemeText()}">1232154565</p>
+                            <a class="btn-success btn" th:href="@{/admin/blog/post/{id}/edit/subtheme/{sid}/edit(id = ${post.getId()}, sid = ${sub.getId()})}">Редагувати</a>
+                            <a class="btn-danger btn" th:href="@{/admin/blog/post/{id}/edit/subtheme/{sid}/delete(id = ${post.getId()}, sid = ${sub.getId()})}">Видалити</a>
+                        </div>
+                        <a id="add_subtheme" type="" class="add_btn">+</a>
+                    </div>
+
+                    <hr class="line">
+
+                    <h2 class="modal_title">Зображення</h2>
+                    <div class="images" >
+                        <div class="image" th:each="img : ${images}">
+                            <img class="img" th:src="@{/image/{id}(id = ${img.getId()})}" alt="" src="">
+                            <a class="delete_btn btn" th:href="@{/admin/blog/post/{id}/edit/image/{sid}/delete(id = ${post.getId()}, sid = ${img.getId()})}">Видалити</a>
+                        </div>
+                    </div>
+                    <input type="file" class="form-control border border-secondary mb-2" name="files" placeholder="Image" multiple>
+                    <hr class="line">
+
+                    <div class="subthemes">
+                        <h2 class="modal_title">Відео</h2>
+                        <div class="images">
+                            <div class="image" th:each="video : ${videos}">
+                                <iframe src="https://www.youtube.com/embed/IkFjTHxSHZA" th:src="@{${video.getBlogPostVideoLink()}}" class="video_player-frame" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <a class="btn-danger btn" th:href="@{/admin/blog/post/{id}/edit/video/{sid}/delete(id = ${post.getId()}, sid = ${video.getId()})}">Видалити</a>
+                                <a class="btn-success btn" th:href="@{/admin/blog/post/{id}/edit/video/{sid}/edit(id = ${post.getId()}, sid = ${video.getId()})}">Редагувати</a>
+                            </div>
+
+                        </div>
+                        <a id="add_video" class="add_btn">+</a>
+                    </div>
+
+
+                    <div class="btns">
+                        <button class="btn-success btn" type="submit">Зберегти публікацію</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="add_video-modal">
+
+</div>
+<div class="add_subtheme-modal" id="add_subtheme-modal">
+    <div class="add_post-modal__content">
+        <div class="modal_title">
+            Додати абзац
+        </div>
+        <form class="form" th:action="@{edit/add-subtheme}" method="post">
+            <textarea class="textarea" th:field="*{subtheme1.blogPostSubthemeTitle}" name="blogPostSubthemeTitle" id="title1" cols="100" placeholder="Назва абзацу" rows="1"></textarea>
+            <textarea class="textarea" th:field="*{subtheme1.blogPostSubthemeText}" name="blogPostSubthemeText" id="text" cols="100" placeholder="Текст" rows="10"></textarea>
+            <button class="btn-dark btn" type="submit">Додати</button>
+        </form>
+        <a class="close" id="close_add_subtheme-modal"></a>
+    </div>
+</div>
+
+<div class="add_video-modal" id="add_video-modal">
+    <div class="add_post-modal__content">
+        <div class="modal_title">
+            Додати відео
+        </div>
+        <form class="form" th:action="@{edit/add-video}" method="post">
+            <textarea class="textarea" th:field="*{video1.blogPostVideoLink}" name="blogPostSubthemeTitle" id="title" cols="100" placeholder="Посилання на відео" rows="2"></textarea>
+            <button class="btn btn-dark" type="submit">Додати</button>
+        </form>
+        <a class="close" id="close_add_video-modal"></a>
+
+    </div>
+</div>
+</body>
+<script>
+    var btn1 = document.getElementById("add_video");
+    var modal1 = document.getElementById("add_video-modal");
+    var close1 = document.getElementById("close_add_video-modal")
+
+    btn1.onclick = function () {
+        modal1.style.display = "block";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
+    close1.onclick = function () {
+        modal1.style.display = "none";
+    }
+
+    var btn = document.getElementById("add_subtheme");
+    var modal = document.getElementById("add_subtheme-modal");
+    var close = document.getElementById("close_add_subtheme-modal")
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+    close.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>
+</html>
