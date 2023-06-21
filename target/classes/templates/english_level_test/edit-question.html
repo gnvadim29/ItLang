@@ -55,7 +55,7 @@
     </div>
     <div class="page_content">
       <h2 class="mt-2 fw-bold">Редагування запитання</h2>
-      <form class="form-control mt-4 custom-border" th:action="@{/english-level-test/questions/{id}/edit(id = ${question.getId()})}" method="post">
+      <form class="form-control mt-4 custom-border" th:action="@{/admin/level-test/questions/{id}/edit(id = ${question.getId()})}" method="post">
         <h6>Title: <span style="color: red; font-weight: 800;">*</span></h6>
         <input required id="title" th:value="${question.getQuestionTitle()}" class="form-control mb-3 custom-border" type="text" name="questionTitle" th:field="*{question.questionTitle}"></input>
         <h6>English level: <span style="color: red; font-weight: 800;">*</span></h6>
