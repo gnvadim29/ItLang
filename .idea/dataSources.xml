@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:mysql://localhost:3306/ItLang</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="railway@containers-us-west-65.railway.app" uuid="dcd85742-6370-4658-bff9-0dbed1f16ed1">
+    <data-source source="LOCAL" name="railway@containers-us-west-14.railway.app" uuid="3e7ebbb4-be97-47c6-85ff-438785aa70e6">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://containers-us-west-65.railway.app:7673/railway</jdbc-url>
+      <jdbc-url>jdbc:mysql://containers-us-west-14.railway.app:6977/railway</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
