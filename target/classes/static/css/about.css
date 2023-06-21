@@ -1,0 +1,30 @@
+body{
+    position: relative;
+    font-family: 'Bitter', serif;
+    color: #23262D;
+}
+.wrapper{
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+}
+.container{
+    max-width: 1240px;
+    margin: auto;
+    padding: 0 20px;
+    position: relative;
+}
+.content{
+    flex: 1 1 100%;
+}
+.content_item{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.image{
+    width: 450px;   
+}

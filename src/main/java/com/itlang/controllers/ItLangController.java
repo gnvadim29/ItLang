@@ -20,5 +20,9 @@ public class ItLangController {
         request.logout();
         return "redirect:/login?logout";
     }
+    @GetMapping("/about")
+    public String aboutPage(){
+        return "about";
+    }
 
 }

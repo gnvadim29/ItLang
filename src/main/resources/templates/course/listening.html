@@ -264,7 +264,7 @@
                                 <iframe class="video" width="488" height="300" th:src="${task.getMediaUrl()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <div class="listening_image_answer-image">
                                     <img class="listening_image_answer-img" th:src="@{/media/tasks/Voice.svg}" alt="">
-                                    <p class="task_title1" th:text="${task.getTitle()}"></p>
+                                    <p class="task_title2" th:text="${task.getTitle()}"></p>
                                 </div>
                             </div>
                             <div class="question__" th:each="que : ${task.getQuestions()}">

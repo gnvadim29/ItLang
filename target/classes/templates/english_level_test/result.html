@@ -23,6 +23,8 @@
 <div id="page-preloader" class="preloader">
     <div class="loader"></div>
 </div>
+<script th:src="@{/js/preloader.js}" src="../static/js/preloader.js"></script>
+
 
 <div class="wrapper">
     <div class="header1" th:insert="~{fragments/header.html :: header}"></div>
@@ -83,7 +85,6 @@
     const timerInterval = setInterval(updateTimer, 1000);
 
 </script>
-<script th:src="@{/js/preloader.js}" src="../../static/js/preloader.js"></script>
 
 </body>
 </html>

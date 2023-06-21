@@ -16,15 +16,19 @@
     <link media="all" th:href="@{/css/authorisation.css}" href="../../static/css/authorisation.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
+    <link media="all" th:href="@{/css/fragments/header.css}" rel="stylesheet">
+    <link media="all" th:href="@{/css/fragments/footer.css}" rel="stylesheet">
 
 </head>
 <body>
-
 <div id="page-preloader" class="preloader">
     <div class="loader"></div>
 </div>
+<script th:src="@{/js/preloader.js}" src="../../static/js/preloader.js"></script>
+
 
 <div class="wrapper">
+
     <img src="../../static/media/general/main-vector.png" th:src="@{/media/general/main-vector.png}" class="main_vector vector">
     <img th:src="@{/media/general/vector2.png}" src="../../static/media/general/vector2.png" class="second_vector vector">
 
@@ -122,7 +126,6 @@
     </div>
 </div>
 
-<script th:src="@{/js/preloader.js}" src="../../static/js/preloader.js"></script>
 <script>
     const togglePassword = document.querySelector('#togglePassword');
     const password = document.querySelector('#id_password');

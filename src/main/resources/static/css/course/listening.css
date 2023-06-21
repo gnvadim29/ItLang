@@ -20,7 +20,7 @@ body{
 .listening_image_answer-image{
     position: relative;
 }
-.task_title{
+.task_title, .task_title2{
     position: absolute;
     top: 0;
     left: 20px;
@@ -315,9 +315,15 @@ body{
     .ques2{
         margin: 0;
     }
-    .task_title1{
+    .task_title1, .task_title2{
         margin-top: 10px;
     }
+    .task_title2{
+        margin-left: 0;
+        position: relative;
+        left: 0;
+    }
+
     .question{
         max-width: unset;
     }
